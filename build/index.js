@@ -34,26 +34,26 @@ const Modal = _ref => {
   const modalRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (modalRef.current) {
-      var slides = jQuery(modalRef.current).find('.slider').children();
-      var thumbs = jQuery(modalRef.current).find('.thumbs').children();
+      var slides = jQuery(modalRef.current).find(".slider").children();
+      var thumbs = jQuery(modalRef.current).find(".thumbs").children();
       var currentSlide = 0;
 
       // Show the first slide and thumbnail
-      slides.eq(currentSlide).addClass('active');
-      thumbs.eq(currentSlide).addClass('active');
+      slides.eq(currentSlide).addClass("active");
+      thumbs.eq(currentSlide).addClass("active");
 
       // Change slide on thumbnail click
       thumbs.click(function () {
         // Remove active class from current slide and thumbnail
-        slides.eq(currentSlide).removeClass('active');
-        thumbs.eq(currentSlide).removeClass('active');
+        slides.eq(currentSlide).removeClass("active");
+        thumbs.eq(currentSlide).removeClass("active");
 
         // Set current slide to clicked thumbnail index
         currentSlide = jQuery(this).index();
 
         // Add active class to new slide and thumbnail
-        slides.eq(currentSlide).addClass('active');
-        thumbs.eq(currentSlide).addClass('active');
+        slides.eq(currentSlide).addClass("active");
+        thumbs.eq(currentSlide).addClass("active");
       });
     }
   }, []);
@@ -82,7 +82,7 @@ const Modal = _ref => {
     className: "slider"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     className: "model-img2 slide active",
-    src: "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    src: "https://images.unsplash.com/photo-1572201812288-01550c0619f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     alt: "Main"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     className: "model-img2 slide",
@@ -90,12 +90,12 @@ const Modal = _ref => {
     alt: "Main"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     className: "model-img2 slide",
-    src: "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    src: "https://images.unsplash.com/photo-1529785501650-9baa7e39c327?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
     alt: "Main"
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "list-images thumbs"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    src: "https://images.unsplash.com/photo-1529785501650-9baa7e39c327?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
     alt: "",
     className: "thumb active"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
@@ -103,7 +103,7 @@ const Modal = _ref => {
     alt: "",
     className: "thumb"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    src: "https://images.unsplash.com/photo-1572201812288-01550c0619f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     alt: "",
     className: "thumb"
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -124,11 +124,30 @@ const Modal = _ref => {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Client Review:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "GS Plugin team did perfect job. It was a pleasure to work with him. He understood the work from first day. Thank you for being a member of our team. Highly recommended.")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "side-bar"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Client Rating:")))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Client Rating:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "star-rating"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    class: "screen-reader-text"
+  }, "1.9 rating"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "star star-full",
+    "aria-hidden": "true"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "star star-half",
+    "aria-hidden": "true"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "star star-empty",
+    "aria-hidden": "true"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "star star-empty",
+    "aria-hidden": "true"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "star star-empty",
+    "aria-hidden": "true"
+  }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "footer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Description :"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "desc"
-  }, "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi fugiat mollitia, modi aperiam quae unde minus voluptas incidunt error at natus aut illum nam itaque adipisci neque cumque alias repellendus."))))));
+  }, "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi fugiat mollitia, modi aperiam quae unde minus voluptas incidunt error at natus aut illum nam itaque adipisci neque cumque alias repellendus.")), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null)))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Modal);
 
