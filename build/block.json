@@ -1,0 +1,146 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "create-block/b-portfolio-block",
+  "attributes": {
+    "projects": {
+      "type": "array",
+      "default": [
+        {
+          "background": {
+            "color": "#ffff"
+          },
+          "catrgory": "Android",
+          "skils": "Android",
+          "projectURL": "https:example.com",
+          "clientReview": "Some content will go here",
+          "clientRating": "4.5",
+          "image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
+          "title": "This is my titleZ",
+          "titleColor": "#000",
+          "desc": "This is my description",
+          "descColor": "#f00",
+          "btnLabel": "Button",
+          "btnUrl": "https://www.google.com/",
+          "btnColors": {
+            "color": "#f0f0f"
+          },
+          "images": []
+        },
+        {
+          "background": {
+            "color": "#ffff"
+          },
+          "catrgory": "Android",
+          "skils": "Android",
+          "projectURL": "https:example.com",
+          "clientReview": "Some content will go here",
+          "clientRating": "4.5",
+          "image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
+          "title": "This is my titleZ",
+          "titleColor": "#000",
+          "desc": "This is my description",
+          "descColor": "#f00",
+          "btnLabel": "Button",
+          "btnUrl": "https://www.google.com/",
+          "btnColors": {
+            "color": "#f0f0f"
+          }
+        }
+      ]
+    },
+    "columns": {
+      "type": "object",
+      "default": {
+        "desktop": 3,
+        "tablet": 2,
+        "mobile": 1
+      }
+    },
+    "columnGap": {
+      "type": "string",
+      "default": "20px"
+    },
+    "rowGap": {
+      "type": "string",
+      "default": "30px"
+    },
+    "theme": {
+      "type": "string",
+      "default": "themeOne"
+    },
+    "contentPadding": {
+      "type": "object",
+      "default": {
+        "top": "20px",
+        "right": "20px",
+        "bottom": "20px",
+        "left": "20px"
+      }
+    },
+    "border": {
+      "type": "object",
+      "default": {
+        "color": "#72aee6",
+        "style": "solid",
+        "width": "0px"
+      }
+    },
+    "shadows": {
+      "type": "array",
+      "default": []
+    },
+    "titleTypo": {
+      "type": "object",
+      "default": {
+        "fontSize": "20px"
+      }
+    },
+    "descTypo": {
+      "type": "object",
+      "default": {
+        "fontSize": "12px"
+      }
+    },
+    "buttonTypo": {
+      "type": "object",
+      "default": {
+        "fontSize": "5px"
+      }
+    },
+    "btnPadding": {
+      "type": "object",
+      "default": {
+        "top": "10px",
+        "right": "25px",
+        "bottom": "10px",
+        "left": "25px"
+      }
+    }
+  },
+  "example": {
+    "attributes": {
+      "preview": true,
+      "columns": {
+        "desktop": 1,
+        "tablet": 1,
+        "mobile": 1
+      }
+    }
+  },
+  "version": "0.1.0",
+  "title": "B Portfolio Block",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "b-portfolio-block",
+  "editorScript": [
+    "file:./index.js",
+    "jquery"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

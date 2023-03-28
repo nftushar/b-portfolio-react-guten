@@ -1,0 +1,390 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+@keyframes portfolio-item {
+	from {
+		top: 30%;
+		opacity: 0
+	}
+
+	to {
+		top: 0%;
+		opacity: 1;
+	}
+}
+
+
+
+
+.wp-block-create-block-b-portfolio-block {
+	background-color: #21759b;
+	color: #fff;
+	padding: 2px;
+}
+
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.bppb-portfolio-items {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 15px;
+	row-gap: 15px;
+	width: 100%;
+	max-width: 1140px;
+	margin: 0 auto;
+
+}
+
+.bppb-portfolio-item {
+	background-image: url("https://e0.pxfuel.com/wallpapers/989/662/desktop-wallpaper-most-beautiful-for-most-attractive.jpg");
+	height: 350px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+.bppb-portfolio-item .content h2 {
+	color: #fff;
+	line-height: 1.25em;
+	font-size: 30px;
+}
+
+.bppb-portfolio-item .content {
+	opacity: 0;
+	display: flex;
+	flex-direction: column;
+	row-gap: 25px;
+	top: 30%;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.bppb-portfolio-item:hover .content {
+	opacity: 1;
+	animation-name: portfolio-item;
+	animation-duration: 1.2s;
+	top: 0%;
+}
+
+.bppb-portfolio-item .content .portfolio-view-details-btn {
+	border: 1px solid #ddd;
+	outline: none;
+	padding: 4px 10px;
+	font-size: 15px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+/* ------------------------------------------ Media Query ------------------- */
+@media screen and (max-width: 992px) {
+	.bppb-portfolio-items {
+		grid-template-columns: repeat(2, auto);
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.bppb-portfolio-items {
+		grid-template-columns: repeat(1, auto);
+	}
+}
+
+
+
+/* button.click {
+    margin-top: 15px;
+    height: 28px;
+    width: 54px;
+    background-color: #f3eaeb;
+    text-decoration: none;
+    border-radius: 6px;
+} */
+
+
+@keyframes bppb-portfolio-item {
+	from {
+		top: 30%;
+		opacity: 0
+	}
+
+	to {
+		top: 0%;
+		opacity: 1;
+	}
+}
+
+
+
+/*--------------------------------------- popup modal ------------------------ */
+
+// .content h2 {
+// 	text-align: center;
+// 	color: #ffff;
+// }
+
+.desc {
+	color: #ffff;
+	text-align: center;
+}
+
+.side-bar span {
+	font-weight: 600;
+	font-size: 18px;
+	color: #0BF;
+}
+
+.footer span {
+	font-weight: 600;
+	font-size: 18px;
+	color: #0BF;
+}
+
+p {
+	margin: 0 0 24px;
+	margin: 0 0 2.4rem;
+	padding: 0;
+	line-height: 1.6;
+}
+
+.modal-text .red {
+	color: #fa566f;
+}
+
+img.model-img2 {
+	width: 100%;
+}
+
+p.desc {
+	margin-top: 10px;
+	color: black;
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+.list-images {
+	display: flex;
+}
+
+/* .list-images img {
+    margin-top: 20px;
+    height: 80px;
+} */
+
+h1.heading {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+// p {
+// 	margin: 0;
+// }
+
+.side-bar {
+	margin-top: 10px;
+	color: black;
+}
+
+
+.editor-styles-wrapper p {
+	margin: 0 0 20px;
+	color: black;
+}
+
+span {
+	color: black;
+}
+
+
+.row {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin: 20px;
+}
+
+
+/*  -=-------------------modal css----------------------------------------------- */
+.slider-wrapper {
+	position: relative;
+}
+
+.slider {
+	position: relative;
+	height: 400px;
+	overflow: hidden;
+}
+
+.slide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	transition: opacity 0.8s ease-in-out;
+}
+
+.slide.active {
+	opacity: 1;
+}
+
+.thumbs {
+	display: flex;
+	margin-top: 10px;
+	column-gap: 8px;
+}
+
+.thumb {
+	width: 80px;
+	height: 60px;
+	border: 2px solid white;
+	opacity: 0.5;
+	transition: opacity 0.8s ease-in-out;
+	cursor: pointer;
+}
+
+.thumb.active {
+	opacity: 1;
+}
+
+.footer {
+	margin: 15px 25px 0px 25px;
+}
+
+/*--------------------------------------- popup modal ------------------------ */
+
+
+/* The Modal (background) */
+#portfolio-modal {
+	// display: none;
+	/* Hidden by default */
+	position: fixed;
+	/* Stay in place */
+	z-index: 1;
+	/* Sit on top */
+	padding-top: 100px;
+	/* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%;
+	/* Full width */
+	height: 100%;
+	/* Full height */
+	overflow: auto;
+	/* Enable scroll if needed */
+	background-color: rgb(0, 0, 0);
+	/* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4);
+	/* Black w/ opacity */
+}
+
+#portfolio-modal .modal-text {
+	margin-left: 30px;
+}
+
+/* .modal-content {
+    width: 88%;
+    margin: 0 auto;
+} */
+
+/* Modal Content */
+#portfolio-modal .modal-content {
+	position: relative;
+	width: 80rem;
+	background-color: #fefefe;
+	margin: 0 auto;
+	padding: 0;
+	/* border: 1px solid #888; */
+	/* width: 80%; */
+	/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+	-webkit-animation-name: animatetop;
+	-webkit-animation-duration: 0.4s;
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0
+	}
+
+	to {
+		top: 0;
+		opacity: 1
+	}
+}
+
+@keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0
+	}
+
+	to {
+		top: 0;
+		opacity: 1
+	}
+}
+
+/* The Close Button */
+#portfolio-modal .close {
+	color: #489625;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+#portfolio-modal .close:hover,
+#portfolio-modal .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#portfolio-modal .modal-header {
+	padding: 2px 16px;
+	background-color: #5cb85c;
+	color: white;
+}
+
+#portfolio-modal .modal-body {
+	/* padding: 2px 16px; */
+}
+
+#portfolio-modal .modal-footer {
+	text-align: center;
+	padding: 2px 16px;
+	background-color: #5cb85c;
+	color: white;
+}
+
+@media only screen and (max-width: 768px) {
+	#portfolio-modal .modal-content {
+		width: 80%;
+	}
+
+	#portfolio-modal .modal-text {
+		margin: 20px 0px 0px 0px;
+	}
+
+	.row {
+		display: grid;
+		grid-template-columns: repeat(1, auto);
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.row {
+		display: grid;
+		grid-template-columns: repeat(1, auto);
+	}
+}
