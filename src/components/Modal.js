@@ -3,10 +3,11 @@ import { useRef, useEffect } from "@wordpress/element";
 const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
 	const {
 		title,
+        image,
 		desc,
 		clientRating,
 		clientReview,
-		category,
+        catrgory,
 		skils,
 		projectURL,
 	} = project;
@@ -48,7 +49,7 @@ const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
 					</span>
 				</div>
 				<div className="modal-body">
-					<h1 className="heading">Projects 6</h1>
+					<h1 className="heading">{title}</h1>
 					<div className="modal-content">
 						<div className="row">
 							<div className="modal-img slider-wrapper">
@@ -92,31 +93,30 @@ const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
 								<h3 className="red">Project Details</h3>
 								<div className="side-bar">
 									<span>Project Name:</span>
-									<p>project 6</p>
+									<p>{title}</p>
 								</div>
 								<div className="side-bar">
 									<span>Project Category:</span>
-									<p>Android, test</p>
+                                    <p>{catrgory}</p>
 								</div>
 								<div className="side-bar">
 									<span>Skill:</span>
-									<p>Android</p>
+									<p>{skils}</p>
 								</div>
 								<div className="side-bar">
 									<span>Project URL:</span>
-									<p className="red">www.abc.com</p>
+									<p className="red">{projectURL}</p>
 								</div>
 								<div className="side-bar">
 									<span>Client Review:</span>
 									<p>
-										GS Plugin team did perfect job. It was a pleasure to work
-										with him. He understood the work from first day. Thank you
-										for being a member of our team. Highly recommended.
+                                        {clientReview}
 									</p>
 								</div>
 								<div className="side-bar">
-									<span>Client Rating:</span>
+                                    <span>Client Rating:</span>
 									<div class="star-rating">
+                                        &nbsp;   {clientRating} &nbsp;
 										<span class="screen-reader-text">1.9 rating</span>
 										<div class="star star-full" aria-hidden="true"></div>
 										<div class="star star-half" aria-hidden="true"></div>
@@ -130,10 +130,7 @@ const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
 						<div className="footer">
 							<span>Description :</span>
 							<p className="desc">
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi
-								fugiat mollitia, modi aperiam quae unde minus voluptas incidunt
-								error at natus aut illum nam itaque adipisci neque cumque alias
-								repellendus.
+								{desc}
 							</p>
 						</div> <br></br>
 					</div>
