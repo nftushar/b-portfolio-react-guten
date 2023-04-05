@@ -4,7 +4,7 @@ import { useState } from '@wordpress/element'
 import Settings from './Settings'
 import "./editor.scss";
 import Modal from "./components/Modal";
-
+// import "./style.scss"
 
 export default function Edit({ attributes, setAttributes }) {
 	const { projects } = attributes;
@@ -19,7 +19,7 @@ export default function Edit({ attributes, setAttributes }) {
 		});
 		setAttributes({ projects: newProjects });
 	};
-	
+
 	return (
 		<div {...useBlockProps()}>
 			<Settings attributes={attributes} setAttributes={setAttributes} updateCard={updateAllProject} />
@@ -34,7 +34,8 @@ export default function Edit({ attributes, setAttributes }) {
 							<button className="portfolio-view-details-btn" onClick={() => {
 								setCurrentIndex(index);
 								setModalOpen(true);
-							}}>{btnLabel}</button>
+							}}>{btnLabel} </button>
+							{/* {console.log(btnLabel)} */}
 						</div>
 					</div>
 				})}

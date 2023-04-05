@@ -33,6 +33,7 @@ import { InlineMediaUpload } from "../../Components/MediaControl";
 import { gearIcon } from "../../Components/Helper/icons";
 
 export default function ({ attributes, setAttributes, updateProject }) {
+
     const {
         projects,
         layout,
@@ -57,10 +58,12 @@ export default function ({ attributes, setAttributes, updateProject }) {
         btnAlign,
         btnTypo,
         btnPadding,
+        projectURL,
         projectRadius,
         btnRadius
     } = attributes;
     // console.log(projectRadius)
+    // console.log(attributes.projectURL);
 
     const [device, setDevice] = useState("desktop");
 
@@ -68,18 +71,33 @@ export default function ({ attributes, setAttributes, updateProject }) {
         const newCrads = [
             ...projects,
             {
-                background: projects?.[0]?.background || {
-                    color: '#fff'
+                "background": {
+                    "color": "#ffff"
                 },
-                img: "",
-                title: `Title of the ${projects?.length + 1} number project`,
-                desc: `Description of the ${projects?.length + 1} number project`,
-                btnLabal: projects?.[0]?.btnLabal || 'Button',
-                btnUrl: "#",
+                "catrgory": "Android",
+                "skils": "Android",
+                "projectURL": "https:example.com",
+                "clientReview": "Some content will go here",
+                "clientRating": "4.5",
+                "image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
+                "title": "This is my title",
+                "titleColor": "#000",
+                "desc": "This is my description",
+                "descColor": "#f00",
+                "btnLabel": "Button",
+                "btnUrl": "https://www.google.com/",
+                "btnColors": {
+                    "color": "#f0f0f"
+                },
+                "images": [
+                    "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
+                    "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
+                ]
             }
         ];
         setAttributes({ projects: newCrads });
     };
+
 
     function handleProjectDelete(index) {
         const newCrads = [...projects];
@@ -122,10 +140,10 @@ export default function ({ attributes, setAttributes, updateProject }) {
                             const {
                                 background,
                                 img,
-                                btnLabal,
+                                btnLabel,
                                 btnUrl
                             } = project;
-                            // console.log(project.btnLabal)
+                            // console.log(project.btnLabel)
                             return <PanelBody
                                 className="bPlPanelBody"
                                 title={`This is project ${index + 1}`}
@@ -154,8 +172,8 @@ export default function ({ attributes, setAttributes, updateProject }) {
 									}
 								/> */}
 
-                                {btnLabal && <Title>{__("Button Url:", "info-projects")}</Title>}
-                                {btnLabal && <TextControl
+                                {btnLabel && <Title>{__("Button Url:", "info-projects")}</Title>}
+                                {btnLabel && <TextControl
                                     value={btnUrl}
                                     onChange={(content) =>
                                         updateProject(index, "btnUrl", content)
@@ -174,7 +192,6 @@ export default function ({ attributes, setAttributes, updateProject }) {
                                 </PanelRow>
                             </PanelBody>
                         })}
-
 
                         <div className="addItem mt15">
                             <Button onClick={() => onAddProject()}>

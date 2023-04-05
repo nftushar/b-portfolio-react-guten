@@ -15,7 +15,6 @@
           "projectURL": "https:example.com",
           "clientReview": "Some content will go here",
           "clientRating": "4.5",
-          "image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
           "title": "This is my title",
           "titleColor": "#000",
           "desc": "This is my description",
@@ -23,9 +22,12 @@
           "btnLabel": "Button",
           "btnUrl": "https://www.google.com/",
           "btnColors": {
-            "color": "#f0f0f"
+            "color": "#f0f0"
           },
-          "images": []
+          "images": [
+            "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
+            "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"
+          ]
         },
         {
           "background": {
@@ -44,8 +46,12 @@
           "btnLabel": "Button",
           "btnUrl": "https://www.google.com/",
           "btnColors": {
-            "color": "#f0f0f"
-          }
+            "color": "#f0f0"
+          },
+          "images": [
+            "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
+            "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"
+          ]
         }
       ]
     },

@@ -1,16 +1,21 @@
 import { useRef, useEffect } from "@wordpress/element";
 
 const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
+	// console.log(setModalOpen);
+
 	const {
 		title,
-        image,
+		catrgory,
+		skils,
+		images,
 		desc,
 		clientRating,
 		clientReview,
-        catrgory,
-		skils,
 		projectURL,
 	} = project;
+
+	// console.log(image);
+
 
 	const modalRef = useRef(null);
 
@@ -54,39 +59,41 @@ const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
 						<div className="row">
 							<div className="modal-img slider-wrapper">
 								<div className="slider">
-									<img
-										className="model-img2 slide active"
-                                        src="https://images.unsplash.com/photo-1572201812288-01550c0619f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-										alt="Main"
-									/>
-									<img
-										className="model-img2 slide"
-										src="https://img.freepik.com/free-photo/purple-osteospermum-daisy-flower_1373-16.jpg?w=2000"
-										alt="Main"
-									/>
-									<img
-										className="model-img2 slide"
-										src="https://images.unsplash.com/photo-1529785501650-9baa7e39c327?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
-										alt="Main"
-									/>
+
+									{images?.map((image, index) => 
+											<img
+												className="model-img2 slide active" src={image}
+												alt="Main"
+											/>
+										)}
 								</div>
-                                
+
 								<div className="list-images thumbs">
-									<img
+									{/* {console.log(image)} */}
+
+									{images.map((image, index) => 
+											<img
+												src={image}
+												alt=""
+												className="thumb active"
+											/>)}
+
+
+									{/* <img
 										src="https://images.unsplash.com/photo-1529785501650-9baa7e39c327?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
 										alt=""
 										className="thumb active"
-									/>
-									<img
-										src="https://img.freepik.com/free-photo/purple-osteospermum-daisy-flower_1373-16.jpg?w=2000"
+									/> */}
+									{/* <img
+										src={image}
 										alt=""
 										className="thumb"
 									/>
 									<img
-                                        src="https://images.unsplash.com/photo-1572201812288-01550c0619f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+										src={image}
 										alt=""
 										className="thumb"
-									/>
+									/> */}
 								</div>
 							</div>
 							<div className="modal-text">
@@ -97,7 +104,7 @@ const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
 								</div>
 								<div className="side-bar">
 									<span>Project Category:</span>
-                                    <p>{catrgory}</p>
+									<p>{catrgory}</p>
 								</div>
 								<div className="side-bar">
 									<span>Skill:</span>
@@ -110,13 +117,13 @@ const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
 								<div className="side-bar">
 									<span>Client Review:</span>
 									<p>
-                                        {clientReview}
+										{clientReview}
 									</p>
 								</div>
 								<div className="side-bar">
-                                    <span>Client Rating:</span>
+									<span>Client Rating:</span>
 									<div class="star-rating">
-                                        &nbsp;   {clientRating} &nbsp;
+										&nbsp;   {clientRating} &nbsp;
 										<span class="screen-reader-text">1.9 rating</span>
 										<div class="star star-full" aria-hidden="true"></div>
 										<div class="star star-half" aria-hidden="true"></div>

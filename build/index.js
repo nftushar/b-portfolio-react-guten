@@ -5854,22 +5854,35 @@ __webpack_require__.r(__webpack_exports__);
     btnAlign,
     btnTypo,
     btnPadding,
+    projectURL,
     projectRadius,
     btnRadius
   } = attributes;
   // console.log(projectRadius)
+  // console.log(attributes.projectURL);
 
   const [device, setDevice] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("desktop");
   const onAddProject = () => {
     const newCrads = [...projects, {
-      background: projects?.[0]?.background || {
-        color: '#fff'
+      "background": {
+        "color": "#ffff"
       },
-      img: "",
-      title: `Title of the ${projects?.length + 1} number project`,
-      desc: `Description of the ${projects?.length + 1} number project`,
-      btnLabal: projects?.[0]?.btnLabal || 'Button',
-      btnUrl: "#"
+      "catrgory": "Android",
+      "skils": "Android",
+      "projectURL": "https:example.com",
+      "clientReview": "Some content will go here",
+      "clientRating": "4.5",
+      "image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
+      "title": "This is my title",
+      "titleColor": "#000",
+      "desc": "This is my description",
+      "descColor": "#f00",
+      "btnLabel": "Button",
+      "btnUrl": "https://www.google.com/",
+      "btnColors": {
+        "color": "#f0f0f"
+      },
+      "images": ["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large", "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]
     }];
     setAttributes({
       projects: newCrads
@@ -5916,10 +5929,10 @@ __webpack_require__.r(__webpack_exports__);
     const {
       background,
       img,
-      btnLabal,
+      btnLabel,
       btnUrl
     } = project;
-    // console.log(project.btnLabal)
+    // console.log(project.btnLabel)
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
       className: "bPlPanelBody",
       title: `This is project ${index + 1}`,
@@ -5933,7 +5946,7 @@ __webpack_require__.r(__webpack_exports__);
       value: img,
       onChange: val => updateProject(index, "img", val),
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Enter Image URL", "info-projects")
-    }), btnLabal && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Title__WEBPACK_IMPORTED_MODULE_6__["default"], null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Button Url:", "info-projects")), btnLabal && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+    }), btnLabel && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Title__WEBPACK_IMPORTED_MODULE_6__["default"], null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Button Url:", "info-projects")), btnLabel && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
       value: btnUrl,
       onChange: content => updateProject(index, "btnUrl", content)
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, {
@@ -6425,16 +6438,21 @@ const Modal = _ref => {
     setAttributes,
     setModalOpen
   } = _ref;
+  // console.log(setModalOpen);
+
   const {
     title,
-    image,
+    catrgory,
+    skils,
+    images,
     desc,
     clientRating,
     clientReview,
-    catrgory,
-    skils,
     projectURL
   } = project;
+
+  // console.log(image);
+
   const modalRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (modalRef.current) {
@@ -6484,33 +6502,17 @@ const Modal = _ref => {
     className: "modal-img slider-wrapper"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "slider"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  }, images?.map((image, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     className: "model-img2 slide active",
-    src: "https://images.unsplash.com/photo-1572201812288-01550c0619f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    src: image,
     alt: "Main"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    className: "model-img2 slide",
-    src: "https://img.freepik.com/free-photo/purple-osteospermum-daisy-flower_1373-16.jpg?w=2000",
-    alt: "Main"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    className: "model-img2 slide",
-    src: "https://images.unsplash.com/photo-1529785501650-9baa7e39c327?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
-    alt: "Main"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "list-images thumbs"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: "https://images.unsplash.com/photo-1529785501650-9baa7e39c327?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
+  }, images.map((image, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: image,
     alt: "",
     className: "thumb active"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: "https://img.freepik.com/free-photo/purple-osteospermum-daisy-flower_1373-16.jpg?w=2000",
-    alt: "",
-    className: "thumb"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: "https://images.unsplash.com/photo-1572201812288-01550c0619f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    alt: "",
-    className: "thumb"
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-text"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
     className: "red"
@@ -6583,6 +6585,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import "./style.scss"
+
 function Edit(_ref) {
   let {
     attributes,
@@ -6633,7 +6637,7 @@ function Edit(_ref) {
         setCurrentIndex(index);
         setModalOpen(true);
       }
-    }, btnLabel)));
+    }, btnLabel, " ")));
   })), modalOpen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Modal__WEBPACK_IMPORTED_MODULE_5__["default"], {
     setAttributes: setAttributes,
     project: projects[currentIndex] || {},
@@ -6896,7 +6900,7 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/b-portfolio-block","attributes":{"projects":{"type":"array","default":[{"background":{"color":"#ffff"},"catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnLabel":"Button","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0f"},"images":[]},{"background":{"color":"#ffff"},"catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnLabel":"Button","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0f"}}]},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"20px"}},"descTypo":{"type":"object","default":{"fontSize":"12px"}},"buttonTypo":{"type":"object","default":{"fontSize":"5px"}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"version":"0.1.0","title":"B Portfolio Block","category":"widgets","icon":"smiley","description":"B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.","supports":{"html":false},"textdomain":"b-portfolio-block","editorScript":["file:./index.js","jquery"],"editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/b-portfolio-block","attributes":{"projects":{"type":"array","default":[{"background":{"color":"#ffff"},"catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnLabel":"Button","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0"},"images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]},{"background":{"color":"#ffff"},"catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnLabel":"Button","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0"},"images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]}]},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"20px"}},"descTypo":{"type":"object","default":{"fontSize":"12px"}},"buttonTypo":{"type":"object","default":{"fontSize":"5px"}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"version":"0.1.0","title":"B Portfolio Block","category":"widgets","icon":"smiley","description":"B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.","supports":{"html":false},"textdomain":"b-portfolio-block","editorScript":["file:./index.js","jquery"],"editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 
