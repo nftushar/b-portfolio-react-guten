@@ -214,37 +214,14 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                         />
 
-                        {/* {console.log(btnLabel)} */}
-                        {/* <TextControl
-                            label={__("Button Label", "b-projects")}
+                        <TextControl
+                            label={__("Button Label", "b-project")}
                             value={btnLabel}
 
                             onChange={(val) => {
-                                setAttributes({ btnLabel: val });
-                            }
-                        /> */}
-
-                        <TextControl
-                          label={__("Button Label", "b-project")}
-                          value={btnLabel}
-
-                          onChange={(val)=>{
-                            setAttributes({btnLabel: val})
-                          }}
+                                setAttributes({ btnLabel: val })
+                            }}
                         />
-
-                        {/* {btnLabel && (
-                            <Title>{__("Button Label:", "B-projects")}</Title>
-                        )}
-                        {btnLabel && (
-                            <TextControl
-                                value={btnLabel}
-                                onChange={(content) =>
-                                    updateProject(index, "btnLabel", content)
-                                }
-                            />
-
-                        )} */}
 
 
                         {/* <SelectControl

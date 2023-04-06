@@ -32,16 +32,13 @@ export default function Edit({ attributes, setAttributes }) {
 					const { title, desc } = project;
 					return <div className="bppb-portfolio-item">
 						<div className="content">
-							{/* <h2 dangerouslySetInnerHTML={{ __html: title }}></h2> */}
 
 							<RichText
 								tagName="h2"
 								value={title}
 								onChange={(content) => updateProject(index, "title", content)}
 								placeholder={__("Enter Title", 'b-Project')}
-								inlineToolbar
-								allowedFormats={["core/bold", "core/italic"]}
-							/>
+                             />
 
 							<RichText
 								tagName="div"
@@ -49,22 +46,19 @@ export default function Edit({ attributes, setAttributes }) {
 								value={desc}
 								onChange={(content) => updateProject(index, "desc", content)}
 								placeholder={__("Enter description", 'b-Project')}
-								inlineToolbar
-								allowedFormats={["core/bold", "core/italic"]}
 							/>
 
-							<button className="portfolio-view-details-btn" onClick={() => { 
+							<button className="portfolio-view-details-btn" onClick={() => {
 								setCurrentIndex(index);
 								setModalOpen(true);
 							}}>{btnLabel} </button>
 
-							{/* {console.log(btnLabel)} */}
 						</div>
 					</div>
 				})}
 
 			</div>
-			{modalOpen && <Modal setAttributes={setAttributes} project={projects[currentIndex] || {}} setModalOpen={setModalOpen} />}
+			{modalOpen && <Modal setAttributes={setAttributes} updateProject={updateProject} currentIndex={currentIndex} project={projects[currentIndex] || {}} setModalOpen={setModalOpen} />}
 		</div>
 	);
 }

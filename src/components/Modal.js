@@ -1,8 +1,12 @@
 import { useRef, useEffect } from "@wordpress/element";
+// import { registerBlockType } from '@wordpress/blocks';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 
-const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
+
+
+const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 	// console.log(setModalOpen);
-
+	// const project = projects[currentIndex]
 	const {
 		title,
 		catrgory,
@@ -45,6 +49,14 @@ const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
 		}
 	}, []);
 
+	// function updateProject(index, property, value) {
+	// 	// console.log(project);
+	// 	const newProjects = {...project};
+	// 	newProjects[index][property] = value;
+	// 	setAttributes({ projects: newProjects });
+	// }
+
+
 	return (
 		<div ref={modalRef} id="portfolio-modal" className="modal">
 			<div className="modal-content">
@@ -54,29 +66,30 @@ const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
 					</span>
 				</div>
 				<div className="modal-body">
+
 					<h1 className="heading">{title}</h1>
 					<div className="modal-content">
 						<div className="row">
 							<div className="modal-img slider-wrapper">
 								<div className="slider">
 
-									{images?.map((image, index) => 
-											<img
-												className="model-img2 slide active" src={image}
-												alt="Main"
-											/>
-										)}
+									{images?.map((image, index) =>
+										<img
+											className="model-img2 slide active" src={image}
+											alt="Main"
+										/>
+									)}
 								</div>
 
 								<div className="list-images thumbs">
 									{/* {console.log(image)} */}
 
-									{images.map((image, index) => 
-											<img
-												src={image}
-												alt=""
-												className="thumb active"
-											/>)}
+									{images.map((image, index) =>
+										<img
+											src={image}
+											alt=""
+											className="thumb active"
+										/>)}
 
 
 									{/* <img
@@ -100,25 +113,55 @@ const Modal = ({ project = {}, setAttributes, setModalOpen }) => {
 								<h3 className="red">Project Details</h3>
 								<div className="side-bar">
 									<span>Project Name:</span>
-									<p>{title}</p>
+									<RichText
+										tagName="p"
+										className="heading"
+										value={title}
+										onChange={(content) => updateProject(currentIndex, "title", content)}
+										inlineToolbar
+										allowedFormats={["core/bold", "core/italic"]}
+									/>
+									{/* <p>{title}</p> */}
 								</div>
 								<div className="side-bar">
 									<span>Project Category:</span>
-									<p>{catrgory}</p>
+									<RichText
+										tagName="p"
+										value={catrgory}
+										onChange={(content) => updateProject(currentIndex, "catrgory", content)}
+										inlineToolbar
+										allowedFormats={["core/bold", "core/italic"]}
+									/>
+									{/* <p>{catrgory}</p> */}
 								</div>
 								<div className="side-bar">
 									<span>Skill:</span>
-									<p>{skils}</p>
+									<RichText
+										tagName="p"
+										className="skils"
+										value={skils}
+										onChange={(content) => updateProject(currentIndex, "skils", content)}
+									/>
+									{/* <p>{skils}</p> */}
 								</div>
 								<div className="side-bar">
 									<span>Project URL:</span>
-									<p className="red">{projectURL}</p>
+									<RichText tagName="a"
+										className="red"
+										value={projectURL}
+										onChange={(content) => updateProject(currentIndex, "projectURL", content)}
+									/>
 								</div>
 								<div className="side-bar">
 									<span>Client Review:</span>
-									<p>
+									<RichText tagName="p"
+										// className="red"
+										value={clientReview}
+										onChange={(content) => updateProject(currentIndex, "clientReview", content)}
+									/>
+									{/* <p>
 										{clientReview}
-									</p>
+									</p> */}
 								</div>
 								<div className="side-bar">
 									<span>Client Rating:</span>
