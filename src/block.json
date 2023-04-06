@@ -18,7 +18,6 @@
 					"titleColor": "#000",
 					"desc": "This is my description",
 					"descColor": "#f00",
-					"btnLabel": "Button",
 					"btnUrl": "https://www.google.com/",
 					"btnColors": {
 						"color": "#f0f0"
@@ -27,7 +26,8 @@
 						"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
 						"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"
 					]
-				}, {
+				},
+				 {
 					"background": {
 						"color": "#ffff"
 					},
@@ -41,17 +41,21 @@
 					"titleColor": "#000",
 					"desc": "This is my description",
 					"descColor": "#f00",
-					"btnLabel": "Button",
 					"btnUrl": "https://www.google.com/",
 					"btnColors": {
 						"color": "#f0f0"
 					},
-					"images": [ 
+					"images": [
 						"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
 						"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"
 					]
 				} ]
 		},
+		"btnLabel": {
+			"type": "string",
+			"default": "Button"
+		},
+
 		"columns": {
 			"type": "object",
 			"default": {

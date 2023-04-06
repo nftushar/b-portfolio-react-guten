@@ -19,7 +19,6 @@
           "titleColor": "#000",
           "desc": "This is my description",
           "descColor": "#f00",
-          "btnLabel": "Button",
           "btnUrl": "https://www.google.com/",
           "btnColors": {
             "color": "#f0f0"
@@ -43,7 +42,6 @@
           "titleColor": "#000",
           "desc": "This is my description",
           "descColor": "#f00",
-          "btnLabel": "Button",
           "btnUrl": "https://www.google.com/",
           "btnColors": {
             "color": "#f0f0"
@@ -54,6 +52,10 @@
           ]
         }
       ]
+    },
+    "btnLabel": {
+      "type": "string",
+      "default": "Button"
     },
     "columns": {
       "type": "object",

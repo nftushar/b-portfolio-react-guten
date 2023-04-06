@@ -55,6 +55,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
         descTypo,
         btnColors,
         btnHovColors,
+        btnLabel,
         btnAlign,
         btnTypo,
         btnPadding,
@@ -62,7 +63,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
         projectRadius,
         btnRadius
     } = attributes;
-    // console.log(projectRadius)
+    // console.log(btnLabel);
     // console.log(attributes.projectURL);
 
     const [device, setDevice] = useState("desktop");
@@ -84,7 +85,6 @@ export default function ({ attributes, setAttributes, updateProject }) {
                 "titleColor": "#000",
                 "desc": "This is my description",
                 "descColor": "#f00",
-                "btnLabel": "Button",
                 "btnUrl": "https://www.google.com/",
                 "btnColors": {
                     "color": "#f0f0f"
@@ -134,23 +134,24 @@ export default function ({ attributes, setAttributes, updateProject }) {
                 {"general" === tab.name && <>
                     <PanelBody
                         className="bPlPanelBody"
-                        title={__("Add or Remove Projects", "info-projects")}
+                        title={__("Add or Remove Projects", "b-projects")}
                     >
                         {projects.map((project, index) => {
+
                             const {
                                 background,
                                 img,
-                                btnLabel,
                                 btnUrl
                             } = project;
-                            // console.log(project.btnLabel)
+                            // console.log(btnLabel)
+                            // console.log()
                             return <PanelBody
                                 className="bPlPanelBody"
                                 title={`This is project ${index + 1}`}
                                 initialOpen={false}
                             >
                                 <Background
-                                    label={__("Background", "info-projects")}
+                                    label={__("Background", "b-projects")}
                                     value={background}
                                     onChange={(val) =>
                                         updateProject(index, "background", val)
@@ -161,26 +162,17 @@ export default function ({ attributes, setAttributes, updateProject }) {
                                 {isImg && <InlineMediaUpload
                                     value={img}
                                     onChange={(val) => updateProject(index, "img", val)}
-                                    placeholder={__("Enter Image URL", "info-projects")}
+                                    placeholder={__("Enter Image URL", "b-projects")}
                                 />}
 
-                                {/* <BColor
-									label={__("Description Color", "info-projects")}
-									value={descColor}
-									onChange={(val) =>
-										updateProject(index, "descColor", val)
-									}
-								/> */}
-
-                                {btnLabel && <Title>{__("Button Url:", "info-projects")}</Title>}
-                                {btnLabel && <TextControl
+                                {btnUrl && <Title>{__("Button Url:", "b-projects")}</Title>}
+                                {btnUrl && <TextControl
                                     value={btnUrl}
                                     onChange={(content) =>
                                         updateProject(index, "btnUrl", content)
                                     }
+
                                 />}
-
-
                                 <PanelRow className="itemAction mt20">
                                     {1 < projects?.length && <Button className="removeItem" onClick={() => handleProjectDelete(index)}>
                                         <Dashicon icon="no" /> Delete
@@ -191,19 +183,20 @@ export default function ({ attributes, setAttributes, updateProject }) {
                                     </Button>
                                 </PanelRow>
                             </PanelBody>
+                            // { console.log(btnLabel) }
                         })}
 
                         <div className="addItem mt15">
                             <Button onClick={() => onAddProject()}>
-                                <Dashicon icon="plus" /> Add New Project
+                                Add New Project
                             </Button>
                         </div>
                     </PanelBody>
 
 
-                    <PanelBody title={__("Layout", "info-projects")} className="bPlPanelBody" initialOpen={false}>
+                    <PanelBody title={__("Layout", "b-projects")} className="bPlPanelBody" initialOpen={false}>
                         <SelectControl
-                            label={__("Layout", "info-projects")}
+                            label={__("Layout", "b-projects")}
                             labelPosition="left"
                             value={layout}
 
@@ -218,11 +211,45 @@ export default function ({ attributes, setAttributes, updateProject }) {
                                 { label: "Vertical", value: "vertical" },
                                 { label: "Horizontal", value: "horizontal" },
                             ]}
+
                         />
 
-                        <SelectControl
+                        {/* {console.log(btnLabel)} */}
+                        {/* <TextControl
+                            label={__("Button Label", "b-projects")}
+                            value={btnLabel}
+
+                            onChange={(val) => {
+                                setAttributes({ btnLabel: val });
+                            }
+                        /> */}
+
+                        <TextControl
+                          label={__("Button Label", "b-project")}
+                          value={btnLabel}
+
+                          onChange={(val)=>{
+                            setAttributes({btnLabel: val})
+                          }}
+                        />
+
+                        {/* {btnLabel && (
+                            <Title>{__("Button Label:", "B-projects")}</Title>
+                        )}
+                        {btnLabel && (
+                            <TextControl
+                                value={btnLabel}
+                                onChange={(content) =>
+                                    updateProject(index, "btnLabel", content)
+                                }
+                            />
+
+                        )} */}
+
+
+                        {/* <SelectControl
                             className="mt20"
-                            label={__("Theme", "info-projects")}
+                            label={__("Theme", "b-projects")}
                             labelPosition="left"
                             value={theme}
                             onChange={(val) => {
@@ -310,11 +337,11 @@ export default function ({ attributes, setAttributes, updateProject }) {
                                 { label: "Theme 3", value: "theme3" },
                                 { label: "Theme 4", value: "theme4" },
                             ]}
-                        />
+                        /> */}
 
                         <PanelRow className="mt20">
                             <Title className="mb5">
-                                {__("Columns:", "info-projects")}
+                                {__("Columns:", "b-projects")}
                             </Title>
                             <BDevice
                                 device={device}
@@ -334,7 +361,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                         <UnitControl
                             className="mt20"
-                            label={__("Column Gap", "info-projects")}
+                            label={__("Column Gap", "b-projects")}
                             labelPosition="left"
                             value={columnGap}
                             onChange={(val) => setAttributes({ columnGap: val })}
@@ -342,7 +369,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                         <UnitControl
                             className="mt20"
-                            label={__("Row Gap", "info-projects")}
+                            label={__("Row Gap", "b-projects")}
                             labelPosition="left"
                             value={rowGap}
                             onChange={(val) => setAttributes({ rowGap: val })}
@@ -350,9 +377,9 @@ export default function ({ attributes, setAttributes, updateProject }) {
                     </PanelBody>
 
 
-                    <PanelBody title={__("Elements", "info-projects")} className="bPlPanelBody" initialOpen={false}>
+                    <PanelBody title={__("Elements", "b-projects")} className="bPlPanelBody" initialOpen={false}>
                         <ToggleControl
-                            label={__("Show Image", "info-projects")}
+                            label={__("Show Image", "b-projects")}
                             checked={isImg}
                             onChange={(val) => setAttributes({ isImg: val })}
                         />
@@ -360,7 +387,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
                         {isImg && <>
                             <SelectControl
                                 className="mt20"
-                                label={__("Image Position", "info-projects")}
+                                label={__("Image Position", "b-projects")}
                                 labelPosition="left"
                                 value={imgPos}
                                 onChange={(val) => setAttributes({ imgPos: val })}
@@ -378,7 +405,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                             <UnitControl
                                 className="mt20"
-                                label={__("Image Height", "info-projects")}
+                                label={__("Image Height", "b-projects")}
                                 labelPosition="left"
                                 value={imgHeight}
                                 onChange={(val) => setAttributes({ imgHeight: val })} />
@@ -387,16 +414,16 @@ export default function ({ attributes, setAttributes, updateProject }) {
                 </>}
 
                 {"style" === tab.name && <>
-                    <PanelBody className="bPlPanelBody" title={__("Projects", "info-projects")} initialOpen={true}>
+                    <PanelBody className="bPlPanelBody" title={__("Projects", "b-projects")} initialOpen={true}>
                         <Background
-                            label={__("background", "info-projects")}
+                            label={__("background", "b-projects")}
                             defaults={{ color: "#0000" }}
                             value={background}
                             onChange={(val) => setAttributes({ background: val })} />
 
                         <PanelRow className="mt20">
                             <BoxControl
-                                label={__("Paddign", "info-projects")}
+                                label={__("Paddign", "b-projects")}
                                 values={padding}
                                 resetValues={{
                                     "top": "0px",
@@ -412,11 +439,11 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                     {/* Project */}
                     <PanelBody initialOpen={false}
-                        title={__("Project", "info-projects")}
+                        title={__("Project", "b-projects")}
                         className="bPlPanelBody">
 
                         <BoxControl
-                            label={__("Paddign", "info-projects")}
+                            label={__("Paddign", "b-projects")}
                             values={projectPadding}
                             resetValues={{
                                 "top": "0px",
@@ -428,7 +455,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                         <UnitControl
                             className="mt20"
-                            label={__("Border radious", "info-projects")}
+                            label={__("Border radious", "b-projects")}
                             labelPosition="left"
                             value={projectRadius}
                             onChange={(val) => setAttributes({ projectRadius: val })} />
@@ -443,10 +470,10 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                     {/* Content */}
                     <PanelBody initialOpen={false}
-                        title={__("Content", "info-projects")}
+                        title={__("Content", "b-projects")}
                         className="bPlPanelBody">
                         <SelectControl
-                            label={__("Alignment", "info-projects")}
+                            label={__("Alignment", "b-projects")}
                             labelPosition="left"
                             value={contentAlign}
                             onChange={(val) => setAttributes({ contentAlign: val })}
@@ -459,7 +486,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                         <PanelRow className="mt20">
                             <BoxControl
-                                label={__("Paddign", "info-projects")}
+                                label={__("Paddign", "b-projects")}
                                 values={contentPadding}
                                 resetValues={{
                                     "top": "0px",
@@ -475,15 +502,15 @@ export default function ({ attributes, setAttributes, updateProject }) {
                     </PanelBody>
 
 
-                    <PanelBody className="bPlPanelBody" title={__("Title", "info-projects")} initialOpen={false}>
+                    <PanelBody className="bPlPanelBody" title={__("Title", "b-projects")} initialOpen={false}>
                         <Typography
-                            label={__("Typography", "info-projects")}
+                            label={__("Typography", "b-projects")}
                             value={titleTypo}
                             onChange={(val) => setAttributes({ titleTypo: val })}
                         />
 
                         <BColor
-                            label={__("Color", "info-projects")}
+                            label={__("Color", "b-projects")}
                             value={titleColor}
                             onChange={(val) =>
                                 setAttributes({ titleColor: val })
@@ -492,15 +519,15 @@ export default function ({ attributes, setAttributes, updateProject }) {
                     </PanelBody>
 
 
-                    <PanelBody className="bPlPanelBody" title={__("Description", "info-projects")} initialOpen={false}>
+                    <PanelBody className="bPlPanelBody" title={__("Description", "b-projects")} initialOpen={false}>
                         <Typography
-                            label={__("Typography", "info-projects")}
+                            label={__("Typography", "b-projects")}
                             value={descTypo}
                             onChange={(val) => setAttributes({ descTypo: val })}
                         />
 
                         <BColor
-                            label={__("Color", "info-projects")}
+                            label={__("Color", "b-projects")}
                             value={descColor}
                             onChange={(val) =>
                                 setAttributes({ descColor: val })
@@ -510,16 +537,16 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
 
                     {/* Button */}
-                    <PanelBody initialOpen={false} title={__("Button", "info-projects")} className="bPlPanelBody">
+                    <PanelBody initialOpen={false} title={__("Button", "b-projects")} className="bPlPanelBody">
                         <Typography
-                            label={__("Typography", "info-projects")}
+                            label={__("Typography", "b-projects")}
                             value={btnTypo}
                             onChange={(val) => setAttributes({ btnTypo: val })}
                         />
 
                         <SelectControl
                             className="mt20"
-                            label={__("Alignment", "info-projects")}
+                            label={__("Alignment", "b-projects")}
                             labelPosition="left"
                             value={btnAlign}
                             onChange={(val) => setAttributes({ btnAlign: val })}
@@ -532,14 +559,14 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                         <ColorsControl
                             className="mt20"
-                            label={__("Colors", "info-projects")}
+                            label={__("Colors", "b-projects")}
                             value={btnColors}
                             onChange={(val) => setAttributes({ btnColors: val })}
 
                         />
 
                         <ColorsControl
-                            label={__("Hover Colors", "info-projects")}
+                            label={__("Hover Colors", "b-projects")}
                             value={btnHovColors}
                             onChange={(val) => setAttributes({ btnHovColors: val })}
 
@@ -547,7 +574,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                         <PanelRow className="mt20">
                             <BoxControl
-                                label={__("Paddign", "info-projects")}
+                                label={__("Paddign", "b-projects")}
                                 values={btnPadding}
                                 resetValues={{
                                     "top": "0px",
@@ -561,7 +588,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                         <UnitControl
                             className="mt20"
-                            label={__("Border Radious", "info-projects")}
+                            label={__("Border Radious", "b-projects")}
                             labelPosition="left"
                             value={btnRadius}
                             onChange={(val) => setAttributes({ btnRadius: val })} />
