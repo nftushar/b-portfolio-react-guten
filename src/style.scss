@@ -16,10 +16,42 @@
 		opacity: 1;
 	}
 }
+@for $i from 1 through 12 {
+	.columns-#{$i} {
+		grid-template-columns: repeat(#{$i}, 1fr);
+	}
 
+	.cols-#{$i} {
+		columns: #{$i};
+	}
+}
+
+@media (max-width: 768px) {
+	@for $i from 1 through 12 {
+		.columns-tablet-#{$i} {
+			grid-template-columns: repeat(#{$i}, 1fr);
+		}
+
+		.cols-tablet-#{$i} {
+			columns: #{$i};
+		}
+	}
+}
+
+@media (max-width: 576px) {
+	@for $i from 1 through 12 {
+		.columns-mobile-#{$i} {
+			grid-template-columns: repeat(#{$i}, 1fr);
+		}
+
+		.cols-mobile-#{$i} {
+			columns: #{$i};
+		}
+	}
+}
 
 .wp-block-create-block-b-portfolio-block {
-	// background-color: #21759b;
+	// background-color: #ff5410;
 	color: #fff;
 	padding: 2px;
 }
@@ -32,9 +64,9 @@
 
 .bppb-portfolio-items {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	column-gap: 15px;
-	row-gap: 15px;
+	// grid-template-columns: repeat(3, 1fr);
+	// column-gap: 15px;
+	// row-gap: 15px;
 	width: 100%;
 	max-width: 1140px;
 	margin: 0 auto;

@@ -69,6 +69,12 @@
       "type": "string",
       "default": "20px"
     },
+    "gridBackground": {
+      "type": "object",
+      "default": {
+        "color": "#0000"
+      }
+    },
     "rowGap": {
       "type": "string",
       "default": "30px"

@@ -27,7 +27,7 @@
 						"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"
 					]
 				},
-				 {
+				{
 					"background": {
 						"color": "#ffff"
 					},
@@ -51,11 +51,11 @@
 					]
 				} ]
 		},
+
 		"btnLabel": {
 			"type": "string",
 			"default": "Button"
 		},
-
 		"columns": {
 			"type": "object",
 			"default": {
@@ -68,6 +68,12 @@
 		"columnGap": {
 			"type": "string",
 			"default": "20px"
+		},
+		"gridBackground": {
+			"type": "object",
+			"default": {
+				"color": "#0000"
+			}
 		},
 		"rowGap": {
 			"type": "string",

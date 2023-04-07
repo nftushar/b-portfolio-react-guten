@@ -146,7 +146,7 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 								</div>
 								<div className="side-bar">
 									<span>Project URL:</span>
-									<RichText tagName="a"
+									<RichText tagName="p"
 										className="red"
 										value={projectURL}
 										onChange={(content) => updateProject(currentIndex, "projectURL", content)}

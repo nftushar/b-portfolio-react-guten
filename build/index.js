@@ -4810,6 +4810,200 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../Components/Helper/getCSS.js":
+/*!**************************************!*\
+  !*** ../Components/Helper/getCSS.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getBackgroundCSS": () => (/* binding */ getBackgroundCSS),
+/* harmony export */   "getBorderCSS": () => (/* binding */ getBorderCSS),
+/* harmony export */   "getColorsCSS": () => (/* binding */ getColorsCSS),
+/* harmony export */   "getIconCSS": () => (/* binding */ getIconCSS),
+/* harmony export */   "getMultiShadowCSS": () => (/* binding */ getMultiShadowCSS),
+/* harmony export */   "getSeparatorCSS": () => (/* binding */ getSeparatorCSS),
+/* harmony export */   "getShadowCSS": () => (/* binding */ getShadowCSS),
+/* harmony export */   "getSpaceCSS": () => (/* binding */ getSpaceCSS),
+/* harmony export */   "getTypoCSS": () => (/* binding */ getTypoCSS)
+/* harmony export */ });
+const getBackgroundCSS = function (bg) {
+  let isSolid = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  let isGradient = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  let isImage = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+  const {
+    type = 'solid',
+    color = '#000000b3',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)',
+    image = {},
+    position = 'center center',
+    attachment = 'initial',
+    repeat = 'no-repeat',
+    size = 'cover',
+    overlayColor = '#000000b3'
+  } = bg;
+  const styles = 'gradient' === type && isGradient ? `background: ${gradient};` : 'image' === type && isImage ? `background: url(${image?.url});
+				background-color: ${overlayColor};
+				background-position: ${position};
+				background-size: ${size};
+				background-repeat: ${repeat};
+				background-attachment: ${attachment};
+				background-blend-mode: overlay;` : isSolid && `background: ${color};`;
+  return styles;
+}; // PHP version in Stepped Content
+
+const getBorderCSS = border => {
+  const {
+    width = '0px',
+    style = 'solid',
+    color = '#0000',
+    side = 'all',
+    radius = '0px'
+  } = border;
+  const borderSideCheck = s => {
+    const bSide = side?.toLowerCase();
+    return bSide?.includes('all') || bSide?.includes(s);
+  };
+  const noWidth = width === '0px' || !width;
+  const borderCSS = `${width} ${style} ${color}`;
+  const styles = `
+		${noWidth ? '' : borderSideCheck('top') ? `border-top: ${borderCSS};` : ''}
+		${noWidth ? '' : borderSideCheck('right') ? `border-right: ${borderCSS};` : ''}
+		${noWidth ? '' : borderSideCheck('bottom') ? `border-bottom: ${borderCSS};` : ''}
+		${noWidth ? '' : borderSideCheck('left') ? `border-left: ${borderCSS};` : ''}
+		${!radius ? '' : `border-radius: ${radius};`}
+	`;
+  return styles;
+};
+const getColorsCSS = colors => {
+  const {
+    color = '#333',
+    bgType = 'solid',
+    bg = '#0000',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = colors;
+  const styles = `
+		${color ? `color: ${color};` : ''}
+		${gradient || bg ? `background: ${'gradient' === bgType ? gradient : bg};` : ''}
+	`;
+  return styles;
+};
+const getIconCSS = function (icon) {
+  let isSize = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  let isColor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  const {
+    fontSize = 16,
+    colorType = 'solid',
+    color = 'inherit',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = icon;
+  const colorCSS = 'gradient' === colorType ? `color: transparent; background-image: ${gradient}; -webkit-background-clip: text; background-clip: text;` : `color: ${color};`;
+  const styles = `
+		${!fontSize || !isSize ? '' : `font-size: ${fontSize}px;`}
+		${isColor ? colorCSS : ''}
+	`;
+  return styles;
+};
+const getMultiShadowCSS = function (value) {
+  let type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'box';
+  let styles = '';
+  value?.map((item, index) => {
+    const {
+      hOffset = '0px',
+      vOffset = '0px',
+      blur = '0px',
+      spreed = '0px',
+      color = '#7090b0',
+      isInset = false
+    } = item;
+    const inset = isInset ? 'inset' : '';
+    const offsetBlur = `${hOffset || ''} ${vOffset || ''} ${blur || ''}`;
+    const isComa = index + 1 >= value.length ? '' : ', ';
+    styles += 'text' === type ? `${offsetBlur} ${color || ''}${isComa}` : `${offsetBlur} ${spreed || ''} ${color || ''} ${inset}${isComa}`;
+  });
+  return styles || 'none';
+};
+const getSeparatorCSS = separator => {
+  const {
+    width = '50%',
+    height = '2px',
+    style = 'solid',
+    color = '#bbb'
+  } = separator;
+  const styles = `
+		width: ${width};
+		${'0px' === height && '0em' === height && '0rem' === height ? '' : `border-top: ${height} ${style} ${color};`}
+	`;
+  return styles;
+};
+const getShadowCSS = shadow => {
+  const {
+    type = 'box',
+    hOffset = '0px',
+    vOffset = '0px',
+    blur = '0px',
+    spreed = '0px',
+    color = '#7090b0',
+    isInset = false
+  } = shadow;
+  const inset = isInset ? 'inset' : '';
+  const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+  const styles = 'text' === type ? `${offsetBlur} ${color}` : `${offsetBlur} ${spreed} ${color} ${inset}`;
+  return styles || 'none';
+};
+const getSpaceCSS = space => {
+  const {
+    side = 2,
+    vertical = '0px',
+    horizontal = '0px',
+    top = '0px',
+    right = '0px',
+    bottom = '0px',
+    left = '0px'
+  } = space;
+  const styles = 2 === side ? `${vertical} ${horizontal}` : `${top} ${right} ${bottom} ${left}`;
+  return styles;
+};
+const getTypoCSS = function (typo) {
+  let isFamily = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  const {
+    fontFamily = 'Default',
+    fontCategory = 'sans-serif',
+    fontVariant = 400,
+    fontWeight = 400,
+    isUploadFont = true,
+    fontSize = 15,
+    fontStyle = 'normal',
+    textTransform = 'none',
+    textDecoration = 'auto',
+    lineHeight = '135%',
+    letterSpace = '0px'
+  } = typo;
+  const generateCss = (value, cssProperty) => !value ? '' : `${cssProperty}: ${value};`;
+  const isEmptyFamily = !isFamily || !fontFamily || 'Default' === fontFamily;
+  const styles = `
+		${isEmptyFamily ? '' : `font-family: '${fontFamily}', ${fontCategory};`}
+		${generateCss(fontWeight, 'font-weight')}
+		${!fontSize ? '' : `font-size: ${fontSize}px;`}
+		${generateCss(fontStyle, 'font-style')}
+		${generateCss(textTransform, 'text-transform')}
+		${generateCss(textDecoration, 'text-decoration')}
+		${generateCss(lineHeight, 'line-height')}
+		${generateCss(letterSpace, 'letter-spacing')}
+	`;
+
+  // Google font link
+  const linkQuery = !fontVariant || 400 === fontVariant ? '' : '400i' === fontVariant ? ':ital@1' : fontVariant?.includes('00i') ? `: ital, wght@1, ${fontVariant?.replace('00i', '00')} ` : `: wght@${fontVariant} `;
+  const link = isEmptyFamily ? '' : `https://fonts.googleapis.com/css2?family=${fontFamily?.split(' ').join('+')}${linkQuery.replace(/ /g, '')}&display=swap`;
+  return {
+    styles: styles.replace(/\s+/g, ' ').trim(),
+    googleFontLink: !isUploadFont || isEmptyFamily ? '' : `@import url(${link});`
+  };
+};
+
+/***/ }),
+
 /***/ "../Components/Helper/icons.js":
 /*!*************************************!*\
   !*** ../Components/Helper/icons.js ***!
@@ -5860,7 +6054,6 @@ __webpack_require__.r(__webpack_exports__);
     btnRadius
   } = attributes;
   // console.log(btnLabel);
-  // console.log(attributes.projectURL);
 
   const [device, setDevice] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("desktop");
   const onAddProject = () => {
@@ -6402,7 +6595,7 @@ const Modal = _ref => {
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "Project URL:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-    tagName: "a",
+    tagName: "p",
     className: "red",
     value: projectURL,
     onChange: content => updateProject(currentIndex, "projectURL", content)
@@ -6457,15 +6650,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Settings */ "./src/Settings.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
-/* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Modal */ "./src/components/Modal.js");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Helper/getCSS */ "../Components/Helper/getCSS.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Settings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Settings */ "./src/Settings.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Modal */ "./src/components/Modal.js");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__);
+
+
 
 
 
@@ -6476,34 +6674,76 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // import "./style.scss"
-
 function Edit(_ref) {
   let {
     attributes,
-    setAttributes
+    setAttributes,
+    clientId,
+    ...rest
   } = _ref;
+  // export default function Edit({ attributes, setAttributes, }) {
+
+  // const { gridBackground, imgPos, isImg } = attributes;
+
+  // console.log(attributes.gridbackground);
+
+  (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+    clientId && setAttributes({
+      clientId: clientId
+    });
+  }, [clientId]);
   const {
+    background,
     projects,
-    btnLabel
+    gridBackground,
+    btnLabel,
+    columnGap,
+    columns,
+    rowGap,
+    titleTypo,
+    descTypo,
+    btnTypo
   } = attributes;
+
+  // console.log(gridBackground);
+
   const [currentIndex, setCurrentIndex] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [modalOpen, setModalOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+
+  // console.log(background);
+
   function updateProject(index, property, value) {
-    // console.log("hello");
     const newProjects = [...projects];
     newProjects[index][property] = value;
     setAttributes({
       projects: newProjects
     });
-    // console.log(setAttributes);
   }
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings__WEBPACK_IMPORTED_MODULE_3__["default"], {
+		    	${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(titleTypo)}
+                ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(descTypo)}
+
+
+		.wp-block-create-block-b-portfolio-block {
+		   ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(gridBackground)}
+		}
+
+		.bppb-portfolio-items{
+			column-gap: ${columnGap};
+			row-gap:${rowGap};
+		}
+
+		.portfolio-view-details-btn{
+			
+		}
+	
+        `), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings__WEBPACK_IMPORTED_MODULE_5__["default"], {
     attributes: attributes,
     setAttributes: setAttributes,
     updateProject: updateProject
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bppb-portfolio-wrapper bppb-portfolio-items"
+    className: `bppb-portfolio-wrapper bppb-portfolio-items columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`
   }, projects.map((project, index) => {
     const {
       title,
@@ -6513,17 +6753,17 @@ function Edit(_ref) {
       className: "bppb-portfolio-item"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "content"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
       tagName: "h2",
       value: title,
       onChange: content => updateProject(index, "title", content),
-      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter Title", 'b-Project')
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Enter Title", 'b-Project')
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
       tagName: "div",
       className: "desc",
       value: desc,
       onChange: content => updateProject(index, "desc", content),
-      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter description", 'b-Project')
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Enter description", 'b-Project')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       className: "portfolio-view-details-btn",
       onClick: () => {
@@ -6531,13 +6771,13 @@ function Edit(_ref) {
         setModalOpen(true);
       }
     }, btnLabel, " ")));
-  })), modalOpen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Modal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  })), modalOpen && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Modal__WEBPACK_IMPORTED_MODULE_7__["default"], {
     setAttributes: setAttributes,
     updateProject: updateProject,
     currentIndex: currentIndex,
     project: projects[currentIndex] || {},
     setModalOpen: setModalOpen
-  }));
+  })));
 }
 
 /***/ }),
@@ -6795,7 +7035,7 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/b-portfolio-block","attributes":{"projects":{"type":"array","default":[{"background":{"color":"#ffff"},"catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0"},"images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]},{"background":{"color":"#ffff"},"catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0"},"images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]}]},"btnLabel":{"type":"string","default":"Button"},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"20px"}},"descTypo":{"type":"object","default":{"fontSize":"12px"}},"buttonTypo":{"type":"object","default":{"fontSize":"5px"}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"version":"0.1.0","title":"B Portfolio Block","category":"widgets","icon":"smiley","description":"B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.","supports":{"html":false},"textdomain":"b-portfolio-block","editorScript":["file:./index.js","jquery"],"editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/b-portfolio-block","attributes":{"projects":{"type":"array","default":[{"background":{"color":"#ffff"},"catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0"},"images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]},{"background":{"color":"#ffff"},"catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnUrl":"https://www.google.com/","btnColors":{"color":"#f0f0"},"images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]}]},"btnLabel":{"type":"string","default":"Button"},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"gridBackground":{"type":"object","default":{"color":"#0000"}},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"20px"}},"descTypo":{"type":"object","default":{"fontSize":"12px"}},"buttonTypo":{"type":"object","default":{"fontSize":"5px"}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"version":"0.1.0","title":"B Portfolio Block","category":"widgets","icon":"smiley","description":"B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.","supports":{"html":false},"textdomain":"b-portfolio-block","editorScript":["file:./index.js","jquery"],"editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

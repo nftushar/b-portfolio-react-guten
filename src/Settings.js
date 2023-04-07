@@ -64,7 +64,6 @@ export default function ({ attributes, setAttributes, updateProject }) {
         btnRadius
     } = attributes;
     // console.log(btnLabel);
-    // console.log(attributes.projectURL);
 
     const [device, setDevice] = useState("desktop");
 
