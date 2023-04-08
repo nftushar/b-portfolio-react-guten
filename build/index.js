@@ -6025,6 +6025,7 @@ __webpack_require__.r(__webpack_exports__);
     updateProject
   } = _ref;
   const {
+    cardRadius,
     projects,
     layout,
     gridBackground,
@@ -6282,8 +6283,8 @@ __webpack_require__.r(__webpack_exports__);
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, {
     className: "mt20"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalBoxControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Paddign", "b-projects"),
-    values: padding,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Content Padding", "b-projects"),
+    values: contentPadding,
     resetValues: {
       "top": "0px",
       "right": "0x",
@@ -6291,15 +6292,15 @@ __webpack_require__.r(__webpack_exports__);
       "left": "0px"
     },
     onChange: value => setAttributes({
-      padding: value
+      contentPadding: value
     })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
     className: "mt20",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Border radious", "b-projects"),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Border Radiousz", "b-projects"),
     labelPosition: "left",
-    value: projectRadius,
+    value: cardRadius,
     onChange: val => setAttributes({
-      projectRadius: val
+      cardRadius: val
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_MultiShadowControl__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: "mt20",
@@ -6649,7 +6650,9 @@ function Edit(_ref) {
     });
   }, [clientId]);
   const {
+    contentPadding,
     background,
+    cardRadius,
     titleColor,
     descColor,
     projects,
@@ -6668,13 +6671,10 @@ function Edit(_ref) {
   } = attributes;
 
   // const { HoverColor, HoverBgColor } = btnHover;
-  // console.log(titleColor);
+  // console.log(cardRadius);
 
   const [currentIndex, setCurrentIndex] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [modalOpen, setModalOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-
-  // console.log(btnRadius);
-
   function updateProject(index, property, value) {
     const newProjects = [...projects];
     newProjects[index][property] = value;
@@ -6682,48 +6682,48 @@ function Edit(_ref) {
       projects: newProjects
     });
   }
-
-  // console.log(gridBackground);
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 		    	${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(titleTypo)?.googleFontLink}
                 ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(descTypo)?.googleFontLink}
                 ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(btnTypo)?.googleFontLink}
 
-		  .bppb-portfolio-item .content h2{
-			  color: ${titleColor};
-			  ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(titleTypo)?.styles}
+				
+				.bppb-portfolio-item{
+					border-radius: ${cardRadius}
+				}
+				.bppb-portfolio-item .content h2{
+					color: ${titleColor};
+					${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(titleTypo)?.styles}
 
-			}
-		 .bppb-portfolio-item .content .desc{
-			  color: ${descColor};
-			  ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(descTypo)?.styles}
+					}
+				.bppb-portfolio-item .content .desc{
+					color: ${descColor};
+					${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(descTypo)?.styles}
 
-			}
-			.bppb-portfolio-item .content .portfolio-view-details-btn {
-				  
- 			        ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(btnColors)};
-                     border-radius: ${btnRadius};
-                    ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(btnTypo)?.styles};
-                    padding: ${(0,_utils_function__WEBPACK_IMPORTED_MODULE_2__.getBoxValue)(btnPadding)}
-			}
+					}
+				.bppb-portfolio-items{
+					padding: ${(0,_utils_function__WEBPACK_IMPORTED_MODULE_2__.getBoxValue)(contentPadding)};
+					grid-template-columns: repeat(${columns}, 1fr);
+					${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(gridBackground)};
+					column-gap: ${columnGap};
+					row-gap:${rowGap};
+				}
 
-			.bppb-portfolio-item .content .portfolio-view-details-btn:hover {
-				${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(btnHover)};
-			}
-			
-			.bppb-portfolio-items{
-				grid-template-columns: repeat(${columns}, 1fr);
-				${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(gridBackground)}
-				column-gap: ${columnGap};
-				row-gap:${rowGap};
-			}
+				.portfolio-view-details-btn{
+						padding: ${(0,_utils_function__WEBPACK_IMPORTED_MODULE_2__.getBoxValue)(btnPadding)}
+				}
+				.bppb-portfolio-item .content .portfolio-view-details-btn {
+					${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(btnColors)};
+						border-radius: ${btnRadius};
+					${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(btnTypo)?.styles};
+					padding: ${(0,_utils_function__WEBPACK_IMPORTED_MODULE_2__.getBoxValue)(btnPadding)}
+				}
 
-			.portfolio-view-details-btn{
-				padding: ${(0,_utils_function__WEBPACK_IMPORTED_MODULE_2__.getBoxValue)(btnPadding)}
-			}
-		
-        `), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings__WEBPACK_IMPORTED_MODULE_6__["default"], {
+					.bppb-portfolio-item .content .portfolio-view-details-btn:hover {
+						${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBackgroundCSS)(btnHover)};
+					}
+					
+           `), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings__WEBPACK_IMPORTED_MODULE_6__["default"], {
     attributes: attributes,
     setAttributes: setAttributes,
     updateProject: updateProject
@@ -7038,7 +7038,7 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/b-portfolio-block","attributes":{"projects":{"type":"array","default":[{"background":{"color":"#ffff"},"catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnUrl":"https://www.google.com/","images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]},{"background":{"color":"#ffff"},"catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnUrl":"https://www.google.com/","images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]}]},"background":{"type":"object","default":{"color":"#050"}},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"gridBackground":{"type":"object","default":{"color":"#040"}},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"20px"}},"descTypo":{"type":"object","default":{"fontSize":"12px"}},"btnTypo":{"type":"object","default":{"fontSize":"5px"}},"btnRadius":{"type":"object","default":{"size":"8px"}},"btnLabel":{"type":"string","default":"Button"},"btnColors":{"type":"object","default":{}},"btnHover":{"type":"object","default":{}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"version":"0.1.0","title":"B Portfolio Block","category":"widgets","icon":"smiley","description":"B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.","supports":{"html":false},"textdomain":"b-portfolio-block","editorScript":["file:./index.js","jquery"],"editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/b-portfolio-block","attributes":{"projects":{"type":"array","default":[{"background":{"color":"#ffff"},"cardRadius":"2px","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnUrl":"https://www.google.com/","images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]},{"background":{"color":"#ffff"},"cardRadius":"2px","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":"4.5","image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","titleColor":"#000","desc":"This is my description","descColor":"#f00","btnUrl":"https://www.google.com/","images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"]}]},"background":{"type":"object","default":{"color":"#050"}},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"gridBackground":{"type":"object","default":{"color":"#040"}},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"titleTypo":{"type":"object","default":{"fontSize":"20px"}},"descTypo":{"type":"object","default":{"fontSize":"12px"}},"btnTypo":{"type":"object","default":{"fontSize":"5px"}},"btnRadius":{"type":"object","default":{"size":"8px"}},"btnLabel":{"type":"string","default":"Button"},"btnColors":{"type":"object","default":{}},"btnHover":{"type":"object","default":{}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"version":"0.1.0","title":"B Portfolio Block","category":"widgets","icon":"smiley","description":"B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.","supports":{"html":false},"textdomain":"b-portfolio-block","editorScript":["file:./index.js","jquery"],"editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

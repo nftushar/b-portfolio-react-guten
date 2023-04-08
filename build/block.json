@@ -10,6 +10,7 @@
           "background": {
             "color": "#ffff"
           },
+          "cardRadius": "2px",
           "catrgory": "Android",
           "skils": "Android",
           "projectURL": "https:example.com",
@@ -29,6 +30,7 @@
           "background": {
             "color": "#ffff"
           },
+          "cardRadius": "2px",
           "catrgory": "Android",
           "skils": "Android",
           "projectURL": "https:example.com",

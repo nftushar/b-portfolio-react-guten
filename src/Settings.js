@@ -35,6 +35,7 @@ import { gearIcon } from "../../Components/Helper/icons";
 export default function ({ attributes, setAttributes, updateProject }) {
 
     const {
+        cardRadius,
         projects,
         layout,
         gridBackground,
@@ -403,22 +404,22 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                         <PanelRow className="mt20">
                             <BoxControl
-                                label={__("Paddign", "b-projects")}
-                                values={padding}
+                                label={__("Content Padding", "b-projects")}
+                                values={contentPadding}
                                 resetValues={{
                                     "top": "0px",
                                     "right": "0x",
                                     "bottom": "0px",
                                     "left": "0px"
                                 }}
-                                onChange={(value) => setAttributes({ padding: value })} />
+                                onChange={(value) => setAttributes({ contentPadding: value })} />
                         </PanelRow>
                         <UnitControl
                             className="mt20"
-                            label={__("Border radious", "b-projects")}
+                            label={__("Border Radiousz", "b-projects")}
                             labelPosition="left"
-                            value={projectRadius}
-                            onChange={(val) => setAttributes({ projectRadius: val })} />
+                            value={cardRadius}
+                            onChange={(val) => setAttributes({ cardRadius: val })} />
 
                         <MultiShadowControl
                             className="mt20"

@@ -23,15 +23,14 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 		clientId && setAttributes({ clientId: clientId })
 	}, [clientId]);
 
-	const { background, titleColor, descColor, projects, gridBackground, btnLabel, btnPadding, btnColors, btnHover, btnRadius, columnGap, columns, rowGap, titleTypo, descTypo, btnTypo } = attributes;
+	const { contentPadding, background, cardRadius, titleColor, descColor, projects, gridBackground, btnLabel, btnPadding, btnColors, btnHover, btnRadius, columnGap, columns, rowGap, titleTypo, descTypo, btnTypo } = attributes;
 
 	// const { HoverColor, HoverBgColor } = btnHover;
-	// console.log(titleColor);
+	// console.log(cardRadius);
 
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [modalOpen, setModalOpen] = useState(false);
 
-	// console.log(btnRadius);
 
 	function updateProject(index, property, value) {
 		const newProjects = [...projects];
@@ -39,11 +38,10 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 		setAttributes({ projects: newProjects });
 	}
 
-	// console.log(gridBackground);
-
 	return <>
 		{/* <Settings attributes={attributes} setAttributes={setAttributes} updateProject={updateProject} /> */}
 		{/* {console.log(btnRadius)} */}
+		{/* padding: ${getBoxValue(cardRadius)} */}
 
 		<style>
 			{`
@@ -51,40 +49,43 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
                 ${getTypoCSS(descTypo)?.googleFontLink}
                 ${getTypoCSS(btnTypo)?.googleFontLink}
 
-		  .bppb-portfolio-item .content h2{
-			  color: ${titleColor};
-			  ${getTypoCSS(titleTypo)?.styles}
+				
+				.bppb-portfolio-item{
+					border-radius: ${cardRadius}
+				}
+				.bppb-portfolio-item .content h2{
+					color: ${titleColor};
+					${getTypoCSS(titleTypo)?.styles}
 
-			}
-		 .bppb-portfolio-item .content .desc{
-			  color: ${descColor};
-			  ${getTypoCSS(descTypo)?.styles}
+					}
+				.bppb-portfolio-item .content .desc{
+					color: ${descColor};
+					${getTypoCSS(descTypo)?.styles}
 
-			}
-			.bppb-portfolio-item .content .portfolio-view-details-btn {
-				  
- 			        ${getBackgroundCSS(btnColors)};
-                     border-radius: ${btnRadius};
-                    ${getTypoCSS(btnTypo)?.styles};
-                    padding: ${getBoxValue(btnPadding)}
-			}
+					}
+				.bppb-portfolio-items{
+					padding: ${getBoxValue(contentPadding)};
+					grid-template-columns: repeat(${columns}, 1fr);
+					${getBackgroundCSS(gridBackground)};
+					column-gap: ${columnGap};
+					row-gap:${rowGap};
+				}
 
-			.bppb-portfolio-item .content .portfolio-view-details-btn:hover {
-				${getBackgroundCSS(btnHover)};
-			}
-			
-			.bppb-portfolio-items{
-				grid-template-columns: repeat(${columns}, 1fr);
-				${getBackgroundCSS(gridBackground)}
-				column-gap: ${columnGap};
-				row-gap:${rowGap};
-			}
+				.portfolio-view-details-btn{
+						padding: ${getBoxValue(btnPadding)}
+				}
+				.bppb-portfolio-item .content .portfolio-view-details-btn {
+					${getBackgroundCSS(btnColors)};
+						border-radius: ${btnRadius};
+					${getTypoCSS(btnTypo)?.styles};
+					padding: ${getBoxValue(btnPadding)}
+				}
 
-			.portfolio-view-details-btn{
-				padding: ${getBoxValue(btnPadding)}
-			}
-		
-        `}
+					.bppb-portfolio-item .content .portfolio-view-details-btn:hover {
+						${getBackgroundCSS(btnHover)};
+					}
+					
+           `}
 		</style>
 
 		<div {...useBlockProps()}>
