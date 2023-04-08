@@ -20,9 +20,6 @@
           "desc": "This is my description",
           "descColor": "#f00",
           "btnUrl": "https://www.google.com/",
-          "btnColors": {
-            "color": "#f0f0"
-          },
           "images": [
             "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
             "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"
@@ -43,9 +40,6 @@
           "desc": "This is my description",
           "descColor": "#f00",
           "btnUrl": "https://www.google.com/",
-          "btnColors": {
-            "color": "#f0f0"
-          },
           "images": [
             "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
             "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large"
@@ -53,9 +47,11 @@
         }
       ]
     },
-    "btnLabel": {
-      "type": "string",
-      "default": "Button"
+    "background": {
+      "type": "object",
+      "default": {
+        "color": "#050"
+      }
     },
     "columns": {
       "type": "object",
@@ -72,7 +68,7 @@
     "gridBackground": {
       "type": "object",
       "default": {
-        "color": "#0000"
+        "color": "#040"
       }
     },
     "rowGap": {
@@ -116,11 +112,29 @@
         "fontSize": "12px"
       }
     },
-    "buttonTypo": {
+    "btnTypo": {
       "type": "object",
       "default": {
         "fontSize": "5px"
       }
+    },
+    "btnRadius": {
+      "type": "object",
+      "default": {
+        "size": "8px"
+      }
+    },
+    "btnLabel": {
+      "type": "string",
+      "default": "Button"
+    },
+    "btnColors": {
+      "type": "object",
+      "default": {}
+    },
+    "btnHover": {
+      "type": "object",
+      "default": {}
     },
     "btnPadding": {
       "type": "object",

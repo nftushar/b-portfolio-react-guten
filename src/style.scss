@@ -16,6 +16,8 @@
 		opacity: 1;
 	}
 }
+
+
 @for $i from 1 through 12 {
 	.columns-#{$i} {
 		grid-template-columns: repeat(#{$i}, 1fr);
@@ -50,8 +52,9 @@
 	}
 }
 
+
 .wp-block-create-block-b-portfolio-block {
-	// background-color: #ff5410;
+	// background-color: #21759b;
 	color: #fff;
 	padding: 2px;
 }
@@ -64,9 +67,10 @@
 
 .bppb-portfolio-items {
 	display: grid;
+	padding: 15px;
 	// grid-template-columns: repeat(3, 1fr);
-	// column-gap: 15px;
-	// row-gap: 15px;
+	column-gap: 15px;
+	row-gap: 15px;
 	width: 100%;
 	max-width: 1140px;
 	margin: 0 auto;
@@ -84,7 +88,7 @@
 .bppb-portfolio-item .content h2 {
 	color: #fff;
 	margin: 0;
-	// font-size: 30px;
+	font-size: 30px;
 }
 
 .bppb-portfolio-item .content {
@@ -108,13 +112,17 @@
 }
 
 .bppb-portfolio-item .content .portfolio-view-details-btn {
-	border: 1px solid #ddd;
+	// border: 1px solid #ddd;
 	outline: none;
 	padding: 4px 10px;
 	font-size: 15px;
 	border-radius: 3px;
 	cursor: pointer;
 }
+
+// .bppb-portfolio-item .content .portfolio-view-details-btn:hover {
+// 	background-color: #3e8e41
+// }
 
 .modal-text .star-rating {
 	display: inline-block;
@@ -183,7 +191,7 @@
 // }
 
 .desc {
-	color: #ffff;
+	// color: #ffff;
 	text-align: center;
 }
 

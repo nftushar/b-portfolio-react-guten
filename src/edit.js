@@ -1,13 +1,15 @@
 import { getBackgroundCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS } from '../../Components/Helper/getCSS';
+import { getBoxValue } from "./utils/function";
 import { __ } from "@wordpress/i18n";
 import { useBlockProps, RichText } from "@wordpress/block-editor";
-import { useState } from '@wordpress/element'
+import { useState } from '@wordpress/element';
 import { useEffect } from "react";
-import Settings from './Settings'
+import Settings from './Settings';
 import "./editor.scss";
 import Modal from "./components/Modal";
 
 import { registerBlockType } from '@wordpress/blocks';
+import Background from '../../Components/Background';
 
 // import "./style.scss"
 export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
@@ -15,21 +17,21 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 
 	// const { gridBackground, imgPos, isImg } = attributes;
 
-	// console.log(attributes.gridbackground);
 
 
 	useEffect(() => {
 		clientId && setAttributes({ clientId: clientId })
 	}, [clientId]);
 
-	const { background, projects, gridBackground, btnLabel, columnGap,columns, rowGap, titleTypo, descTypo, btnTypo } = attributes;
+	const { background, titleColor, descColor, projects, gridBackground, btnLabel, btnPadding, btnColors, btnHover, btnRadius, columnGap, columns, rowGap, titleTypo, descTypo, btnTypo } = attributes;
 
-	// console.log(gridBackground);
+	// const { HoverColor, HoverBgColor } = btnHover;
+	// console.log(titleColor);
 
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [modalOpen, setModalOpen] = useState(false);
 
-	// console.log(background);
+	// console.log(btnRadius);
 
 	function updateProject(index, property, value) {
 		const newProjects = [...projects];
@@ -37,35 +39,51 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 		setAttributes({ projects: newProjects });
 	}
 
-
+	// console.log(gridBackground);
 
 	return <>
 		{/* <Settings attributes={attributes} setAttributes={setAttributes} updateProject={updateProject} /> */}
+		{/* {console.log(btnRadius)} */}
 
 		<style>
-			{/* .wp-block-create-block-b-portfolio-block {
-				background-color:
-				gridbackground
-			} */}
 			{`
+		    	${getTypoCSS(titleTypo)?.googleFontLink}
+                ${getTypoCSS(descTypo)?.googleFontLink}
+                ${getTypoCSS(btnTypo)?.googleFontLink}
 
-		    	${getTypoCSS(titleTypo)}
-                ${getTypoCSS(descTypo)}
+		  .bppb-portfolio-item .content h2{
+			  color: ${titleColor};
+			  ${getTypoCSS(titleTypo)?.styles}
 
+			}
+		 .bppb-portfolio-item .content .desc{
+			  color: ${descColor};
+			  ${getTypoCSS(descTypo)?.styles}
 
-		.wp-block-create-block-b-portfolio-block {
-		   ${getBackgroundCSS(gridBackground)}
-		}
+			}
+			.bppb-portfolio-item .content .portfolio-view-details-btn {
+				  
+ 			        ${getBackgroundCSS(btnColors)};
+                     border-radius: ${btnRadius};
+                    ${getTypoCSS(btnTypo)?.styles};
+                    padding: ${getBoxValue(btnPadding)}
+			}
 
-		.bppb-portfolio-items{
-			column-gap: ${columnGap};
-			row-gap:${rowGap};
-		}
-
-		.portfolio-view-details-btn{
+			.bppb-portfolio-item .content .portfolio-view-details-btn:hover {
+				${getBackgroundCSS(btnHover)};
+			}
 			
-		}
-	
+			.bppb-portfolio-items{
+				grid-template-columns: repeat(${columns}, 1fr);
+				${getBackgroundCSS(gridBackground)}
+				column-gap: ${columnGap};
+				row-gap:${rowGap};
+			}
+
+			.portfolio-view-details-btn{
+				padding: ${getBoxValue(btnPadding)}
+			}
+		
         `}
 		</style>
 
@@ -73,7 +91,10 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 			<Settings attributes={attributes} setAttributes={setAttributes} updateProject={updateProject} />
 			<div className={`bppb-portfolio-wrapper bppb-portfolio-items columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
 				{projects.map((project, index) => {
-					const { title, desc } = project;
+					const { title, desc, background } = project;
+
+					// console.log(background);
+
 					return <div className="bppb-portfolio-item">
 						<div className="content">
 
@@ -96,7 +117,6 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 								setCurrentIndex(index);
 								setModalOpen(true);
 							}}>{btnLabel} </button>
-							{/* {console.log(gridBackground)} */}
 						</div>
 					</div>
 				})}

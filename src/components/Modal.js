@@ -153,7 +153,7 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 									/>
 								</div>
 								<div className="side-bar">
-									<span>Client Review:</span>
+									<span>Client Reviewz:</span>
 									<RichText tagName="p"
 										// className="red"
 										value={clientReview}
@@ -179,9 +179,14 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 						</div>
 						<div className="footer">
 							<span>Description :</span>
-							<p className="desc">
+							{/* <p className="desc">
 								{desc}
-							</p>
+							</p> */}
+							<RichText tagName="p"
+								className="desc"
+								value={desc}
+								onChange={(content) => updateProject(currentIndex, "desc", content)}
+							/>
 						</div> <br></br>
 					</div>
 				</div>

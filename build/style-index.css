@@ -309,6 +309,10 @@
 
 .bppb-portfolio-items {
   display: grid;
+  padding: 15px;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+  row-gap: 15px;
   width: 100%;
   max-width: 1140px;
   margin: 0 auto;
@@ -325,6 +329,7 @@
 .bppb-portfolio-item .content h2 {
   color: #fff;
   margin: 0;
+  font-size: 30px;
 }
 
 .bppb-portfolio-item .content {
@@ -348,7 +353,6 @@
 }
 
 .bppb-portfolio-item .content .portfolio-view-details-btn {
-  border: 1px solid #ddd;
   outline: none;
   padding: 4px 10px;
   font-size: 15px;
@@ -407,7 +411,6 @@
 }
 /*--------------------------------------- popup modal ------------------------ */
 .desc {
-  color: white;
   text-align: center;
 }
 

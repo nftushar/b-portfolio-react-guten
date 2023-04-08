@@ -37,6 +37,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
     const {
         projects,
         layout,
+        gridBackground,
         theme,
         columns,
         columnGap,
@@ -54,6 +55,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
         descColor,
         descTypo,
         btnColors,
+        btnHover,
         btnHovColors,
         btnLabel,
         btnAlign,
@@ -133,16 +135,16 @@ export default function ({ attributes, setAttributes, updateProject }) {
                 {"general" === tab.name && <>
                     <PanelBody
                         className="bPlPanelBody"
-                        title={__("Add or Remove Projects", "b-projects")}
-                    >
+                        title={__("Add or Remove Projects", "b-projects")} >
+
                         {projects.map((project, index) => {
 
                             const {
                                 background,
                                 img,
-                                btnUrl
+                                btnUrl,
                             } = project;
-                            // console.log(btnLabel)
+                            // console.log(background)
                             // console.log()
                             return <PanelBody
                                 className="bPlPanelBody"
@@ -151,12 +153,13 @@ export default function ({ attributes, setAttributes, updateProject }) {
                             >
                                 <Background
                                     label={__("Background", "b-projects")}
-                                    value={background}
+                                    value={Background}
                                     onChange={(val) =>
-                                        updateProject(index, "background", val)
+                                        updateProject(index, "Background", val)
                                     }
                                     isImage={false}
                                 />
+                                {/* { console.log(background)} */}
 
                                 {isImg && <InlineMediaUpload
                                     value={img}
@@ -391,11 +394,12 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                 {"style" === tab.name && <>
                     <PanelBody className="bPlPanelBody" title={__("Projects", "b-projects")} initialOpen={true}>
+                        {/* isImage={false} */}
                         <Background
                             label={__("background", "b-projects")}
                             defaults={{ color: "#0000" }}
-                            value={background}
-                            onChange={(val) => setAttributes({ background: val })} />
+                            value={gridBackground}
+                            onChange={(val) => setAttributes({ gridBackground: val })} />
 
                         <PanelRow className="mt20">
                             <BoxControl
@@ -409,12 +413,23 @@ export default function ({ attributes, setAttributes, updateProject }) {
                                 }}
                                 onChange={(value) => setAttributes({ padding: value })} />
                         </PanelRow>
+                        <UnitControl
+                            className="mt20"
+                            label={__("Border radious", "b-projects")}
+                            labelPosition="left"
+                            value={projectRadius}
+                            onChange={(val) => setAttributes({ projectRadius: val })} />
 
+                        <MultiShadowControl
+                            className="mt20"
+                            value={projectShadow}
+                            onChange={(val) => setAttributes({ projectShadow: val })}
+                            produce={produce} />
                     </PanelBody>
 
 
                     {/* Project */}
-                    <PanelBody initialOpen={false}
+                    {/* <PanelBody initialOpen={false}
                         title={__("Project", "b-projects")}
                         className="bPlPanelBody">
 
@@ -441,11 +456,11 @@ export default function ({ attributes, setAttributes, updateProject }) {
                             value={projectShadow}
                             onChange={(val) => setAttributes({ projectShadow: val })}
                             produce={produce} />
-                    </PanelBody>
+                    </PanelBody> */}
 
 
                     {/* Content */}
-                    <PanelBody initialOpen={false}
+                    {/* <PanelBody initialOpen={false}
                         title={__("Content", "b-projects")}
                         className="bPlPanelBody">
                         <SelectControl
@@ -475,7 +490,7 @@ export default function ({ attributes, setAttributes, updateProject }) {
                                 }
                             />
                         </PanelRow>
-                    </PanelBody>
+                    </PanelBody> */}
 
 
                     <PanelBody className="bPlPanelBody" title={__("Title", "b-projects")} initialOpen={false}>
@@ -535,16 +550,15 @@ export default function ({ attributes, setAttributes, updateProject }) {
 
                         <ColorsControl
                             className="mt20"
-                            label={__("Colors", "b-projects")}
+                            label={__("Colorz", "b-projects")}
                             value={btnColors}
                             onChange={(val) => setAttributes({ btnColors: val })}
-
                         />
-
+                        {/* {console.log(btnColors.bgColor)} */}
                         <ColorsControl
-                            label={__("Hover Colors", "b-projects")}
-                            value={btnHovColors}
-                            onChange={(val) => setAttributes({ btnHovColors: val })}
+                            label={__("Hoverz Color", "b-projects")}
+                            value={btnHover}
+                            onChange={(val) => setAttributes({ btnHover: val })}
 
                         />
 
