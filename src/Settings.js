@@ -15,6 +15,7 @@ import {
     Dashicon,
     SelectControl,
     ToggleControl,
+    RangeControl,
 } from "@wordpress/components";
 
 import "./editor.scss";
@@ -117,6 +118,8 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
     //     setAttributes({ projects: newProjects });
     // };
 
+    const [clientRating, setClientRating] = useState(2);
+
     return <InspectorControls>
         {modalOpen ?
             <PanelBody className="bPlPanelBody"
@@ -140,14 +143,20 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                     updateProject(currentIndex, 'images', newImages);
                 }}>{__("Add New Image", "b-projects")}</Button>
 
+
+                <RangeControl
+                    label="Columns"
+                    value={columns}
+                    onChange={(value) => setColumns(value)}
+                    min={2}
+                    max={10}
+                />
+
                 {/* const {img} = project; */}
-
-
                 {/* { isImg && <Title>{__("Image Url:", "b-projects")}</Title> } */}
                 {/* {
                         isImg &&
                     } */}
-
                 {/* Project Modal end */}
             </PanelBody> : <TabPanel
                 className="bPlTabPanel"
@@ -155,8 +164,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                 tabs={[
                     { name: "general", title: "General" },
                     { name: "style", title: "Style" },
-                ]}
-            >
+                ]} >
                 {(tab) => <>
                     {"general" === tab.name && <>
                         <PanelBody
@@ -164,13 +172,13 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                             title={__("Add or Remove Projects", "b-projects")} >
 
                             {projects.map((project, index) => {
-
                                 const {
                                     background,
                                     img,
                                     btnUrl,
+                                    clientRating,
                                 } = project;
-                                // console.log(background)
+                                // console.log(project.clientRating)
                                 // console.log()
                                 return <PanelBody
                                     className="bPlPanelBody"
@@ -200,7 +208,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                         onChange={(content) =>
                                             updateProject(index, "btnUrl", content)
                                         }
-
                                     />}
                                     <PanelRow className="itemAction mt20">
                                         {1 < projects?.length && <Button className="removeItem" onClick={() => handleProjectDelete(index)}>
@@ -212,7 +219,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                         </Button>
                                     </PanelRow>
                                 </PanelBody>
-                                // { console.log(btnLabel) }
                             })}
 
                             <div className="addItem mt15">
@@ -222,13 +228,11 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                             </div>
                         </PanelBody>
 
-
                         <PanelBody title={__("Layout", "b-projects")} className="bPlPanelBody" initialOpen={false}>
                             <SelectControl
                                 label={__("Layout", "b-projects")}
                                 labelPosition="left"
                                 value={layout}
-
                                 onChange={(val) => {
                                     let deskCol = 2;
                                     if (val == "vertical") {
@@ -354,16 +358,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     onChange={(val) => setDevice(val)}
                                 />
                             </PanelRow>
-                            <RangeControl
-                                value={columns[device]}
-                                onChange={(val) => {
-                                    setAttributes({ columns: { ...columns, [device]: val } });
-                                }}
-                                min={1}
-                                max={6}
-                                step={1}
-                                beforeIcon="grid-view"
-                            />
+                   
 
                             <UnitControl
                                 className="mt20"
