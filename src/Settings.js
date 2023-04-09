@@ -75,7 +75,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                 "skils": "Android",
                 "projectURL": "https:example.com",
                 "clientReview": "Some content will go here",
-                "clientRating": "4.5",
+                "clientRating": "5",
                 "image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
                 "title": "This is my title",
                 "titleColor": "#000",
@@ -87,7 +87,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                 },
                 "images": [
                     "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
-                    "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
+                    "https://mobimg.b-cdn.net/v3/fetch/97/972d3a28a4f23240915d1c48776ce013.jpeg",
                 ]
             }
         ];

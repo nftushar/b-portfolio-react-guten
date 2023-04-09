@@ -29,13 +29,13 @@
           "background": {
             "color": "#ffff"
           },
-          "img": "https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          "img": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
           "cardRadius": "2px",
           "catrgory": "Android",
           "skils": "Android",
           "projectURL": "https:example.com",
           "clientReview": "Some content will go here",
-          "clientRating": "3",
+          "clientRating": "5",
           "image": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
           "title": "This is my title",
           "desc": "This is my description",

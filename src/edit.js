@@ -41,7 +41,7 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 		setAttributes({ projects: newProjects });
 	}
 
-// console.log(titleColor);
+	// console.log(titleColor);
 	return <>
 		<style>
 			{`
@@ -84,10 +84,8 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 		<div {...useBlockProps()}>
 			<Settings modalOpen={modalOpen} attributes={attributes} setAttributes={setAttributes} updateProject={updateProject} currentIndex={currentIndex} />
 			<div className={`bppb-portfolio-wrapper bppb-portfolio-items columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
-
 				{projects.map((project, index) => {
 					const { title, desc, img, background } = project;
-
 
 					return <div className={`bppb-portfolio-item project-${index}`} key={index} >
 						<style>
@@ -108,7 +106,7 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 
 							<RichText
 								id="myTextarea"
-								
+
 								tagName="div"
 								className="desc"
 								value={truncateString(desc, 30)}
