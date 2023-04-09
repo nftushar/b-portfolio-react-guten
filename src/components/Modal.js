@@ -1,6 +1,8 @@
 import { useRef, useEffect } from "@wordpress/element";
 // import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { Button } from '@wordpress/components';
 
 const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 
@@ -20,7 +22,7 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 	useEffect(() => {
 		if (modalRef.current) {
 			var slides = jQuery(modalRef.current).find(".slider").children();
-			var thumbs = jQuery(modalRef.current).find(".thumbs").children();
+			var thumbs = jQuery(modalRef.current).find(".thumbs").children(':not(.modal-img-upload)');
 			var currentSlide = 0;
 			// Show the first slide and thumbnail
 			slides.eq(currentSlide).addClass("active");
@@ -39,7 +41,7 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 				thumbs.eq(currentSlide).addClass("active");
 			});
 		}
-	}, []);
+	}, [images]);
 
 
 	const renderClientRating = (rating) => {
@@ -58,6 +60,14 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 			}
 		})
 	}
+
+	useEffect(() => {
+		modalRef.current?.addEventListener('click', function (e) {
+			if (e.target.classList.contains('modal')) {
+				setModalOpen(false);
+			}
+		})
+	}, [])
 
 	return (
 		<div ref={modalRef} id="portfolio-modal" className="modal">
@@ -78,18 +88,30 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 							<div className="modal-img slider-wrapper">
 								<div className="slider">
 									{images?.map((image, index) =>
-										<img className={`model-img2 slide  ${index==0 ? " active" : " "}`} src={image}
+										<img className={`model-img2 slide  ${index == 0 ? " active" : " "}`} src={image}
 											alt="Main" />)}
 								</div>
 
 								<div className="list-images thumbs">
-									
-									{images.map((image, index) =>
-										<img
+
+									{images.map((image, index) => {
+										return <img
 											src={image}
 											alt=""
-											className= {`thumb  ${index==0 ? "active" : " "}`}
-										/>)}
+											className={`thumb ${index == 0 ? "active" : " "}`}
+										/>
+									})}
+
+									<MediaUploadCheck>
+										<MediaUpload
+											onSelect={val => {
+												const newImages = [...images];
+												newImages.push(val.url);
+												updateProject(currentIndex, 'images', newImages);
+											}}
+											render={({ open }) => <Button className='button button-primary modal-img-upload' onClick={open} icon={'plus'}></Button>}
+										/>
+									</MediaUploadCheck>
 								</div>
 							</div>
 							<div className="modal-text">

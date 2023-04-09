@@ -116,8 +116,10 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 							/>
 
 							<button className="portfolio-view-details-btn" onClick={() => {
+								
 								setCurrentIndex(index);
 								setModalOpen(true);
+								
 							}}>{btnLabel} </button>
 						</div>
 					</div>

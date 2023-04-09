@@ -9,6 +9,7 @@ import {
     PanelBody,
     PanelRow,
     TextControl,
+    TextareaControl,
     __experimentalBoxControl as BoxControl,
     __experimentalUnitControl as UnitControl,
     Button,
@@ -59,7 +60,8 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
         btnPadding,
         btnRadius
     } = attributes;
-    // console.log(btnLabel);
+    // console.log(projects[0].title);
+
 
     const [device, setDevice] = useState("desktop");
 
@@ -108,7 +110,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
         setAttributes({ projects: newProjects });
     };
 
-    const [clientRating, setClientRating] = useState(2);
+    // const [clientRating, setClientRating] = useState(2);
 
     function ImageDelete(index) {
         const newImages = [...projects[currentIndex].images];
@@ -116,52 +118,125 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
         updateProject(currentIndex, 'images', newImages);
     }
 
+    const { title, catrgory, skils, projectURL, clientRating, clientReview, desc, } = projects[currentIndex];
+
 
     return <InspectorControls>
         {modalOpen ?
-            <PanelBody className="bPlPanelBody"
-                title={__("Project Modal", "b-projects")}>
-                {/* Project Modal open */}
-                {projects[currentIndex].images.map((image, index) => {
-                    return <PanelRow> <InlineMediaUpload
-                        value={image}
-                        onChange={(val) => {
-                            const newImages = [...projects[currentIndex].images];
-                            newImages[index] = val;
-                            updateProject(currentIndex, 'images', newImages);
-                        }}
-                        placeholder={__("Enter Image URL", "b-projects")} />
+            <>
+                <TabPanel className="bPlTabPanel"
+                    activeClass="activeTab"
+                    tabs={[
+                        { name: "general", title: "General" },
+                        { name: "style", title: "Style" },
+                    ]} >
+                    {(tab) => <>
+                        {tab.name === 'general' && <>{/* Project Modal open */}
+                            <PanelBody className="bPlPanelBody"
+                                title={__("Project Images", "b-projects")}>
+                                {projects[currentIndex].images.map((image, index) => {
+                                    return <PanelRow> <InlineMediaUpload
+                                        value={image}
+                                        onChange={(val) => {
+                                            const newImages = [...projects[currentIndex].images];
+                                            newImages[index] = val;
+                                            updateProject(currentIndex, 'images', newImages);
+                                        }}
+                                        placeholder={__("Enter Image URL", "b-projects")} />
 
-                        <Button className='button button-primary'
-                            onClick={() => {
-                                ImageDelete(index)
-                            }}
-                            icon={'trash'}></Button>
+                                        <Button className='button button-primary'
+                                            onClick={() => {
+                                                ImageDelete(index)
+                                            }}
+                                            icon={'trash'}></Button>
+                                    </PanelRow>
+                                })}
+                                <div className="image-upload">
+                                    <Button variant="primary" onClick={() => {
+                                        const newImages = [...projects[currentIndex].images];
+                                        newImages.push(' ');
+                                        updateProject(currentIndex, 'images', newImages);
+                                    }}>{__("Add New Image", "b-projects")}</Button>
 
-                    </PanelRow>
-                })}
+                                </div>
+                            </PanelBody>
+                            <PanelBody className="bPlPanelBody" initialOpen={false}
+                                title={__("Project Content", "b-projects")}>
 
-                <Button variant="primary" onClick={() => {
-                    const newImages = [...projects[currentIndex].images];
-                    newImages.push(' ');
-                    updateProject(currentIndex, 'images', newImages);
-                }}>{__("Add New Image", "b-projects")}</Button>
+                                <Title>{__("Title:", "b-projects")}</Title>
+                                <TextControl value={(projects[currentIndex].title)}
+                                    onChange={(content) => updateProject(currentIndex, "title", content)} >
+                                </TextControl>
+
+                                <Title>{__("Catrgory:", "b-projects")}</Title>
+                                <TextControl value={(projects[currentIndex].catrgory)}
+                                    onChange={(content) => updateProject(currentIndex, "catrgory", content)} >
+                                </TextControl>
+
+                                <Title>{__("Skils:", "b-projects")}</Title>
+                                <TextControl value={(projects[currentIndex].skils)}
+                                    onChange={(content) => updateProject(currentIndex, "skils", content)} >
+                                </TextControl>
+
+                                <Title>{__("ProjectURL:", "b-projects")}</Title>
+                                <TextControl value={(projects[currentIndex].projectURL)}
+                                    onChange={(content) => updateProject(currentIndex, "projectURL", content)} >
+                                </TextControl>
+
+                                <Title>{__("Client Rating:", "b-projects")}</Title>
+                                <RangeControl
+                                    // label={__("Client Rating")}
+                                    value={clientRating}
+                                    onChange={(val) => {
+                                        updateProject(currentIndex, 'clientRating', parseFloat(val));
+                                    }}
+                                    step={.5}
+                                    min={1}
+                                    max={5} />
+
+                                <Title>{__("ClientReview:", "b-projects")}</Title>
+                                <TextareaControl value={(projects[currentIndex].clientReview)}
+                                    onChange={(content) => updateProject(currentIndex, "clientReview", content)} >
+                                </TextareaControl>
 
 
-                <RangeControl
-                    label={__("Client Rating")}
-                    value={clientRating}
-                    onChange={(val) => {
-                        updateProject(currentIndex, 'clientRating', parseFloat(val));
-                    }}
-                    step={.5}
-                    min={1}
-                    max={5}
-                />
+                                <Title>{__("Description:", "b-projects")}</Title>
+                                <TextareaControl value={(projects[currentIndex].desc)}
+                                    onChange={(content) => updateProject(currentIndex, "desc", content)} >
+                                </TextareaControl>
+
+                            </PanelBody></>}
+                        {tab.name === 'style' && <>
+
+
+                            <PanelBody className="bPlPanelBody" title={__("Cards", "info-cards")} initialOpen={true}>
+                                <Background
+                                    label={__("background", "info-cards")}
+                                    defaults={{ color: "#0000" }}
+                                    value={background}
+                                    onChange={(val) => setAttributes({ background: val })} />
+
+                                <PanelRow className="mt20">
+                                    <BoxControl
+                                        label={__("Paddign", "info-cards")}
+                                        values={padding}
+                                        resetValues={{
+                                            "top": "0px",
+                                            "right": "0x",
+                                            "bottom": "0px",
+                                            "left": "0px"
+                                        }}
+                                        onChange={(value) => setAttributes({ padding: value })} />
+                                </PanelRow>
+
+                            </PanelBody>
+                        </>}
+                    </>}
+                </TabPanel>
 
 
 
-            </PanelBody> : <TabPanel
+            </> : <TabPanel
                 className="bPlTabPanel"
                 activeClass="activeTab"
                 tabs={[
@@ -246,14 +321,11 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                 options={[
                                     { label: "Vertical", value: "vertical" },
                                     { label: "Horizontal", value: "horizontal" },
-                                ]}
+                                ]} />
 
-                            />
-
+                            <Title>{__("Button Label:", "b-projects")}</Title>
                             <TextControl
-                                label={__("Button Label", "b-project")}
                                 value={btnLabel}
-
                                 onChange={(val) => {
                                     setAttributes({ btnLabel: val })
                                 }} />

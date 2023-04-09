@@ -16,6 +16,10 @@
     top: 0%;
     opacity: 1;
   }
+  from {
+    top: 30%;
+    opacity: 0;
+  }
 }
 .columns-1 {
   grid-template-columns: repeat(1, 1fr);
@@ -327,8 +331,13 @@
 }
 
 .bppb-portfolio-item .content h2 {
+  cursor: pointer;
   margin: 0;
   font-size: 30px;
+}
+
+.b.bppb-portfolio-item .content .desc {
+  cursor: pointer;
 }
 
 .bppb-portfolio-item .content {
@@ -348,9 +357,16 @@
 
 .bppb-portfolio-item:hover .content {
   opacity: 1;
+  top: 0%;
+}
+
+.bppb-portfolio-item .content {
   animation-name: portfolio-item;
   animation-duration: 1.2s;
-  top: 0%;
+}
+
+.portfolio-view-details-btn {
+  cursor: pointer;
 }
 
 .modal-text .star-rating {
@@ -384,14 +400,6 @@
     grid-template-columns: repeat(1, auto);
   }
 }
-/* button.click {
-    margin-top: 15px;
-    height: 28px;
-    width: 54px;
-    background-color: #f3eaeb;
-    text-decoration: none;
-    border-radius: 6px;
-} */
 @keyframes bppb-portfolio-item {
   from {
     top: 30%;
@@ -403,6 +411,17 @@
   }
 }
 /*--------------------------------------- popup modal ------------------------ */
+span.dashicon.dashicons.dashicons-plus {
+  height: 75px;
+  width: 81px;
+  font-size: 80px;
+  color: #fff;
+}
+
+button.components-button.button.button-primary.modal-img-upload.has-icon {
+  height: 100px;
+}
+
 .desc {
   text-align: center;
 }
@@ -498,16 +517,15 @@ span {
   opacity: 1;
 }
 
-.thumbs {
+.list-images.thumbs {
   display: flex;
-  -moz-column-gap: 8px;
-       column-gap: 8px;
+  gap: 8px;
+  flex-wrap: wrap;
   margin-top: 10px;
 }
 
 .thumb {
-  width: 80px;
-  height: 60px;
+  width: 92px;
   border: 2px solid white;
   opacity: 0.5;
   transition: opacity 0.8s ease-in-out;
@@ -583,6 +601,7 @@ span {
 }
 /* The Close Button */
 #portfolio-modal .close {
+  cursor: pointer;
   color: #489625;
   float: right;
   font-size: 28px;
@@ -625,6 +644,9 @@ span {
     display: grid;
     grid-template-columns: repeat(1, auto);
   }
+}
+span .ashicons-trash {
+  color: red;
 }
 /*!******************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!../Components/Helper/style.scss ***!

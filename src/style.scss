@@ -15,6 +15,11 @@
 		top: 0%;
 		opacity: 1;
 	}
+
+	from {
+		top: 30%;
+		opacity: 0
+	}
 }
 
 
@@ -53,6 +58,7 @@
 }
 
 
+
 .wp-block-create-block-b-portfolio-block {
 	// background-color: #21759b;
 	color: #fff;
@@ -87,8 +93,13 @@
 
 .bppb-portfolio-item .content h2 {
 	// color: #fff;
+	cursor: pointer;
 	margin: 0;
 	font-size: 30px;
+}
+
+.b.bppb-portfolio-item .content .desc{
+	cursor: pointer;
 }
 
 .bppb-portfolio-item .content {
@@ -108,21 +119,17 @@
 
 .bppb-portfolio-item:hover .content {
 	opacity: 1;
-	animation-name: portfolio-item;
-	animation-duration: 1.2s;
 	top: 0%;
 }
 
-.bppb-portfolio-item .content .portfolio-view-details-btn {
-	// border: 1px solid #ddd;
-	// outline: none;
-	// font-size: 15px;
-	// cursor: pointer;
+.bppb-portfolio-item .content {
+	animation-name: portfolio-item;
+		animation-duration: 1.2s;
 }
 
-// .bppb-portfolio-item .content .portfolio-view-details-btn:hover {
-// 	background-color: #3e8e41
-// }
+.portfolio-view-details-btn {
+	cursor: pointer;
+}
 
 .modal-text .star-rating {
 	display: inline-block;
@@ -158,17 +165,6 @@
 }
 
 
-
-/* button.click {
-    margin-top: 15px;
-    height: 28px;
-    width: 54px;
-    background-color: #f3eaeb;
-    text-decoration: none;
-    border-radius: 6px;
-} */
-
-
 @keyframes bppb-portfolio-item {
 	from {
 		top: 30%;
@@ -189,6 +185,18 @@
 // 	text-align: center;
 // 	color: #ffff;
 // }
+
+span.dashicon.dashicons.dashicons-plus {
+	height: 75px;
+	width: 81px;
+	font-size: 80px;
+	color: #fff;
+}
+
+button.components-button.button.button-primary.modal-img-upload.has-icon {
+	height: 100px;
+}
+
 
 .desc {
 	// color: #ffff;
@@ -294,15 +302,17 @@ span {
 	opacity: 1;
 }
 
-.thumbs {
+.list-images.thumbs {
 	display: flex;
-	column-gap: 8px;
+	gap: 8px;
+	flex-wrap: wrap;
 	margin-top: 10px;
 }
 
 .thumb {
-	width: 80px;
-	height: 60px;
+	width: 92px;
+
+	// height: 60px;
 	border: 2px solid white;
 	opacity: 0.5;
 	transition: opacity 0.8s ease-in-out;
@@ -396,6 +406,7 @@ span {
 
 /* The Close Button */
 #portfolio-modal .close {
+	cursor: pointer;
 	color: #489625;
 	float: right;
 	font-size: 28px;
@@ -442,4 +453,10 @@ span {
 		display: grid;
 		grid-template-columns: repeat(1, auto);
 	}
+}
+
+
+// Settings style start
+span .ashicons-trash {
+	color: red;
 }
