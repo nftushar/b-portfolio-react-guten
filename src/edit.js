@@ -16,6 +16,7 @@ import Background from '../../Components/Background';
 
 export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 
+
 	function truncateString(str, limit) {
 		if (str.length > limit) {
 			return str.slice(0, limit) + "...";
@@ -84,6 +85,7 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 		<div {...useBlockProps()}>
 			<Settings modalOpen={modalOpen} attributes={attributes} setAttributes={setAttributes} updateProject={updateProject} currentIndex={currentIndex} />
 			<div className={`bppb-portfolio-wrapper bppb-portfolio-items columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
+
 				{projects.map((project, index) => {
 					const { title, desc, img, background } = project;
 
@@ -93,9 +95,9 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 						       .project-${index}{
 								   background-image: url(${img});
 							   }
-
 							`}
 						</style>
+
 						<div className="content">
 							<RichText
 								tagName="h2"
@@ -106,10 +108,9 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 
 							<RichText
 								id="myTextarea"
-
 								tagName="div"
 								className="desc"
-								value={truncateString(desc, 30)}
+								value={truncateString(desc, 20)}
 								onChange={(content) => updateProject(index, "desc", content)}
 								placeholder={__("Enter description", 'b-Project')}
 							/>

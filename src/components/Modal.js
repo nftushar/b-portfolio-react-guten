@@ -22,11 +22,9 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 			var slides = jQuery(modalRef.current).find(".slider").children();
 			var thumbs = jQuery(modalRef.current).find(".thumbs").children();
 			var currentSlide = 0;
-
 			// Show the first slide and thumbnail
 			slides.eq(currentSlide).addClass("active");
 			thumbs.eq(currentSlide).addClass("active");
-
 			// Change slide on thumbnail click
 			thumbs.click(function () {
 				// Remove active class from current slide and thumbnail
@@ -53,7 +51,7 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 			// console.log(typeof rating, rating)
 			if (index < parseInt(rating)) {
 				return <div class="star star-full" aria-hidden="true"></div>
-			} else if (rating % 1 > 0) {
+			} else if (index < rating && rating % 1 > 0) {
 				return <div class="star star-half" aria-hidden="true"></div>
 			} else {
 				return <div class="star star-empty" aria-hidden="true"></div>
@@ -80,34 +78,18 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 							<div className="modal-img slider-wrapper">
 								<div className="slider">
 									{images?.map((image, index) =>
-										<img className="model-img2 slide active" src={image}
+										<img className={`model-img2 slide  ${index==0 ? " active" : " "}`} src={image}
 											alt="Main" />)}
 								</div>
 
 								<div className="list-images thumbs">
+									
 									{images.map((image, index) =>
 										<img
 											src={image}
 											alt=""
-											className="thumb active"
+											className= {`thumb  ${index==0 ? "active" : " "}`}
 										/>)}
-
-
-									{/* <img
-										src="https://images.unsplash.com/photo-1529785501650-9baa7e39c327?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
-										alt=""
-										className="thumb active"
-									/> */}
-									{/* <img
-										src={image}
-										alt=""
-										className="thumb"
-									/>
-									<img
-										src={image}
-										alt=""
-										className="thumb"
-									/> */}
 								</div>
 							</div>
 							<div className="modal-text">
@@ -165,21 +147,15 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 								<div className="side-bar">
 									<span>Client Rating:</span>
 									<div class="star-rating">
-										&nbsp;   {clientRating} &nbsp;
-										<span class="screen-reader-text">{clientRating} rating</span>
+										&nbsp;{clientRating}&nbsp;
+										<span class="screen-reader-text">{clientRating}rating</span>
 										{renderClientRating(clientRating)}
-										{/* <div class="star star-full" aria-hidden="true"></div> */}
-										{/* <div class="star star-half" aria-hidden="true"></div>
-										<div class="star star-empty" aria-hidden="true"></div>
-										<div class="star star-empty" aria-hidden="true"></div>
-										<div class="star star-empty" aria-hidden="true"></div> */}
 									</div>
 								</div>
 							</div>
 						</div>
 						<div className="footer">
 							<span>Description :</span>
-
 							<RichText tagName="p"
 								className="desc"
 								value={desc}

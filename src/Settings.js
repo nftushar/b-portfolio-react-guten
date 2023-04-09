@@ -15,7 +15,6 @@ import {
     Dashicon,
     SelectControl,
     ToggleControl,
-    RangeControl,
 } from "@wordpress/components";
 
 import "./editor.scss";
@@ -97,9 +96,9 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
 
 
     function handleProjectDelete(index) {
-        const newCrads = [...projects];
-        newCrads.splice(index, 1);
-        setAttributes({ projects: newCrads });
+        const newProjects = [...projects];
+        newProjects.splice(index, 1);
+        setAttributes({ projects: newProjects });
     }
 
     const onDuplicateProject = (e, index) => {
@@ -109,16 +108,14 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
         setAttributes({ projects: newProjects });
     };
 
-    // const updateAllProject = (property, value) => {
-    //     const newProjects = [...projects];
-
-    //     newProjects.map((social, index) => {
-    //         newProjects[index][property] = value;
-    //     });
-    //     setAttributes({ projects: newProjects });
-    // };
-
     const [clientRating, setClientRating] = useState(2);
+
+    function ImageDelete(index) {
+        const newImages = [...projects[currentIndex].images];
+        newImages.splice(index, 1);
+        updateProject(currentIndex, 'images', newImages);
+    }
+
 
     return <InspectorControls>
         {modalOpen ?
@@ -126,15 +123,22 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                 title={__("Project Modal", "b-projects")}>
                 {/* Project Modal open */}
                 {projects[currentIndex].images.map((image, index) => {
-                    return <InlineMediaUpload
+                    return <PanelRow> <InlineMediaUpload
                         value={image}
                         onChange={(val) => {
                             const newImages = [...projects[currentIndex].images];
                             newImages[index] = val;
                             updateProject(currentIndex, 'images', newImages);
                         }}
-                        placeholder={__("Enter Image URL", "b-projects")}
-                    />
+                        placeholder={__("Enter Image URL", "b-projects")} />
+
+                        <Button className='button button-primary'
+                            onClick={() => {
+                                ImageDelete(index)
+                            }}
+                            icon={'trash'}></Button>
+
+                    </PanelRow>
                 })}
 
                 <Button variant="primary" onClick={() => {
@@ -145,19 +149,18 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
 
 
                 <RangeControl
-                    label="Columns"
-                    value={columns}
-                    onChange={(value) => setColumns(value)}
-                    min={2}
-                    max={10}
+                    label={__("Client Rating")}
+                    value={clientRating}
+                    onChange={(val) => {
+                        updateProject(currentIndex, 'clientRating', parseFloat(val));
+                    }}
+                    step={.5}
+                    min={1}
+                    max={5}
                 />
 
-                {/* const {img} = project; */}
-                {/* { isImg && <Title>{__("Image Url:", "b-projects")}</Title> } */}
-                {/* {
-                        isImg &&
-                    } */}
-                {/* Project Modal end */}
+
+
             </PanelBody> : <TabPanel
                 className="bPlTabPanel"
                 activeClass="activeTab"
@@ -253,101 +256,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
 
                                 onChange={(val) => {
                                     setAttributes({ btnLabel: val })
-                                }}
-                            />
-
-
-                            {/* <SelectControl
-                            className="mt20"
-                            label={__("Theme", "b-projects")}
-                            labelPosition="left"
-                            value={theme}
-                            onChange={(val) => {
-                                setAttributes({ theme: val });
-
-                                "default" === val &&
-                                    (setAttributes({
-                                        columns: { ...columns, desktop: 3 },
-                                        layout: "vertical",
-                                        titleColor: "#000",
-                                        descColor: "#000",
-                                        isImg: true,
-                                        imgPos: "first",
-                                        projectPadding: { top: "0", right: "0", bottom: "0", left: "0" },
-                                        btnColors: { color: "#fff", bg: "#4527a4", },
-                                        btnHovColors: { color: "#fff", bg: "#fe6601", }
-                                    }),
-                                        updateAllProject("background", { color: "#fff" })
-                                    );
-
-                                "theme1" === val &&
-                                    (setAttributes({
-                                        columns: { ...columns, desktop: 3 },
-                                        layout: "vertical",
-                                        titleColor: "#000",
-                                        descColor: "#000",
-                                        isImg: true,
-                                        imgPos: "last",
-                                        projectPadding: { top: "0", right: "0", bottom: "0", left: "0" },
-                                        btnColors: { color: "#fff", bg: "#4527a4", },
-                                        btnHovColors: { color: "#fff", bg: "#fe6601", }
-                                    }),
-                                        updateAllProject("background", { color: "#fff" })
-                                    );
-
-                                "theme2" === val &&
-                                    (setAttributes({
-                                        columns: { ...columns, desktop: 3 },
-                                        layout: "vertical",
-                                        titleColor: "#000",
-                                        descColor: "#000",
-                                        isImg: true,
-                                        imgPos: "first",
-                                        projectPadding: { top: "15px", right: "15px", bottom: "15px", left: "15px" },
-                                        btnColors: { color: "#fff", bg: "#4527a4", },
-                                        btnHovColors: { color: "#fff", bg: "#fe6601", }
-                                    }),
-                                        updateAllProject("background", { color: "#fff" })
-                                    );
-
-                                "theme3" === val &&
-                                    (setAttributes({
-                                        columns: { ...columns, desktop: 2 },
-                                        layout: "horizontal",
-                                        titleColor: "#000",
-                                        descColor: "#000",
-                                        isImg: true,
-                                        imgPos: "first",
-                                        projectPadding: { top: "0", right: "0", bottom: "0", left: "0" },
-                                        btnColors: { color: "#fff", bg: "#4527a4", },
-                                        btnHovColors: { color: "#fff", bg: "#fe6601", }
-                                    }),
-                                        updateAllProject("background", { color: "#fff" })
-                                    );
-
-                                "theme4" === val &&
-                                    (setAttributes({
-                                        columns: { ...columns, desktop: 3 },
-                                        layout: "vertical",
-                                        isImg: true,
-                                        imgPos: "first",
-                                        titleColor: "#fff",
-                                        descColor: "#fff",
-                                        projectPadding: { top: "0", right: "0", bottom: "0", left: "0" },
-                                        btnColors: { color: "#fff", bg: "#000", },
-                                        btnHovColors: { color: "#ffffffb3", bg: "#000000b3", }
-                                    }),
-                                        updateAllProject("background", { color: "#570DF8" })
-                                    );
-                            }}
-                            options={[
-                                { label: "Default", value: "default" },
-                                { label: "Theme 1", value: "theme1" },
-                                { label: "Theme 2", value: "theme2" },
-                                { label: "Theme 3", value: "theme3" },
-                                { label: "Theme 4", value: "theme4" },
-                            ]}
-                        /> */}
+                                }} />
 
                             <PanelRow className="mt20">
                                 <Title className="mb5">
@@ -358,7 +267,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     onChange={(val) => setDevice(val)}
                                 />
                             </PanelRow>
-                   
+
 
                             <UnitControl
                                 className="mt20"
@@ -403,13 +312,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                         },
                                     ]}
                                 />
-
-                                {/* <UnitControl
-                                    className="mt20"
-                                    label={__("Image Height", "b-projects")}
-                                    labelPosition="left"
-                                    value={imgHeight}
-                                    onChange={(val) => setAttributes({ imgHeight: val })} /> */}
                             </>}
                         </PanelBody>
                     </>}
@@ -449,72 +351,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                 produce={produce} />
                         </PanelBody>
 
-
-                        {/* Project */}
-                        {/* <PanelBody initialOpen={false}
-                        title={__("Project", "b-projects")}
-                        className="bPlPanelBody">
-
-                        <BoxControl
-                            label={__("Paddign", "b-projects")}
-                            values={projectPadding}
-                            resetValues={{
-                                "top": "0px",
-                                "right": "0x",
-                                "bottom": "0px",
-                                "left": "0px"
-                            }}
-                            onChange={(value) => setAttributes({ projectPadding: value })} />
-
-                        <UnitControl
-                            className="mt20"
-                            label={__("Border radious", "b-projects")}
-                            labelPosition="left"
-                            value={projectRadius}
-                            onChange={(val) => setAttributes({ projectRadius: val })} />
-
-                        <MultiShadowControl
-                            className="mt20"
-                            value={projectShadow}
-                            onChange={(val) => setAttributes({ projectShadow: val })}
-                            produce={produce} />
-                    </PanelBody> */}
-
-
-                        {/* Content */}
-                        {/* <PanelBody initialOpen={false}
-                        title={__("Content", "b-projects")}
-                        className="bPlPanelBody">
-                        <SelectControl
-                            label={__("Alignment", "b-projects")}
-                            labelPosition="left"
-                            value={contentAlign}
-                            onChange={(val) => setAttributes({ contentAlign: val })}
-                            options={[
-                                { label: "Left", value: "left" },
-                                { label: "Center", value: "center" },
-                                { label: "Right", value: "right" },
-                            ]}
-                        />
-
-                        <PanelRow className="mt20">
-                            <BoxControl
-                                label={__("Paddign", "b-projects")}
-                                values={contentPadding}
-                                resetValues={{
-                                    "top": "0px",
-                                    "right": "0x",
-                                    "bottom": "0px",
-                                    "left": "0px"
-                                }}
-                                onChange={(value) =>
-                                    setAttributes({ contentPadding: value })
-                                }
-                            />
-                        </PanelRow>
-                    </PanelBody> */}
-
-
                         <PanelBody className="bPlPanelBody" title={__("Title", "b-projects")} initialOpen={false}>
                             <Typography
                                 label={__("Typography", "b-projects")}
@@ -529,8 +365,8 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     setAttributes({ titleColor: val })
                                 }
                             />
-                        </PanelBody>
 
+                        </PanelBody>
 
                         <PanelBody className="bPlPanelBody" title={__("Description", "b-projects")} initialOpen={false}>
                             <Typography
@@ -581,7 +417,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                 label={__("Hoverz Color", "b-projects")}
                                 value={btnHover}
                                 onChange={(val) => setAttributes({ btnHover: val })}
-
                             />
 
                             <PanelRow className="mt20">
@@ -607,7 +442,8 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                         </PanelBody>
                     </>}
                 </>}
-            </TabPanel>}
+            </TabPanel>
+        }
 
-    </InspectorControls>
+    </InspectorControls >
 }
