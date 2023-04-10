@@ -602,7 +602,7 @@ span {
 /* The Close Button */
 #portfolio-modal .close {
   cursor: pointer;
-  color: #489625;
+  color: #000;
   float: right;
   font-size: 28px;
   font-weight: bold;

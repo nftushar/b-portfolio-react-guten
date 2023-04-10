@@ -216,33 +216,30 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
 
                             </PanelBody></>}
                         {tab.name === 'style' && <>
-                        
-                            <PanelBody className="bPlPanelBody" title={__("Title typo", "b-Projects")} initialOpen={true}>
+
+                            <PanelBody className="bPlPanelBody" title={__("Header ", "b-Projects")} initialOpen={true}>
                                 <Typography
-                                    label={__("Label Typo", "b-projects")}
+                                    label={__("Header Typo", "b-projects")}
                                     value={modalTitleTypo}
                                     onChange={(val) => setAttributes({ modalTitleTypo: val })} />
 
                                 <BColor
-                                    label={__("Color", "b-projects")}
+                                    label={__("Header Color", "b-projects")}
                                     value={modalTitleColor}
                                     onChange={(val) => setAttributes({ modalTitleColor: val })} />
-
-
                             </PanelBody>
 
-                            <PanelBody className="bPlPanelBody" title={__("Heading typo", "b-Projects")} initialOpen={true}>
+                            <PanelBody className="bPlPanelBody" title={__("Title typo", "b-Projects")} initialOpen={true}>
                                 <Typography
-                                    label={__("Label Typo", "b-projects")}
+                                    label={__("Title Typo", "b-projects")}
                                     value={modalHeadingTypo}
                                     onChange={(val) => setAttributes({ modalHeadingTypo: val })} />
 
                                 <BColor
-                                    label={__("Color", "b-projects")}
+                                    label={__("Title Color", "b-projects")}
                                     value={modalHeadingColor}
                                     onChange={(val) => setAttributes({ modalHeadingColor: val })} />
                             </PanelBody>
-
                             <PanelBody className="bPlPanelBody" title={__("Label typo", "b-Projects")} initialOpen={true}>
                                 <Typography
                                     label={__("Label Typo", "b-projects")}
