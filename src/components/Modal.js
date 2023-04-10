@@ -3,8 +3,9 @@ import { useRef, useEffect } from "@wordpress/element";
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
+import { getTypoCSS } from "../../../Components/Helper/getCSS";
 
-const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
+const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModalOpen }) => {
 
 	const {
 		title,
@@ -15,9 +16,15 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 		clientRating,
 		clientReview,
 		projectURL,
+
 	} = project;
 
 	const modalRef = useRef(null);
+
+	const { clientId, modalContentTypo, modalLableTypo, modalContentColor, modalLabelColor, modalTitleTypo, modalTitleColor, modalHeadingTypo,
+		modalHeadingColor } = attributes;
+
+	// console.log(modalTitleColor);
 
 	useEffect(() => {
 		if (modalRef.current) {
@@ -69,8 +76,37 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 		})
 	}, [])
 
-	return (
-		<div ref={modalRef} id="portfolio-modal" className="modal">
+
+
+	return <>
+
+		<style>
+			{`
+			    .modal-${clientId} .modalTitleTypo{
+						${getTypoCSS(modalTitleTypo)?.styles};
+						color:${modalTitleColor}
+				}
+
+				.modal-${clientId} .modalHeadingTypo{
+					${getTypoCSS(modalHeadingTypo)?.styles};
+				color:${modalHeadingColor}
+				} 		
+
+
+				.modal-${clientId} .modalContentTypo {
+						${getTypoCSS(modalContentTypo)?.styles};
+						color:${modalContentColor}
+				}
+				.modal-${clientId} .modalLableTypo {
+						${getTypoCSS(modalLableTypo)?.styles};
+						color: ${modalLabelColor}
+				}
+
+           `}
+		</style>
+
+
+		<div ref={modalRef} id="portfolio-modal" className={`modal-${clientId} modal`} >
 			<div className="modal-content">
 				<div className="modal-header">
 					<span className="close" onClick={() => setModalOpen(false)}>
@@ -80,7 +116,7 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 				<div className="modal-body">
 					<RichText
 						tagName="h1"
-						className="heading"
+						className="heading modalTitleTypo"
 						value={title} />
 
 					<div className="modal-content">
@@ -115,12 +151,12 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 								</div>
 							</div>
 							<div className="modal-text">
-								<h3 className="red">Project Details</h3>
+								<h3 className="red modalHeadingTypo">Project Details</h3>
 								<div className="side-bar">
-									<span>Project Name:</span>
+									<span className="modalLableTypo" >Project Name:</span>
 									<RichText
 										tagName="p"
-										className="heading"
+										className="heading modalContentTypo"
 										value={title}
 										onChange={(content) => updateProject(currentIndex, "title", content)}
 										inlineToolbar
@@ -128,9 +164,10 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 									/>
 								</div>
 								<div className="side-bar">
-									<span>Project Category:</span>
+									<span className="modalLableTypo">Project Category:</span>
 									<RichText
 										tagName="p"
+										className="modalContentTypo"
 										value={catrgory}
 										onChange={(content) => updateProject(currentIndex, "catrgory", content)}
 										inlineToolbar
@@ -138,10 +175,10 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 									/>
 								</div>
 								<div className="side-bar">
-									<span>Skill:</span>
+									<span className="modalLableTypo">Skill:</span>
 									<RichText
 										tagName="p"
-										className="skils"
+										className="skils modalContentTypo"
 										value={skils}
 										onChange={(content) => updateProject(currentIndex, "skils", content)}
 										inlineToolbar
@@ -149,9 +186,9 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 									/>
 								</div>
 								<div className="side-bar">
-									<span>Project URL:</span>
+									<span className="modalLableTypo">Project URL:</span>
 									<RichText tagName="p"
-										className="red"
+										className="red modalContentTypo"
 										value={projectURL}
 										onChange={(content) => updateProject(currentIndex, "projectURL", content)}
 										inlineToolbar
@@ -159,15 +196,16 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 									/>
 								</div>
 								<div className="side-bar">
-									<span>Client Reviewz:</span>
+									<span className="modalLableTypo">Client Reviewz:</span>
 									<RichText tagName="p"
+										className="modalContentTypo"
 										value={clientReview}
 										onChange={(content) => updateProject(currentIndex, "clientReview", content)}
 									/>
 
 								</div>
 								<div className="side-bar">
-									<span>Client Rating:</span>
+									<span className="modalLableTypo">Client Rating:</span>
 									<div class="star-rating">
 										&nbsp;{clientRating}&nbsp;
 										<span class="screen-reader-text">{clientRating}rating</span>
@@ -177,9 +215,9 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 							</div>
 						</div>
 						<div className="footer">
-							<span>Description :</span>
+							<span className="modalLableTypo">Description :</span>
 							<RichText tagName="p"
-								className="desc"
+								className="modalContentTypo desc"
 								value={desc}
 								onChange={(content) => updateProject(currentIndex, "desc", content)}
 								inlineToolbar
@@ -190,7 +228,7 @@ const Modal = ({ project = {}, currentIndex, updateProject, setModalOpen }) => {
 				</div>
 			</div>
 		</div>
-	);
+	</>
 };
 
 export default Modal;

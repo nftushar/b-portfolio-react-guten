@@ -52,19 +52,19 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 
 				.bppb-portfolio-items{
 					padding: ${getBoxValue(contentPadding)};
-					${getBackgroundCSS(gridBackground)}
-					border-radius: ${cardRadius}
+					${getBackgroundCSS(gridBackground)};
+					border-radius: ${cardRadius};
 					column-gap: ${columnGap};
 					row-gap:${rowGap};
 				}
 
 				.bppb-portfolio-item .content h2{
-					 	${getColorsCSS(titleColor)};
+					 color:${titleColor};
 					${getTypoCSS(titleTypo)?.styles}	
 				}
 
 				.bppb-portfolio-item .content .desc{
-					${getColorsCSS(descColor)};
+					color:${descColor};
 					${getTypoCSS(descTypo)?.styles}
 					}
 
@@ -116,17 +116,17 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 							/>
 
 							<button className="portfolio-view-details-btn" onClick={() => {
-								
+
 								setCurrentIndex(index);
 								setModalOpen(true);
-								
+
 							}}>{btnLabel} </button>
 						</div>
 					</div>
 				})}
 
 			</div>
-			{modalOpen && <Modal setAttributes={setAttributes} updateProject={updateProject} currentIndex={currentIndex} project={projects[currentIndex] || {}} setModalOpen={setModalOpen} />}
+			{modalOpen && <Modal setAttributes={setAttributes} attributes={attributes} updateProject={updateProject} currentIndex={currentIndex} project={projects[currentIndex] || {}} setModalOpen={setModalOpen} />}
 		</div>
 	</>
 

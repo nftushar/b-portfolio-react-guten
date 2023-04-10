@@ -48,6 +48,8 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
         projectShadow,
         imgHeight,
         contentPadding,
+        modalTitleTypo,
+        modalTitleColor,
         titleColor,
         titleTypo,
         descColor,
@@ -58,7 +60,14 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
         btnAlign,
         btnTypo,
         btnPadding,
-        btnRadius
+        btnRadius,
+        modalContentTypo,
+        modalContentColor,
+        modalLableTypo,
+        modalLabelColor,
+        modalHeadingTypo,
+        modalHeadingColor
+
     } = attributes;
     // console.log(projects[0].title);
 
@@ -207,28 +216,60 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
 
                             </PanelBody></>}
                         {tab.name === 'style' && <>
+                        
+                            <PanelBody className="bPlPanelBody" title={__("Title typo", "b-Projects")} initialOpen={true}>
+                                <Typography
+                                    label={__("Label Typo", "b-projects")}
+                                    value={modalTitleTypo}
+                                    onChange={(val) => setAttributes({ modalTitleTypo: val })} />
+
+                                <BColor
+                                    label={__("Color", "b-projects")}
+                                    value={modalTitleColor}
+                                    onChange={(val) => setAttributes({ modalTitleColor: val })} />
 
 
-                            <PanelBody className="bPlPanelBody" title={__("Cards", "info-cards")} initialOpen={true}>
-                                <Background
-                                    label={__("background", "info-cards")}
-                                    defaults={{ color: "#0000" }}
-                                    value={background}
-                                    onChange={(val) => setAttributes({ background: val })} />
+                            </PanelBody>
 
-                                <PanelRow className="mt20">
-                                    <BoxControl
-                                        label={__("Paddign", "info-cards")}
-                                        values={padding}
-                                        resetValues={{
-                                            "top": "0px",
-                                            "right": "0x",
-                                            "bottom": "0px",
-                                            "left": "0px"
-                                        }}
-                                        onChange={(value) => setAttributes({ padding: value })} />
-                                </PanelRow>
+                            <PanelBody className="bPlPanelBody" title={__("Heading typo", "b-Projects")} initialOpen={true}>
+                                <Typography
+                                    label={__("Label Typo", "b-projects")}
+                                    value={modalHeadingTypo}
+                                    onChange={(val) => setAttributes({ modalHeadingTypo: val })} />
 
+                                <BColor
+                                    label={__("Color", "b-projects")}
+                                    value={modalHeadingColor}
+                                    onChange={(val) => setAttributes({ modalHeadingColor: val })} />
+                            </PanelBody>
+
+                            <PanelBody className="bPlPanelBody" title={__("Label typo", "b-Projects")} initialOpen={true}>
+                                <Typography
+                                    label={__("Label Typo", "b-projects")}
+                                    value={modalLableTypo}
+                                    onChange={(val) => setAttributes({ modalLableTypo: val })} />
+
+                                <BColor
+                                    label={__("Color", "b-projects")}
+                                    value={modalLabelColor}
+                                    onChange={(val) => setAttributes({ modalLabelColor: val })} />
+
+
+                            </PanelBody>
+
+                            <PanelBody className="bPlPanelBody" title={__("Content Typo", "b-Projects")} initialOpen={false}>
+
+                                <Typography
+                                    label={__("Content Typo", "b-projects")}
+                                    value={modalContentTypo}
+                                    onChange={(val) => setAttributes({ modalContentTypo: val })} />
+
+                                <BColor
+                                    label={__("Color", "b-projects")}
+                                    value={modalContentColor}
+                                    onChange={(val) =>
+                                        setAttributes({ modalContentColor: val })
+                                    } />
                             </PanelBody>
                         </>}
                     </>}
@@ -256,8 +297,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     btnUrl,
                                     clientRating,
                                 } = project;
-                                // console.log(project.clientRating)
-                                // console.log()
+
                                 return <PanelBody
                                     className="bPlPanelBody"
                                     title={`This is project ${index + 1}`}
@@ -271,7 +311,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                         }
                                         isImage={false}
                                     />
-                                    {/* { console.log(background)} */}
 
                                     {isImg && <Title>{__("Image Url:", "b-projects")}</Title>}
                                     {isImg && <InlineMediaUpload
@@ -367,7 +406,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                             />
 
                             {isImg && <>
-                                <SelectControl
+                                {/* <SelectControl
                                     className="mt20"
                                     label={__("Image Position", "b-projects")}
                                     labelPosition="left"
@@ -383,7 +422,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                             value: "last",
                                         },
                                     ]}
-                                />
+                                /> */}
                             </>}
                         </PanelBody>
                     </>}
@@ -484,16 +523,15 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                 value={btnColors}
                                 onChange={(val) => setAttributes({ btnColors: val })}
                             />
-                            {/* {console.log(btnColors.bgColor)} */}
                             <ColorsControl
-                                label={__("Hoverz Color", "b-projects")}
+                                label={__("Hover Color", "b-projects")}
                                 value={btnHover}
                                 onChange={(val) => setAttributes({ btnHover: val })}
                             />
 
                             <PanelRow className="mt20">
                                 <BoxControl
-                                    label={__("Paddign", "b-projects")}
+                                    label={__("Paddig", "b-projects")}
                                     values={btnPadding}
                                     resetValues={{
                                         "top": "0px",

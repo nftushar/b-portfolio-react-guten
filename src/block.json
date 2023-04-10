@@ -46,27 +46,6 @@
 					]
 				} ]
 		},
-		"modal-projects": {
-			"type": "array",
-			"default": [ {
-
-					"img": "https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
-					"cardRadius": "2px",
-					"catrgory": "Android",
-					"skils": "Android",
-					"projectURL": "https:example.com",
-					"clientReview": "Some content will go here",
-					"clientRating": 5,
-					"title": "This is my title",
-					"desc": "This is my description",
-					"btnUrl": "https://www.google.com/",
-					
-					"images": [
-						"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large",
-						"https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-					]
-				} ]
-		},
 
 		"isImg": {
 			"type": "boolean",
@@ -77,22 +56,20 @@
 			"default": "first"
 		},
 		"background": {
-			"type": "object",
+			"type": "string",
 			"default": {
 				"color": "#fff"
 			}
 		},
 		"titleColor": {
-			"type": "object",
-			"default": {
-				"color": "#fff"
-			}
+			"type": "string",
+			"default": "#fff"
+
 		},
 		"descColor": {
-			"type": "object",
-			"default": {
-				"color": "#fff"
-			}
+			"type": "string",
+			"default": "#fff"
+
 		},
 		"columns": {
 			"type": "object",
@@ -142,18 +119,63 @@
 			"type": "array",
 			"default": [ ]
 		},
+
+		"modalTitleTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": "2.5rem"
+			}
+		},
+		"modalTitleColor": {
+			"type": "string",
+			"default": "#000"
+		},
+		"modalHeadingTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": "35"
+			}
+		},
+		"modalHeadingColor": {
+			"type": "string",
+			"default": "#000"
+		},
+
 		"titleTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": "20px"
+				"fontSize": "20"
 			}
 		},
+
 		"descTypo": {
 			"type": "object",
 			"default": {
 				"fontSize": "12px"
 			}
 		},
+		"modalContentTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": "20px"
+			}
+		},
+		"modalLableTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": "20px"
+			}
+		},
+		"modalContentColor": {
+			"type": "string",
+			"default": "#000"
+		},
+
+		"modalLabelColor": {
+			"type": "string",
+			"default": "#0BF"
+		},
+
 		"btnTypo": {
 			"type": "object",
 			"default": {
