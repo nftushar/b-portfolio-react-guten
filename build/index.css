@@ -14,6 +14,10 @@
   background-color: #4527a4 !important;
 }
 
+span.dashicon.dashicons.dashicons-no {
+  color: white;
+}
+
 span.dashicons-trash {
   color: red;
 }

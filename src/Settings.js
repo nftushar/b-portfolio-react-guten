@@ -69,8 +69,8 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
         modalHeadingColor
 
     } = attributes;
-    // console.log(projects[0].title);
-
+    // console.log(projects);
+ 
 
     const [device, setDevice] = useState("desktop");
 
@@ -296,7 +296,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                 } = project;
                                 return <PanelBody
                                     className="bPlPanelBody"
-                                    title={`This is project ${index + 1}`}
+                                    title={`Project ${index + 1}`}
                                     initialOpen={false} >
 
                                     {isImg && <Title>{__("Image Url:", "b-projects")}</Title>}
@@ -306,13 +306,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                         placeholder={__("Enter Image URL", "b-projects")}
                                     />}
 
-                                    {btnUrl && <Title>{__("Button Url:", "b-projects")}</Title>}
-                                    {btnUrl && <TextControl
-                                        value={btnUrl}
-                                        onChange={(content) =>
-                                            updateProject(index, "btnUrl", content)
-                                        }
-                                    />}
                                     <PanelRow className="itemAction mt20">
                                         {1 < projects?.length && <Button className="removeItem" onClick={() => handleProjectDelete(index)}>
                                             <Dashicon icon="no" /> Delete
@@ -333,21 +326,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                         </PanelBody>
 
                         <PanelBody title={__("Layout", "b-projects")} className="bPlPanelBody" initialOpen={false}>
-                            <SelectControl
-                                label={__("Layout", "b-projects")}
-                                labelPosition="left"
-                                value={layout}
-                                onChange={(val) => {
-                                    let deskCol = 2;
-                                    if (val == "vertical") {
-                                        deskCol = 3;
-                                    }
-                                    setAttributes({ layout: val, columns: { ...columns, desktop: deskCol } });
-                                }}
-                                options={[
-                                    { label: "Vertical", value: "vertical" },
-                                    { label: "Horizontal", value: "horizontal" },
-                                ]} />
+
 
                             <Title>{__("Button Label:", "b-projects")}</Title>
                             <TextControl
@@ -358,13 +337,22 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
 
                             <PanelRow className="mt20">
                                 <Title className="mb5">
-                                    {__("Columns:", "b-projects")}
+                                    {__("Columns:", "info-cards")}
                                 </Title>
                                 <BDevice
                                     device={device}
-                                    onChange={(val) => setDevice(val)}
-                                />
+                                    onChange={(val) => setDevice(val)} />
                             </PanelRow>
+                            <RangeControl
+                                value={columns[device]}
+                                onChange={(val) => {
+                                    setAttributes({ columns: { ...columns, [device]: val } });
+                                }}
+                                min={1}
+                                max={6}
+                                step={1}
+                                beforeIcon="grid-view"
+                            />
 
 
                             <UnitControl
@@ -382,35 +370,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                 value={rowGap}
                                 onChange={(val) => setAttributes({ rowGap: val })}
                             />
-                        </PanelBody>
-
-
-                        <PanelBody title={__("Elements", "b-projects")} className="bPlPanelBody" initialOpen={false}>
-                            <ToggleControl
-                                label={__("Show Image", "b-projects")}
-                                checked={isImg}
-                                onChange={(val) => setAttributes({ isImg: val })}
-                            />
-
-                            {isImg && <>
-                                {/* <SelectControl
-                                    className="mt20"
-                                    label={__("Image Position", "b-projects")}
-                                    labelPosition="left"
-                                    value={imgPos}
-                                    onChange={(val) => setAttributes({ imgPos: val })}
-                                    options={[
-                                        {
-                                            label: "vertical" === layout ? "Top" : "Left",
-                                            value: "first",
-                                        },
-                                        {
-                                            label: "vertical" === layout ? "Bottom" : "Right",
-                                            value: "last",
-                                        },
-                                    ]}
-                                /> */}
-                            </>}
                         </PanelBody>
                     </>}
 
@@ -441,12 +400,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                 labelPosition="left"
                                 value={cardRadius}
                                 onChange={(val) => setAttributes({ cardRadius: val })} />
-
-                            <MultiShadowControl
-                                className="mt20"
-                                value={projectShadow}
-                                onChange={(val) => setAttributes({ projectShadow: val })}
-                                produce={produce} />
                         </PanelBody>
 
                         <PanelBody className="bPlPanelBody" title={__("Title", "b-projects")} initialOpen={false}>
@@ -506,7 +459,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
 
                             <ColorsControl
                                 className="mt20"
-                                label={__("Colorz", "b-projects")}
+                                label={__("Color", "b-projects")}
                                 value={btnColors}
                                 onChange={(val) => setAttributes({ btnColors: val })}
                             />

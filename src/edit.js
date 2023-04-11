@@ -24,6 +24,9 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 	const { contentPadding, background, cardRadius, titleColor, descColor, projects, gridBackground, isImg, imgPos, btnLabel, btnPadding, btnColors, btnHover, btnRadius, columnGap, columns, rowGap, titleTypo, descTypo, btnTypo } = attributes;
 
 
+
+	// console.log(cardRadius);
+
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [modalOpen, setModalOpen] = useState(false);
 
@@ -34,7 +37,7 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 		setAttributes({ projects: newProjects });
 	}
 
-	// console.log(titleColor);
+	// console.log(cardRadius);
 	return <>
 		<style>
 			{`
@@ -42,10 +45,15 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
                 ${getTypoCSS(descTypo)?.googleFontLink}
                 ${getTypoCSS(btnTypo)?.googleFontLink}
 
+
+
+				.bppb-portfolio-item{
+					border-radius: ${cardRadius};
+				}
+
 				.bppb-portfolio-items{
 					padding: ${getBoxValue(contentPadding)};
 					${getBackgroundCSS(gridBackground)};
-					border-radius: ${cardRadius};
 					column-gap: ${columnGap};
 					row-gap:${rowGap};
 				}
