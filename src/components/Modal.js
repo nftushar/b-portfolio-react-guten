@@ -127,13 +127,22 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 					<div className="modal-content">
 						<div className="row">
 							<div className="modal-img slider-wrapper">
+
 								<div className="slider">
 									{images?.map((image, index) =>
 										<img className={`model-img2 slide  ${index == 0 ? " active" : " "}`} src={image}
 											alt="Main" />)}
 								</div>
-
 								<div className="list-images thumbs">
+
+									{images.map((image, index) => {
+										return <img
+											src={image}
+											alt=""
+											className={`thumb ${index == 0 ? "active" : " "}`}
+										/>
+									})}
+
 									<MediaUploadCheck>
 										<MediaUpload
 											onSelect={val => {
@@ -145,16 +154,9 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 												className='button button-primary modal-img-upload' onClick={open} icon={'cloud-upload'}></Button>}
 										/>
 									</MediaUploadCheck>
-									
-									{images.map((image, index) => {
-										return <img
-											src={image}
-											alt=""
-											className={`thumb ${index == 0 ? "active" : " "}`}
-										/>
-									})}
 
 								</div>
+
 							</div>
 							<div className="modal-text">
 								<h3 className="red modalHeadingTypo">Project Details</h3>

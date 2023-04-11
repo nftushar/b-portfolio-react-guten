@@ -305,12 +305,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                         onChange={(val) => updateProject(index, "img", val)}
                                         placeholder={__("Enter Image URL", "b-projects")}
                                     />}
-                                    {isBtnUrl && <Title>{__("Image Url:", "b-projects")}</Title>}
-                                    {isBtnUrl && <InlineMediaUpload
-                                        value={btnUrl}
-                                        onChange={(val) => updateProject(index, "btnUrl", val)}
-                                        placeholder={__("Enter Image URL", "b-projects")}
-                                    />}
 
                                     <PanelRow className="itemAction mt20">
                                         {1 < projects?.length && <Button className="removeItem" onClick={() => handleProjectDelete(index)}>

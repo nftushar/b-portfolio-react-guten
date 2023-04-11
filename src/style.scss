@@ -192,7 +192,7 @@
 
 
 button.components-button.button.button-primary.modal-img-upload.has-icon {
-	height: 100px;
+	height: 70px;
 }
 
 
@@ -307,14 +307,14 @@ span {
 	margin-top: 10px;
 }
 
-.thumb {
+.list-images .thumb {
 	width: 92px;
-
-	// height: 60px;
 	border: 2px solid white;
 	opacity: 0.5;
 	transition: opacity 0.8s ease-in-out;
 	cursor: pointer;
+	object-fit: cover;
+	height: 70px;
 }
 
 .thumb.active {

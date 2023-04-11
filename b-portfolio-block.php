@@ -28,6 +28,7 @@ function create_block_b_portfolio_block_block_init() {
             extract( $attributes );
             $blockClassName = 'bppb-projects-items ' . $className;
             ob_start(); ?>
+        
             <div class="<?php echo esc_attr( $blockClassName ); ?>" id='b-projects-<?php echo esc_attr( $clientId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
 
             <?php return ob_get_clean();

@@ -27,7 +27,6 @@
           "image": "https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
           "title": "This is my title",
           "desc": "This is my description",
-          "btnUrl": "#",
           "images": [
             "https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
             "https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -46,7 +45,6 @@
           "image": "https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
           "title": "This is my title",
           "desc": "This is my description",
-          "btnUrl": "#",
           "images": [
             "https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
             "https://mobimg.b-cdn.net/v3/fetch/97/972d3a28a4f23240915d1c48776ce013.jpeg"
@@ -254,7 +252,7 @@
   "version": "0.1.0",
   "title": "B Portfolio Block",
   "category": "widgets",
-  "icon": "smileybbbb",
+  "icon": "portfolio",
   "description": "B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.",
   "supports": {
     "html": false

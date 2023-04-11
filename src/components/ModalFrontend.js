@@ -135,7 +135,7 @@ const ModalFrontend = ({ attributes, project = {}, currentIndex, updateProject, 
 											className={`thumb ${index == 0 ? "active" : " "}`}
 										/>
 									})}
-
+helloo
 									<MediaUploadCheck>
 										<MediaUpload
 											onSelect={val => {
