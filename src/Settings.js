@@ -14,8 +14,6 @@ import {
     __experimentalUnitControl as UnitControl,
     Button,
     Dashicon,
-    SelectControl,
-    ToggleControl,
 } from "@wordpress/components";
 
 import "./editor.scss";
@@ -451,7 +449,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                 onChange={(val) => setAttributes({ btnTypo: val })}
                             />
 
-                            <SelectControl
+                            {/* <SelectControl
                                 className="mt20"
                                 label={__("Alignment", "b-projects")}
                                 labelPosition="left"
@@ -462,7 +460,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     { label: "Center", value: "center" },
                                     { label: "Right", value: "right" },
                                 ]}
-                            />
+                            /> */}
 
                             <ColorsControl
                                 className="mt20"

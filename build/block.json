@@ -254,8 +254,8 @@
   "version": "0.1.0",
   "title": "B Portfolio Block",
   "category": "widgets",
-  "icon": "smiley",
-  "description": "B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.",
+  "icon": "portfolio",
+  "description": "B Portfolio Block is a customizable WordPress plugin to create stunning portfolios and showcase creative work.",
   "supports": {
     "html": false
   },
