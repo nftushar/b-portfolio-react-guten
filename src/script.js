@@ -1,59 +1,114 @@
-var $ = jQuery.noConflict();
+import ReactDOM from "react-dom";
+import { useState } from '@wordpress/element';
+import { useEffect } from "react";
+import truncateString from "./utils/truncateString"
+import { getBackgroundCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS } from '../../Components/Helper/getCSS';
+import { getBoxValue } from "./utils/function";
+import { __ } from "@wordpress/i18n";
+import "./editor.scss";
+import "./style.scss";
+import ModalFrontend from "./components/ModalFrontend";
 
-$(document).ready(function () {
-    // Initialize variables
-    var slides = $('.slider').children();
-    var thumbs = $('.thumbs').children();
-    var currentSlide = 0;
 
-    // Show the first slide and thumbnail
-    slides.eq(currentSlide).addClass('active');
-    thumbs.eq(currentSlide).addClass('active');
 
-    // Change slide on thumbnail click
-    thumbs.click(function () {
-        // Remove active class from current slide and thumbnail
-        slides.eq(currentSlide).removeClass('active');
-        thumbs.eq(currentSlide).removeClass('active');
 
-        // Set current slide to clicked thumbnail index
-        currentSlide = $(this).index();
 
-        // Add active class to new slide and thumbnail
-        slides.eq(currentSlide).addClass('active');
-        thumbs.eq(currentSlide).addClass('active');
+window.addEventListener('DOMContentLoaded', () => {
+    const allPortfolios = document.querySelectorAll('.bppb-projects-items');
+
+    allPortfolios.forEach((itemEl) => {
+        const attributes = JSON.parse(itemEl.dataset.attributes);
+
+        ReactDOM.render(
+            <ProjectRenderer attributes={attributes} />,
+            itemEl
+        );
     });
 });
 
 
+export const ProjectRenderer = ({ attributes, setAttributes, clientId, ...rest }) => {
 
-// Get the modal
-var modal = document.getElementById("portfolio-modal");
-const modalOpenBtns = document.querySelectorAll(
-    ".portfolio-items .portfolio-view-details-btn",
 
-    console.log('Hello')
-);
 
-// console.log(modalOpenBtns);
+    useEffect(() => {
+        clientId && setAttributes({ clientId: clientId })
+    }, [clientId]);
 
-modalOpenBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-        modal.style.display = "block";
-    });
-});
+    const { contentPadding, background, cardRadius, titleColor, descColor, projects, gridBackground, isImg, imgPos, btnLabel, btnPadding, btnColors, btnHover, btnRadius, columnGap, columns, rowGap, titleTypo, descTypo, btnTypo } = attributes;
 
-// Get the <span> element that closes the modal
-var span = document.querySelector("#portfolio-modal .close");
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [modalOpen, setModalOpen] = useState(false);
 
-// When the user clicks on <span> (x), close the modal
-// span?.onclick = function () {
-//     modal.style.display = "none";
-// };
+    return <>
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-};
+
+        <style>
+            {`
+		    	${getTypoCSS(titleTypo)?.googleFontLink}
+                ${getTypoCSS(descTypo)?.googleFontLink}
+                ${getTypoCSS(btnTypo)?.googleFontLink}
+
+				.bppb-portfolio-items{
+					padding: ${getBoxValue(contentPadding)};
+					${getBackgroundCSS(gridBackground)};
+					border-radius: ${cardRadius};
+					column-gap: ${columnGap};
+					row-gap:${rowGap};
+				}
+
+				.bppb-portfolio-item .content h2{
+					 color:${titleColor};
+					${getTypoCSS(titleTypo)?.styles}	
+				}
+
+				.bppb-portfolio-item .content .desc{
+					color: ${descColor};
+					${getTypoCSS(descTypo)?.styles}
+					}
+
+				.bppb-portfolio-item .content .portfolio-view-details-btn {
+					${getColorsCSS(btnColors)};
+					border-radius: ${btnRadius};
+					${getTypoCSS(btnTypo)?.styles};
+					padding: ${getBoxValue(btnPadding)}
+				}
+
+				.bppb-portfolio-item .content .portfolio-view-details-btn:hover {
+					${getColorsCSS(btnHover)};
+				}
+					
+           `}
+        </style>
+
+
+        <div className={`bppb-portfolio-wrapper bppb-portfolio-items columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
+            {projects.map((project, index) => {
+                const { title, desc, img, background } = project;
+
+                return <div className={`bppb-portfolio-item project-${index}`} key={index} >
+                    <style>
+                        {`
+						       .project-${index}{
+								   background-image: url(${img});
+							   }
+							`}
+                    </style>
+
+                    <div className="content">
+                        {title && <h2 dangerouslySetInnerHTML={{ __html: title }} />}
+                        {desc && <p class="desc" id="myTextarea" dangerouslySetInnerHTML={{ __html: truncateString(desc, 20) }} />}
+                        {btnLabel && <button className="portfolio-view-details-btn" onClick={() => {
+                            setCurrentIndex(index);
+                            setModalOpen(true);
+                        }}>{btnLabel} </button>}
+                    </div>
+                </div>
+
+            }
+            )
+            }
+        </div>
+        {modalOpen && <ModalFrontend attributes={attributes} currentIndex={currentIndex} project={projects[currentIndex] || {}} setModalOpen={setModalOpen} />}
+    </>
+}

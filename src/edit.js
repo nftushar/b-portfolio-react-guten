@@ -7,23 +7,15 @@ import { useEffect } from "react";
 import Settings from './Settings';
 import "./editor.scss";
 import Modal from "./components/Modal";
+import { tabController } from '../../Components/Helper/functions';
 import { ImagePlaceholder } from '../../Components/ImageControl';
 
 import { registerBlockType } from '@wordpress/blocks';
 import Background from '../../Components/Background';
 
-
+import truncateString from './utils/truncateString'
 
 export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
-
-
-	function truncateString(str, limit) {
-		if (str.length > limit) {
-			return str.slice(0, limit) + "...";
-		} else {
-			return str;
-		}
-	}
 
 	useEffect(() => {
 		clientId && setAttributes({ clientId: clientId })
@@ -64,7 +56,7 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 				}
 
 				.bppb-portfolio-item .content .desc{
-					color:${descColor};
+					color: ${descColor};
 					${getTypoCSS(descTypo)?.styles}
 					}
 

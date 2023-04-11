@@ -6550,12 +6550,7 @@ __webpack_require__.r(__webpack_exports__);
       className: "bPlPanelBody",
       title: `This is project ${index + 1}`,
       initialOpen: false
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Background__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Background", "b-projects"),
-      value: _Components_Background__WEBPACK_IMPORTED_MODULE_8__["default"],
-      onChange: val => updateProject(index, "Background", val),
-      isImage: false
-    }), isImg && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Title__WEBPACK_IMPORTED_MODULE_6__["default"], null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Image Url:", "b-projects")), isImg && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_MediaControl__WEBPACK_IMPORTED_MODULE_13__.InlineMediaUpload, {
+    }, isImg && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Title__WEBPACK_IMPORTED_MODULE_6__["default"], null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Image Url:", "b-projects")), isImg && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_MediaControl__WEBPACK_IMPORTED_MODULE_13__.InlineMediaUpload, {
       value: img,
       onChange: val => updateProject(index, "img", val),
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Enter Image URL", "b-projects")
@@ -6936,7 +6931,10 @@ const Modal = _ref => {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
     tagName: "h1",
     className: "heading modalTitleTypo",
-    value: title
+    value: title,
+    onChange: content => updateProject(currentIndex, "title", content)
+    // inlineToolbar
+    // allowedFormats={["core/bold", "core/italic"]}
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-content"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -7078,10 +7076,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Settings */ "./src/Settings.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
 /* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Modal */ "./src/components/Modal.js");
-/* harmony import */ var _Components_ImageControl__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Components/ImageControl */ "../Components/ImageControl.js");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _Components_Background__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../Components/Background */ "../Components/Background.js");
+/* harmony import */ var _Components_Helper_functions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Components/Helper/functions */ "../Components/Helper/functions.js");
+/* harmony import */ var _Components_ImageControl__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Components/ImageControl */ "../Components/ImageControl.js");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _Components_Background__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Components/Background */ "../Components/Background.js");
+/* harmony import */ var _utils_truncateString__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./utils/truncateString */ "./src/utils/truncateString.js");
+
+
 
 
 
@@ -7102,13 +7104,6 @@ function Edit(_ref) {
     clientId,
     ...rest
   } = _ref;
-  function truncateString(str, limit) {
-    if (str.length > limit) {
-      return str.slice(0, limit) + "...";
-    } else {
-      return str;
-    }
-  }
   (0,react__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
     clientId && setAttributes({
       clientId: clientId
@@ -7166,7 +7161,7 @@ function Edit(_ref) {
 				}
 
 				.bppb-portfolio-item .content .desc{
-					color:${descColor};
+					color: ${descColor};
 					${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(descTypo)?.styles}
 					}
 
@@ -7214,7 +7209,7 @@ function Edit(_ref) {
       id: "myTextarea",
       tagName: "div",
       className: "desc",
-      value: truncateString(desc, 20),
+      value: (0,_utils_truncateString__WEBPACK_IMPORTED_MODULE_13__["default"])(desc, 20),
       onChange: content => updateProject(index, "desc", content),
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Enter description", 'b-Project')
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
@@ -7313,6 +7308,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getBoxValue": () => (/* binding */ getBoxValue)
 /* harmony export */ });
 const getBoxValue = object => Object.values(object).join(" ");
+
+/***/ }),
+
+/***/ "./src/utils/truncateString.js":
+/*!*************************************!*\
+  !*** ./src/utils/truncateString.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function truncateString(str, limit) {
+  if (str.length > limit) {
+    return str.slice(0, limit) + "...";
+  } else {
+    return str;
+  }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (truncateString);
 
 /***/ }),
 
@@ -7535,7 +7551,7 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/b-portfolio-block","attributes":{"projects":{"type":"array","default":[{"background":{"color":"#ffff"},"img":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","cardRadius":"2px","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":5,"title":"This is my title","desc":"This is my description","btnUrl":"https://www.google.com/","images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"]},{"background":{"color":"#ffff"},"img":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","cardRadius":"2px","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":4.5,"image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","desc":"This is my description","btnUrl":"https://www.google.com/","images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://mobimg.b-cdn.net/v3/fetch/97/972d3a28a4f23240915d1c48776ce013.jpeg"]}]},"isImg":{"type":"boolean","default":true},"imgPos":{"type":"string","default":"first"},"background":{"type":"string","default":{"color":"#fff"}},"titleColor":{"type":"string","default":"#fff"},"descColor":{"type":"string","default":"#fff"},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"gridBackground":{"type":"object","default":{"color":"rgba(250, 249, 249, 1)"}},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"modalTitleTypo":{"type":"object","default":{"fontSize":"80"}},"modalTitleColor":{"type":"string","default":"#000"},"modalHeadingTypo":{"type":"object","default":{"fontSize":"35"}},"modalHeadingColor":{"type":"string","default":"#000"},"titleTypo":{"type":"object","default":{"fontSize":"20"}},"descTypo":{"type":"object","default":{"fontSize":"12px"}},"modalContentTypo":{"type":"object","default":{"fontSize":"20px"}},"modalLableTypo":{"type":"object","default":{"fontSize":"20px"}},"modalContentColor":{"type":"string","default":"#000"},"modalLabelColor":{"type":"string","default":"#0BF"},"btnTypo":{"type":"object","default":{"fontSize":"15"}},"btnRadius":{"type":"string","default":"5px"},"btnLabel":{"type":"string","default":"Button"},"btnColors":{"type":"object","default":{"color":"#fff","bg":"#000"}},"btnHover":{"type":"object","default":{"color":"#000","bg":"#fff"}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"version":"0.1.0","title":"B Portfolio Block","category":"widgets","icon":"smiley","description":"B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.","supports":{"html":false},"textdomain":"b-portfolio-block","editorScript":["file:./index.js","jquery"],"editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/b-portfolio-block","attributes":{"className":{"type":"string","default":""},"clientId":{"type":"string","default":""},"projects":{"type":"array","default":[{"background":{"color":"#ffff"},"img":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","cardRadius":"2px","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":5,"title":"This is my title","desc":"This is my description","btnUrl":"https://www.google.com/","images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"]},{"background":{"color":"#ffff"},"img":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","cardRadius":"2px","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":4.5,"image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","desc":"This is my description","btnUrl":"https://www.google.com/","images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://mobimg.b-cdn.net/v3/fetch/97/972d3a28a4f23240915d1c48776ce013.jpeg"]}]},"isImg":{"type":"boolean","default":true},"imgPos":{"type":"string","default":"first"},"background":{"type":"string","default":{"color":"#fff"}},"titleColor":{"type":"string","default":"#fff"},"descColor":{"type":"string","default":"#fff"},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"gridBackground":{"type":"object","default":{"color":"rgba(250, 249, 249, 1)"}},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"modalHeadingTypo":{"type":"object","default":{"fontSize":"30"}},"modalHeadingColor":{"type":"string","default":"#fa566f"},"modalTitleTypo":{"type":"object","default":{"fontSize":"40"}},"modalTitleColor":{"type":"string","default":"#000"},"titleTypo":{"type":"object","default":{"fontSize":"24"}},"descTypo":{"type":"object","default":{"fontSize":"15"}},"modalContentTypo":{"type":"object","default":{"fontSize":"20px"}},"modalLableTypo":{"type":"object","default":{"fontSize":"20px"}},"modalContentColor":{"type":"string","default":"#000"},"modalLabelColor":{"type":"string","default":"#0BF"},"btnTypo":{"type":"object","default":{"fontSize":"15"}},"btnRadius":{"type":"string","default":"5px"},"btnLabel":{"type":"string","default":"Button"},"btnColors":{"type":"object","default":{"color":"#fff","bg":"#000"}},"btnHover":{"type":"object","default":{"color":"#000","bg":"#fff"}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"version":"0.1.0","title":"B Portfolio Block","category":"widgets","icon":"smiley","description":"B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.","supports":{"html":false},"textdomain":"b-portfolio-block","editorScript":["file:./index.js","jquery"],"editorStyle":"file:./index.css","script":["file:./script.js","jquery"],"style":"file:./style-index.css"}');
 
 /***/ })
 

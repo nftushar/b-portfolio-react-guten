@@ -294,20 +294,10 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     btnUrl,
                                     clientRating,
                                 } = project;
-
                                 return <PanelBody
                                     className="bPlPanelBody"
                                     title={`This is project ${index + 1}`}
                                     initialOpen={false} >
-
-                                    <Background
-                                        label={__("Background", "b-projects")}
-                                        value={Background}
-                                        onChange={(val) =>
-                                            updateProject(index, "Background", val)
-                                        }
-                                        isImage={false}
-                                    />
 
                                     {isImg && <Title>{__("Image Url:", "b-projects")}</Title>}
                                     {isImg && <InlineMediaUpload

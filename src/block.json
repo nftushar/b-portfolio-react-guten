@@ -3,6 +3,14 @@
 	"apiVersion": 2,
 	"name": "create-block/b-portfolio-block",
 	"attributes": {
+		"className": {
+			"type": "string",
+			"default": ""
+		},
+		"clientId": {
+			"type": "string",
+			"default": ""
+		},
 		"projects": {
 			"type": "array",
 			"default": [ {
@@ -119,24 +127,24 @@
 			"type": "array",
 			"default": [ ]
 		},
+		"modalHeadingTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": "30"
+			}
+		},
+		"modalHeadingColor": {
+			"type": "string",
+			"default": "#fa566f"
+		},
 
 		"modalTitleTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": "80"
+				"fontSize": "40"
 			}
 		},
 		"modalTitleColor": {
-			"type": "string",
-			"default": "#000"
-		},
-		"modalHeadingTypo": {
-			"type": "object",
-			"default": {
-				"fontSize": "35"
-			}
-		},
-		"modalHeadingColor": {
 			"type": "string",
 			"default": "#000"
 		},
@@ -144,14 +152,14 @@
 		"titleTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": "20"
+				"fontSize": "24"
 			}
 		},
 
 		"descTypo": {
 			"type": "object",
 			"default": {
-				"fontSize": "12px"
+				"fontSize": "15"
 			}
 		},
 		"modalContentTypo": {
@@ -235,5 +243,6 @@
 	"textdomain": "b-portfolio-block",
 	"editorScript": [ "file:./index.js", "jquery" ],
 	"editorStyle": "file:./index.css",
+	"script": [ "file:./script.js", "jquery" ],
 	"style": "file:./style-index.css"
 }

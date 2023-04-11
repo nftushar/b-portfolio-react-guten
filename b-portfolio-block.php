@@ -20,7 +20,18 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
+
 function create_block_b_portfolio_block_block_init() {
-	register_block_type( __DIR__ . '/build' );
+    register_block_type( __DIR__ . "/build", [
+        "render_callback" => function ( $attributes ) {
+            wp_enqueue_script('jquery');
+            extract( $attributes );
+            $blockClassName = 'bppb-projects-items ' . $className;
+            ob_start(); ?>
+            <div class="<?php echo esc_attr( $blockClassName ); ?>" id='b-projects-<?php echo esc_attr( $clientId ); ?>' data-attributes='<?php echo esc_attr( wp_json_encode( $attributes ) ); ?>'></div>
+
+            <?php return ob_get_clean();
+        }
+    ] );
 }
 add_action( 'init', 'create_block_b_portfolio_block_block_init' );

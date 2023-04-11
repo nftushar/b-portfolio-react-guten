@@ -5,7 +5,8 @@ import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
 import { getTypoCSS } from "../../../Components/Helper/getCSS";
 
-const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModalOpen }) => {
+
+const ModalFrontend = ({ attributes, project = {}, currentIndex, updateProject, setModalOpen }) => {
 
 	const {
 		title,
@@ -51,19 +52,16 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 	}, [images]);
 
 
-	const renderClientRating = (rating) => {
-		// for(let i = 0; i < 5; i++){
-		// 	return 
-		// }
 
+	const renderClientRating = (rating) => {
 		return [...Array(5)].map((item, index) => {
-			// console.log(typeof rating, rating)
+			console.log(typeof rating, rating)
 			if (index < parseInt(rating)) {
-				return <div class="star star-full" aria-hidden="true"></div>
+				return <span class="dashicons dashicons-star-filled star"></span>
 			} else if (index < rating && rating % 1 > 0) {
-				return <div class="star star-half" aria-hidden="true"></div>
+				return <div class="dashicons dashicons-star-half star" aria-hidden="true"></div>
 			} else {
-				return <div class="star star-empty" aria-hidden="true"></div>
+				return <div class="dashicons dashicons-star-empty star" aria-hidden="true"></div>
 			}
 		})
 	}
@@ -114,15 +112,10 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 					</span>
 				</div>
 				<div className="modal-body">
-
 					<RichText
 						tagName="h1"
 						className="heading modalTitleTypo"
-						value={title}
-						onChange={(content) => updateProject(currentIndex, "title", content)}
-						// inlineToolbar
-						// allowedFormats={["core/bold", "core/italic"]}
-					/>
+						value={title} />
 
 					<div className="modal-content">
 						<div className="row">
@@ -159,75 +152,51 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 								<h3 className="red modalHeadingTypo">Project Details</h3>
 								<div className="side-bar">
 									<span className="modalLableTypo" >Project Name:</span>
-									<RichText
-										tagName="p"
-										className="heading modalContentTypo"
-										value={title}
-										onChange={(content) => updateProject(currentIndex, "title", content)}
-										inlineToolbar
-										allowedFormats={["core/bold", "core/italic"]}
-									/>
+									{title && <p class="title" className="heading modalContentTypo"
+										id="myTextarea" dangerouslySetInnerHTML={{ __html: (title) }} />}
 								</div>
+
 								<div className="side-bar">
 									<span className="modalLableTypo">Project Category:</span>
-									<RichText
-										tagName="p"
-										className="modalContentTypo"
-										value={catrgory}
-										onChange={(content) => updateProject(currentIndex, "catrgory", content)}
-										inlineToolbar
-										allowedFormats={["core/bold", "core/italic"]}
-									/>
+
+									{catrgory && <p class="catrgory" className="modalContentTypo"
+										id="myTextarea" dangerouslySetInnerHTML={{ __html: (catrgory) }} />}
+
 								</div>
 								<div className="side-bar">
 									<span className="modalLableTypo">Skill:</span>
-									<RichText
-										tagName="p"
-										className="skils modalContentTypo"
-										value={skils}
-										onChange={(content) => updateProject(currentIndex, "skils", content)}
-										inlineToolbar
-										allowedFormats={["core/bold", "core/italic"]}
-									/>
+
+									{skils && <p class="skils" className="skils modalContentTypo"
+										id="myTextarea" dangerouslySetInnerHTML={{ __html: (skils) }} />}
+
 								</div>
 								<div className="side-bar">
 									<span className="modalLableTypo">Project URL:</span>
-									<RichText tagName="p"
-										className="red modalContentTypo"
-										value={projectURL}
-										onChange={(content) => updateProject(currentIndex, "projectURL", content)}
-										inlineToolbar
-										allowedFormats={["core/bold", "core/italic"]}
-									/>
+
+									{projectURL && <p class="projectURL" className="heading modalContentTypo"
+										id="myTextarea" dangerouslySetInnerHTML={{ __html: (projectURL) }} />}
+
 								</div>
 								<div className="side-bar">
 									<span className="modalLableTypo">Client Reviewz:</span>
-									<RichText tagName="p"
-										className="modalContentTypo"
-										value={clientReview}
-										onChange={(content) => updateProject(currentIndex, "clientReview", content)}
-									/>
-
+									{clientReview && <p class="clientReview" className="modalContentTypo"
+										id="myTextarea" dangerouslySetInnerHTML={{ __html: (clientReview) }} />}
 								</div>
 								<div className="side-bar">
 									<span className="modalLableTypo">Client Rating:</span>
 									<div class="star-rating">
 										&nbsp;{clientRating}&nbsp;
 										<span class="screen-reader-text">{clientRating}rating</span>
-										{renderClientRating(clientRating)}
 									</div>
+									{renderClientRating(clientRating)}
 								</div>
 							</div>
 						</div>
 						<div className="footer">
 							<span className="modalLableTypo">Description :</span>
-							<RichText tagName="p"
-								className="modalContentTypo desc"
-								value={desc}
-								onChange={(content) => updateProject(currentIndex, "desc", content)}
-								inlineToolbar
-								allowedFormats={["core/bold", "core/italic"]}
-							/>
+
+							{title && <p class="desc" className="modalContentTypo desc"
+								id="myTextarea" dangerouslySetInnerHTML={{ __html: (desc) }} />}
 						</div> <br></br>
 					</div>
 				</div>
@@ -236,4 +205,4 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 	</>
 };
 
-export default Modal;
+export default ModalFrontend;
