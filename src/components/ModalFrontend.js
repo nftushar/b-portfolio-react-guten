@@ -22,10 +22,10 @@ const ModalFrontend = ({ attributes, project = {}, currentIndex, updateProject, 
 
 	const modalRef = useRef(null);
 
-	const { clientId, modalContentTypo, modalLableTypo, modalContentColor, modalLabelColor, modalTitleTypo, modalTitleColor, modalHeadingTypo,
+	const { clientId, modalContentTypo, modalLableTypo, modalContentColor, modalLabelColor, modalTitleTypo, modalTitleColor, clientRatingColor, modalHeadingTypo,
 		modalHeadingColor } = attributes;
 
-	// console.log(modalTitleColor);
+	console.log(clientRatingColor);
 
 	useEffect(() => {
 		if (modalRef.current) {
@@ -99,6 +99,9 @@ const ModalFrontend = ({ attributes, project = {}, currentIndex, updateProject, 
 						${getTypoCSS(modalLableTypo)?.styles};
 						color: ${modalLabelColor}
 				}
+				.modal-${clientId}  .star{
+					color: ${clientRatingColor}
+				}
 
            `}
 		</style>
@@ -112,10 +115,7 @@ const ModalFrontend = ({ attributes, project = {}, currentIndex, updateProject, 
 					</span>
 				</div>
 				<div className="modal-body">
-					<RichText
-						tagName="h1"
-						className="heading modalTitleTypo"
-						value={title} />
+					<h1 className="heading modalTitleTypo" >{title} </h1>
 
 					<div className="modal-content">
 						<div className="row">
@@ -135,7 +135,6 @@ const ModalFrontend = ({ attributes, project = {}, currentIndex, updateProject, 
 											className={`thumb ${index == 0 ? "active" : " "}`}
 										/>
 									})}
-helloo
 									<MediaUploadCheck>
 										<MediaUpload
 											onSelect={val => {
@@ -149,15 +148,15 @@ helloo
 								</div>
 							</div>
 							<div className="modal-text">
-								<h3 className="red modalHeadingTypo">Project Details</h3>
+								{/* <h3 className="red modalHeadingTypo">Details</h3> */}
 								<div className="side-bar">
-									<span className="modalLableTypo" >Project Name:</span>
+									<span className="modalLableTypo" >Name:</span>
 									{title && <p class="title" className="heading modalContentTypo"
 										id="myTextarea" dangerouslySetInnerHTML={{ __html: (title) }} />}
 								</div>
 
 								<div className="side-bar">
-									<span className="modalLableTypo">Project Category:</span>
+									<span className="modalLableTypo">Category:</span>
 
 									{catrgory && <p class="catrgory" className="modalContentTypo"
 										id="myTextarea" dangerouslySetInnerHTML={{ __html: (catrgory) }} />}
@@ -171,14 +170,14 @@ helloo
 
 								</div>
 								<div className="side-bar">
-									<span className="modalLableTypo">Project URL:</span>
+									<span className="modalLableTypo">URL:</span>
 
 									{projectURL && <p class="projectURL" className="heading modalContentTypo"
 										id="myTextarea" dangerouslySetInnerHTML={{ __html: (projectURL) }} />}
 
 								</div>
 								<div className="side-bar">
-									<span className="modalLableTypo">Client Reviewz:</span>
+									<span className="modalLableTypo">Client Review:</span>
 									{clientReview && <p class="clientReview" className="modalContentTypo"
 										id="myTextarea" dangerouslySetInnerHTML={{ __html: (clientReview) }} />}
 								</div>
@@ -187,8 +186,8 @@ helloo
 									<div class="star-rating">
 										&nbsp;{clientRating}&nbsp;
 										<span class="screen-reader-text">{clientRating}rating</span>
-									</div>
 									{renderClientRating(clientRating)}
+									</div>
 								</div>
 							</div>
 						</div>

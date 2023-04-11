@@ -45,10 +45,15 @@ export const ProjectRenderer = ({ attributes, setAttributes, clientId, ...rest }
                 ${getTypoCSS(descTypo)?.googleFontLink}
                 ${getTypoCSS(btnTypo)?.googleFontLink}
 
+
+
+                .bppb-portfolio-item{
+                    border-radius: ${cardRadius};
+                }
+
 				.bppb-portfolio-items{
 					padding: ${getBoxValue(contentPadding)};
 					${getBackgroundCSS(gridBackground)};
-					border-radius: ${cardRadius};
 					column-gap: ${columnGap};
 					row-gap:${rowGap};
 				}

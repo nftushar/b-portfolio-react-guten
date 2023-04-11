@@ -57,6 +57,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
         btnHover,
         btnLabel,
         btnAlign,
+        clientRatingColor,
         btnTypo,
         btnPadding,
         btnRadius,
@@ -201,6 +202,13 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     step={.5}
                                     min={1}
                                     max={5} />
+
+                                <BColor
+                                    label={__("Rating Color:", "b-projects")}
+                                    value={clientRatingColor}
+                                    onChange={(val) =>
+                                        setAttributes({ clientRatingColor: val })
+                                    } />
 
                                 <Title>{__("ClientReview:", "b-projects")}</Title>
                                 <TextareaControl value={(projects[currentIndex].clientReview)}

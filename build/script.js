@@ -247,12 +247,11 @@ const ModalFrontend = _ref => {
     modalLabelColor,
     modalTitleTypo,
     modalTitleColor,
+    clientRatingColor,
     modalHeadingTypo,
     modalHeadingColor
   } = attributes;
-
-  // console.log(modalTitleColor);
-
+  console.log(clientRatingColor);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (modalRef.current) {
       var slides = jQuery(modalRef.current).find(".slider").children();
@@ -323,6 +322,9 @@ const ModalFrontend = _ref => {
 						${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_3__.getTypoCSS)(modalLableTypo)?.styles};
 						color: ${modalLabelColor}
 				}
+				.modal-${clientId}  .star{
+					color: ${clientRatingColor}
+				}
 
            `), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ref: modalRef,
@@ -337,11 +339,9 @@ const ModalFrontend = _ref => {
     onClick: () => setModalOpen(false)
   }, "\xD7")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-body"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-    tagName: "h1",
-    className: "heading modalTitleTypo",
-    value: title
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
+    className: "heading modalTitleTypo"
+  }, title, " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-content"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "row"
@@ -361,7 +361,7 @@ const ModalFrontend = _ref => {
       alt: "",
       className: `thumb ${index == 0 ? "active" : " "}`
     });
-  }), "helloo", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
     onSelect: val => {
       const newImages = [...images];
       newImages.push(val.url);
@@ -379,13 +379,11 @@ const ModalFrontend = _ref => {
     }
   })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-text"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
-    className: "red modalHeadingTypo"
-  }, "Project Details"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Project Name:"), title && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "Name:"), title && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     class: "title",
     className: "heading modalContentTypo",
     id: "myTextarea",
@@ -396,7 +394,7 @@ const ModalFrontend = _ref => {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Project Category:"), catrgory && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "Category:"), catrgory && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     class: "catrgory",
     className: "modalContentTypo",
     id: "myTextarea",
@@ -418,7 +416,7 @@ const ModalFrontend = _ref => {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Project URL:"), projectURL && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "URL:"), projectURL && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     class: "projectURL",
     className: "heading modalContentTypo",
     id: "myTextarea",
@@ -429,7 +427,7 @@ const ModalFrontend = _ref => {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Client Reviewz:"), clientReview && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "Client Review:"), clientReview && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     class: "clientReview",
     className: "modalContentTypo",
     id: "myTextarea",
@@ -444,7 +442,7 @@ const ModalFrontend = _ref => {
     class: "star-rating"
   }, "\xA0", clientRating, "\xA0", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     class: "screen-reader-text"
-  }, clientRating, "rating")), renderClientRating(clientRating)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, clientRating, "rating"), renderClientRating(clientRating))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "footer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
@@ -546,10 +544,15 @@ const ProjectRenderer = _ref => {
                 ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_4__.getTypoCSS)(descTypo)?.googleFontLink}
                 ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_4__.getTypoCSS)(btnTypo)?.googleFontLink}
 
+
+
+                .bppb-portfolio-item{
+                    border-radius: ${cardRadius};
+                }
+
 				.bppb-portfolio-items{
 					padding: ${(0,_utils_function__WEBPACK_IMPORTED_MODULE_5__.getBoxValue)(contentPadding)};
 					${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_4__.getBackgroundCSS)(gridBackground)};
-					border-radius: ${cardRadius};
 					column-gap: ${columnGap};
 					row-gap:${rowGap};
 				}

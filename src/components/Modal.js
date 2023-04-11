@@ -3,7 +3,7 @@ import { useRef, useEffect } from "@wordpress/element";
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
-import { getTypoCSS } from "../../../Components/Helper/getCSS";
+import { getColorsCSS, getTypoCSS } from "../../../Components/Helper/getCSS";
 
 const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModalOpen }) => {
 
@@ -16,13 +16,12 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 		clientRating,
 		clientReview,
 		projectURL,
-
 	} = project;
 
 	const modalRef = useRef(null);
 
 	const { clientId, modalContentTypo, modalLableTypo, modalContentColor, modalLabelColor, modalTitleTypo, modalTitleColor, modalHeadingTypo,
-		modalHeadingColor } = attributes;
+		modalHeadingColor, clientRatingColor } = attributes;
 
 	// console.log(modalTitleColor);
 
@@ -77,7 +76,7 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 	}, [])
 
 
-
+console.log(clientRatingColor);
 	return <>
 
 		<style>
@@ -102,6 +101,7 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 						color: ${modalLabelColor}
 				}
 
+	
            `}
 		</style>
 
@@ -159,9 +159,9 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 
 							</div>
 							<div className="modal-text">
-								<h3 className="red modalHeadingTypo">Project Details</h3>
+								{/* <h3 className="red modalHeadingTypo">Project Details</h3> */}
 								<div className="side-bar">
-									<span className="modalLableTypo" >Project Name:</span>
+									<span className="modalLableTypo" >Name:</span>
 									<RichText
 										tagName="p"
 										className="heading modalContentTypo"
@@ -172,7 +172,7 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 									/>
 								</div>
 								<div className="side-bar">
-									<span className="modalLableTypo">Project Category:</span>
+									<span className="modalLableTypo">Category:</span>
 									<RichText
 										tagName="p"
 										className="modalContentTypo"
@@ -194,7 +194,7 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 									/>
 								</div>
 								<div className="side-bar">
-									<span className="modalLableTypo">Project URL:</span>
+									<span className="modalLableTypo">URL:</span>
 									<RichText tagName="p"
 										className="red modalContentTypo"
 										value={projectURL}
@@ -204,7 +204,7 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 									/>
 								</div>
 								<div className="side-bar">
-									<span className="modalLableTypo">Client Reviewz:</span>
+									<span className="modalLableTypo">Client Review:</span>
 									<RichText tagName="p"
 										className="modalContentTypo"
 										value={clientReview}

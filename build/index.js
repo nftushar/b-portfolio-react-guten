@@ -6321,6 +6321,7 @@ __webpack_require__.r(__webpack_exports__);
     btnHover,
     btnLabel,
     btnAlign,
+    clientRatingColor,
     btnTypo,
     btnPadding,
     btnRadius,
@@ -6456,6 +6457,12 @@ __webpack_require__.r(__webpack_exports__);
     step: .5,
     min: 1,
     max: 5
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_BColor__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Rating Color:", "b-projects"),
+    value: clientRatingColor,
+    onChange: val => setAttributes({
+      clientRatingColor: val
+    })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Title__WEBPACK_IMPORTED_MODULE_6__["default"], null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("ClientReview:", "b-projects")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextareaControl, {
     value: projects[currentIndex].clientReview,
     onChange: content => updateProject(currentIndex, "clientReview", content)
@@ -6786,7 +6793,8 @@ const Modal = _ref => {
     modalTitleTypo,
     modalTitleColor,
     modalHeadingTypo,
-    modalHeadingColor
+    modalHeadingColor,
+    clientRatingColor
   } = attributes;
 
   // console.log(modalTitleColor);
@@ -6846,6 +6854,7 @@ const Modal = _ref => {
       }
     });
   }, []);
+  console.log(clientRatingColor);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `
 			    .modal-${clientId} .modalTitleTypo{
 						${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_3__.getTypoCSS)(modalTitleTypo)?.styles};
@@ -6867,6 +6876,7 @@ const Modal = _ref => {
 						color: ${modalLabelColor}
 				}
 
+	
            `), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ref: modalRef,
     id: "portfolio-modal",
@@ -6925,13 +6935,11 @@ const Modal = _ref => {
     }
   })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-text"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
-    className: "red modalHeadingTypo"
-  }, "Project Details"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Project Name:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+  }, "Name:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
     tagName: "p",
     className: "heading modalContentTypo",
     value: title,
@@ -6942,7 +6950,7 @@ const Modal = _ref => {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Project Category:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+  }, "Category:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
     tagName: "p",
     className: "modalContentTypo",
     value: catrgory,
@@ -6964,7 +6972,7 @@ const Modal = _ref => {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Project URL:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+  }, "URL:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
     tagName: "p",
     className: "red modalContentTypo",
     value: projectURL,
@@ -6975,7 +6983,7 @@ const Modal = _ref => {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Client Reviewz:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+  }, "Client Review:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
     tagName: "p",
     className: "modalContentTypo",
     value: clientReview,
@@ -7474,7 +7482,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/b-portfolio-block","attributes":{"className":{"type":"string","default":""},"clientId":{"type":"string","default":""},"projects":{"type":"array","default":[{"background":{"color":"#ffff"},"img":"https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":5,"image":"https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","title":"This is my title","desc":"This is my description","images":["https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"]},{"background":{"color":"#ffff"},"img":"https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":4.5,"image":"https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","title":"This is my title","desc":"This is my description","images":["https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","https://mobimg.b-cdn.net/v3/fetch/97/972d3a28a4f23240915d1c48776ce013.jpeg"]},{"background":{"color":"#ffff"},"img":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","cardRadius":"2px","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":4.5,"image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","desc":"This is my description","btnUrl":"#","images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://mobimg.b-cdn.net/v3/fetch/97/972d3a28a4f23240915d1c48776ce013.jpeg"]}]},"cardRadius":{"type":"string","default":"2px"},"isImg":{"type":"boolean","default":true},"isBtnUrl":{"type":"boolean","default":true},"imgPos":{"type":"string","default":"first"},"background":{"type":"string","default":{"color":"#fff"}},"titleColor":{"type":"string","default":"#fff"},"descColor":{"type":"string","default":"#fff"},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"gridBackground":{"type":"object","default":{"color":"rgba(250, 249, 249, 1)"}},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"modalHeadingTypo":{"type":"object","default":{"fontSize":"30"}},"modalHeadingColor":{"type":"string","default":"#fa566f"},"modalTitleTypo":{"type":"object","default":{"fontSize":"40"}},"modalTitleColor":{"type":"string","default":"#000"},"titleTypo":{"type":"object","default":{"fontSize":"24"}},"descTypo":{"type":"object","default":{"fontSize":"15"}},"modalContentTypo":{"type":"object","default":{"fontSize":"20px"}},"modalLableTypo":{"type":"object","default":{"fontSize":"20px"}},"modalContentColor":{"type":"string","default":"#000"},"modalLabelColor":{"type":"string","default":"#0BF"},"btnTypo":{"type":"object","default":{"fontSize":"15"}},"btnRadius":{"type":"string","default":"5px"},"btnLabel":{"type":"string","default":"Button"},"btnColors":{"type":"object","default":{"color":"#fff","bg":"#000"}},"btnHover":{"type":"object","default":{"color":"#000","bg":"#fff"}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"version":"0.1.0","title":"B Portfolio Block","category":"widgets","icon":"portfolio","description":"B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.","supports":{"html":false},"textdomain":"b-portfolio-block","editorScript":["file:./index.js","jquery"],"editorStyle":"file:./index.css","script":["file:./script.js","jquery"],"style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/b-portfolio-block","attributes":{"className":{"type":"string","default":""},"clientId":{"type":"string","default":""},"projects":{"type":"array","default":[{"background":{"color":"#ffff"},"img":"https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":5,"image":"https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","title":"This is my title","desc":"This is my description","images":["https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","https://images.pexels.com/photos/381739/pexels-photo-381739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"]},{"background":{"color":"#ffff"},"img":"https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":4.5,"image":"https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","title":"This is my title","desc":"This is my description","images":["https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","https://mobimg.b-cdn.net/v3/fetch/97/972d3a28a4f23240915d1c48776ce013.jpeg"]},{"background":{"color":"#ffff"},"img":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","cardRadius":"2px","catrgory":"Android","skils":"Android","projectURL":"https:example.com","clientReview":"Some content will go here","clientRating":4.5,"image":"https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","title":"This is my title","desc":"This is my description","btnUrl":"#","images":["https://pbs.twimg.com/media/FWf-1h6XEAYLdoG?format=jpg&name=large","https://mobimg.b-cdn.net/v3/fetch/97/972d3a28a4f23240915d1c48776ce013.jpeg"]}]},"cardRadius":{"type":"string","default":"2px"},"isImg":{"type":"boolean","default":true},"isBtnUrl":{"type":"boolean","default":true},"imgPos":{"type":"string","default":"first"},"background":{"type":"string","default":{"color":"#fff"}},"clientRatingColor":{"type":"string","default":{"color":"#0BF"}},"titleColor":{"type":"string","default":"#fff"},"descColor":{"type":"string","default":"#fff"},"columns":{"type":"object","default":{"desktop":3,"tablet":2,"mobile":1}},"columnGap":{"type":"string","default":"20px"},"gridBackground":{"type":"object","default":{"color":"rgba(250, 249, 249, 1)"}},"rowGap":{"type":"string","default":"30px"},"theme":{"type":"string","default":"themeOne"},"contentPadding":{"type":"object","default":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}},"border":{"type":"object","default":{"color":"#72aee6","style":"solid","width":"0px"}},"shadows":{"type":"array","default":[]},"modalHeadingTypo":{"type":"object","default":{"fontSize":"30"}},"modalHeadingColor":{"type":"string","default":"#fa566f"},"modalTitleTypo":{"type":"object","default":{"fontSize":"40"}},"modalTitleColor":{"type":"string","default":"#000"},"titleTypo":{"type":"object","default":{"fontSize":"24"}},"descTypo":{"type":"object","default":{"fontSize":"15"}},"modalContentTypo":{"type":"object","default":{"fontSize":"20px"}},"modalLableTypo":{"type":"object","default":{"fontSize":"20px"}},"modalContentColor":{"type":"string","default":"#000"},"modalLabelColor":{"type":"string","default":"#0BF"},"btnTypo":{"type":"object","default":{"fontSize":"15"}},"btnRadius":{"type":"string","default":"5px"},"btnLabel":{"type":"string","default":"Button"},"btnColors":{"type":"object","default":{"color":"#fff","bg":"#000"}},"btnHover":{"type":"object","default":{"color":"#000","bg":"#fff"}},"btnPadding":{"type":"object","default":{"top":"10px","right":"25px","bottom":"10px","left":"25px"}}},"example":{"attributes":{"preview":true,"columns":{"desktop":1,"tablet":1,"mobile":1}}},"version":"0.1.0","title":"B Portfolio Block","category":"widgets","icon":"portfolio","description":"B Portfolio Block plugin helps users display their work in a visually appealing way with customizable layouts and filtering options.","supports":{"html":false},"textdomain":"b-portfolio-block","editorScript":["file:./index.js","jquery"],"editorStyle":"file:./index.css","script":["file:./script.js","jquery"],"style":"file:./style-index.css"}');
 
 /***/ })
 

@@ -363,17 +363,12 @@
   cursor: pointer;
 }
 
-.star {
-  color: #0BF;
-}
-
 .modal-text .star-rating {
   display: inline-block;
   line-height: 1;
 }
 
 .star-rating .star {
-  color: #0074A2;
   display: inline-block;
   font-family: dashicons;
   font-size: 18px;

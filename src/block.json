@@ -91,6 +91,12 @@
 				"color": "#fff"
 			}
 		},
+		"clientRatingColor": {
+			"type": "string",
+			"default": {
+				"color": "#0BF"
+			}
+		},
 		"titleColor": {
 			"type": "string",
 			"default": "#fff"
