@@ -6669,7 +6669,7 @@ __webpack_require__.r(__webpack_exports__);
     })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalUnitControl, {
     className: "mt20",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Border Radiousz", "b-projects"),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Border Radious", "b-projects"),
     labelPosition: "left",
     value: cardRadius,
     onChange: val => setAttributes({

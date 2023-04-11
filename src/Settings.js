@@ -437,7 +437,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                             </PanelRow>
                             <UnitControl
                                 className="mt20"
-                                label={__("Border Radiousz", "b-projects")}
+                                label={__("Border Radious", "b-projects")}
                                 labelPosition="left"
                                 value={cardRadius}
                                 onChange={(val) => setAttributes({ cardRadius: val })} />
