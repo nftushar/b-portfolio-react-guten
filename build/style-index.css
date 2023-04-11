@@ -409,13 +409,6 @@
   }
 }
 /*--------------------------------------- popup modal ------------------------ */
-span.dashicon.dashicons.dashicons-plus {
-  height: 75px;
-  width: 81px;
-  font-size: 80px;
-  color: #fff;
-}
-
 button.components-button.button.button-primary.modal-img-upload.has-icon {
   height: 100px;
 }

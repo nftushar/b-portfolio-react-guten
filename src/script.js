@@ -9,10 +9,6 @@ import "./editor.scss";
 import "./style.scss";
 import ModalFrontend from "./components/ModalFrontend";
 
-
-
-
-
 window.addEventListener('DOMContentLoaded', () => {
     const allPortfolios = document.querySelectorAll('.bppb-projects-items');
 

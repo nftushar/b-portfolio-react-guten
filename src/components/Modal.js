@@ -120,8 +120,8 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 						className="heading modalTitleTypo"
 						value={title}
 						onChange={(content) => updateProject(currentIndex, "title", content)}
-						// inlineToolbar
-						// allowedFormats={["core/bold", "core/italic"]}
+					// inlineToolbar
+					// allowedFormats={["core/bold", "core/italic"]}
 					/>
 
 					<div className="modal-content">
@@ -150,7 +150,8 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 												newImages.push(val.url);
 												updateProject(currentIndex, 'images', newImages);
 											}}
-											render={({ open }) => <Button className='button button-primary modal-img-upload' onClick={open} icon={'plus'}></Button>}
+											render={({ open }) => <Button
+												className='button button-primary modal-img-upload' onClick={open} icon={'cloud-upload'}></Button>}
 										/>
 									</MediaUploadCheck>
 								</div>

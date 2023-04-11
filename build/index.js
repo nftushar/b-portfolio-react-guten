@@ -6924,7 +6924,7 @@ const Modal = _ref => {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
         className: "button button-primary modal-img-upload",
         onClick: open,
-        icon: 'plus'
+        icon: 'cloud-upload'
       });
     }
   })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
