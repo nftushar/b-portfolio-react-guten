@@ -236,17 +236,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     onChange={(val) => setAttributes({ modalTitleColor: val })} />
                             </PanelBody>
 
-                            <PanelBody className="bPlPanelBody" title={__("Title typo", "b-Projects")} initialOpen={true}>
-                                <Typography
-                                    label={__("Title Typo", "b-projects")}
-                                    value={modalHeadingTypo}
-                                    onChange={(val) => setAttributes({ modalHeadingTypo: val })} />
-
-                                <BColor
-                                    label={__("Title Color", "b-projects")}
-                                    value={modalHeadingColor}
-                                    onChange={(val) => setAttributes({ modalHeadingColor: val })} />
-                            </PanelBody>
                             <PanelBody className="bPlPanelBody" title={__("Label typo", "b-Projects")} initialOpen={true}>
                                 <Typography
                                     label={__("Label Typo", "b-projects")}
@@ -274,6 +263,13 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     onChange={(val) =>
                                         setAttributes({ modalContentColor: val })
                                     } />
+                            </PanelBody>
+
+                            <PanelBody className="bPlPanelBody" title={__("Reating ", "b-Projects")} initialOpen={true}>
+                                <BColor
+                                    label={__("Reating Color", "b-projects")}
+                                    value={clientRatingColor}
+                                    onChange={(val) => setAttributes({ clientRatingColor: val })} />
                             </PanelBody>
                         </>}
                     </>}

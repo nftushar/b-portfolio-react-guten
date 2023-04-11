@@ -7,7 +7,7 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-@keyframes portfolioItem {
+@keyframes slideUp {
   from {
     top: 90%;
     opacity: 0;
@@ -15,6 +15,16 @@
   to {
     top: 0%;
     opacity: 1;
+  }
+}
+@keyframes slideDown {
+  from {
+    top: 0%;
+    opacity: 1;
+  }
+  to {
+    top: 100%;
+    opacity: 0;
   }
 }
 .columns-1 {
@@ -319,7 +329,6 @@
 }
 
 .bppb-portfolio-item {
-  background-image: url("https://images.unsplash.com/photo-1499018658500-b21c72d7172b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
   height: 350px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -343,24 +352,28 @@
   display: flex;
   flex-direction: column;
   row-gap: 15px;
-  top: 30%;
+  top: 100%;
   justify-content: center;
   align-items: center;
   height: 100%;
   position: relative;
   overflow: hidden;
+  transition: top 1s ease-in-out, opacity 1s ease-in-out;
 }
 
 .bppb-portfolio-item:hover .content {
-  opacity: 1;
   top: 0%;
-  animation-name: portfolioItem;
-  animation-duration: 1.2s;
+  opacity: 1;
 }
 
 .bppb-portfolio-item .content .portfolio-view-details-btn {
+  transition: all 0.5s;
   border: 0;
   cursor: pointer;
+}
+
+.bppb-portfolio-item .content .portfolio-view-details-btn:hover {
+  transition: all 0.5s;
 }
 
 .modal-text .star-rating {
@@ -599,7 +612,7 @@ span {
 
 #portfolio-modal .close:hover,
 #portfolio-modal .close:focus {
-  color: #000;
+  color: #be2222;
   text-decoration: none;
   cursor: pointer;
 }

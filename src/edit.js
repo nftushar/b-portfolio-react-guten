@@ -21,7 +21,7 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 		clientId && setAttributes({ clientId: clientId })
 	}, [clientId]);
 
-	const { contentPadding, background, cardRadius, titleColor, descColor, projects, gridBackground, isImg, imgPos, btnLabel, btnPadding, btnColors, btnHover, btnRadius, columnGap, columns, rowGap, titleTypo, descTypo, btnTypo } = attributes;
+	const { contentPadding, background, cardRadius, titleColor, descColor, projects, gridBackground, isImg, imgPos, btnLabel, btnPadding, btnColors, btnHover, btnRadius, columnGap, columns, rowGap, clientRatingColor, titleTypo, descTypo, btnTypo } = attributes;
 
 
 
@@ -37,7 +37,7 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 		setAttributes({ projects: newProjects });
 	}
 
-	// console.log(cardRadius);
+	// console.log(clientRatingColor);
 	return <>
 		<style>
 			{`
@@ -77,6 +77,10 @@ export default function Edit({ attributes, setAttributes, clientId, ...rest }) {
 
 				.bppb-portfolio-item .content .portfolio-view-details-btn:hover {
 					${getColorsCSS(btnHover)};
+				}
+
+				.star-rating .star{
+                     color: ${clientRatingColor}
 				}
 					
            `}

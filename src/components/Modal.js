@@ -49,7 +49,6 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 		}
 	}, [images]);
 
-
 	const renderClientRating = (rating) => {
 		// for(let i = 0; i < 5; i++){
 		// 	return 
@@ -76,7 +75,7 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 	}, [])
 
 
-console.log(clientRatingColor);
+	console.log(clientRatingColor);
 	return <>
 
 		<style>
@@ -139,7 +138,7 @@ console.log(clientRatingColor);
 										return <img
 											src={image}
 											alt=""
-											className={`thumb ${index == 0 ? "active" : " "}`}
+											className={` image thumb ${index == 0 ? "active" : " "}`}
 										/>
 									})}
 

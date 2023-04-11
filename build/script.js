@@ -551,6 +551,7 @@ const ProjectRenderer = _ref => {
                 }
 
 				.bppb-portfolio-items{
+                    
 					padding: ${(0,_utils_function__WEBPACK_IMPORTED_MODULE_5__.getBoxValue)(contentPadding)};
 					${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_4__.getBackgroundCSS)(gridBackground)};
 					column-gap: ${columnGap};

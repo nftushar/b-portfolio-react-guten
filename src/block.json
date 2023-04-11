@@ -91,6 +91,12 @@
 				"color": "#fff"
 			}
 		},
+		"clientRatingTypo": {
+			"type": "object",
+			"default": {
+				"fontSize": "40"
+			}
+		},
 		"clientRatingColor": {
 			"type": "string",
 			"default": {
