@@ -77,14 +77,13 @@ export const ProjectRenderer = ({ attributes, setAttributes, clientId, ...rest }
 				.bppb-portfolio-item .content .portfolio-view-details-btn:hover {
 					${getColorsCSS(btnHover)};
 				}
-					
            `}
         </style>
 
 
         <div className={`bppb-portfolio-wrapper bppb-portfolio-items columns-${columns.desktop} columns-tablet-${columns.tablet} columns-mobile-${columns.mobile}`}>
             {projects.map((project, index) => {
-                const { title, desc, img, background } = project;
+                const { title, desc, img } = project;
 
                 return <div className={`bppb-portfolio-item project-${index}`} key={index} >
                     <style>

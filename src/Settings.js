@@ -44,6 +44,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
         columnGap,
         rowGap,
         isImg,
+        isBtnUrl,
         imgPos,
         projectShadow,
         imgHeight,
@@ -70,7 +71,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
 
     } = attributes;
     // console.log(projects);
- 
+
 
     const [device, setDevice] = useState("desktop");
 
@@ -294,6 +295,7 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     btnUrl,
                                     clientRating,
                                 } = project;
+
                                 return <PanelBody
                                     className="bPlPanelBody"
                                     title={`Project ${index + 1}`}
@@ -303,6 +305,12 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                                     {isImg && <InlineMediaUpload
                                         value={img}
                                         onChange={(val) => updateProject(index, "img", val)}
+                                        placeholder={__("Enter Image URL", "b-projects")}
+                                    />}
+                                    {isBtnUrl && <Title>{__("Image Url:", "b-projects")}</Title>}
+                                    {isBtnUrl && <InlineMediaUpload
+                                        value={btnUrl}
+                                        onChange={(val) => updateProject(index, "btnUrl", val)}
                                         placeholder={__("Enter Image URL", "b-projects")}
                                     />}
 
@@ -326,14 +334,6 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
                         </PanelBody>
 
                         <PanelBody title={__("Layout", "b-projects")} className="bPlPanelBody" initialOpen={false}>
-
-
-                            <Title>{__("Button Label:", "b-projects")}</Title>
-                            <TextControl
-                                value={btnLabel}
-                                onChange={(val) => {
-                                    setAttributes({ btnLabel: val })
-                                }} />
 
                             <PanelRow className="mt20">
                                 <Title className="mb5">
@@ -438,6 +438,13 @@ export default function ({ attributes, setAttributes, modalOpen, updateProject, 
 
                         {/* Button */}
                         <PanelBody initialOpen={false} title={__("Button", "b-projects")} className="bPlPanelBody">
+                            <Title>{__("Button Label:", "b-projects")}</Title>
+                            <TextControl
+                                value={btnLabel}
+                                onChange={(val) => {
+                                    setAttributes({ btnLabel: val })
+                                }} />
+
                             <Typography
                                 label={__("Typography", "b-projects")}
                                 value={btnTypo}
