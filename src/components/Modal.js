@@ -134,15 +134,6 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 								</div>
 
 								<div className="list-images thumbs">
-
-									{images.map((image, index) => {
-										return <img
-											src={image}
-											alt=""
-											className={`thumb ${index == 0 ? "active" : " "}`}
-										/>
-									})}
-
 									<MediaUploadCheck>
 										<MediaUpload
 											onSelect={val => {
@@ -154,6 +145,15 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 												className='button button-primary modal-img-upload' onClick={open} icon={'cloud-upload'}></Button>}
 										/>
 									</MediaUploadCheck>
+									
+									{images.map((image, index) => {
+										return <img
+											src={image}
+											alt=""
+											className={`thumb ${index == 0 ? "active" : " "}`}
+										/>
+									})}
+
 								</div>
 							</div>
 							<div className="modal-text">
