@@ -52,7 +52,6 @@ export const ProjectRenderer = ({ attributes, setAttributes, clientId, ...rest }
                 }
 
 				.bppb-portfolio-items{
-                    
 					padding: ${getBoxValue(contentPadding)};
 					${getBackgroundCSS(gridBackground)};
 					column-gap: ${columnGap};

@@ -1,6 +1,5 @@
 import { useRef, useEffect } from "@wordpress/element";
 // import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
 import { getTypoCSS } from "../../../Components/Helper/getCSS";
@@ -17,7 +16,6 @@ const ModalFrontend = ({ attributes, project = {}, currentIndex, updateProject, 
 		clientRating,
 		clientReview,
 		projectURL,
-
 	} = project;
 
 	const modalRef = useRef(null);
@@ -35,19 +33,39 @@ const ModalFrontend = ({ attributes, project = {}, currentIndex, updateProject, 
 			// Show the first slide and thumbnail
 			slides.eq(currentSlide).addClass("active");
 			thumbs.eq(currentSlide).addClass("active");
-			// Change slide on thumbnail click
-			thumbs.click(function () {
-				// Remove active class from current slide and thumbnail
-				slides.eq(currentSlide).removeClass("active");
-				thumbs.eq(currentSlide).removeClass("active");
 
-				// Set current slide to clicked thumbnail index
-				currentSlide = jQuery(this).index();
+			let interval;
 
+			const doInterval = () => {
+				interval = setInterval(function () {
+					// currentSlide = (currentSlide + 1) % slides.length;
+					doAnimation(currentSlide, (currentSlide + 1) % slides.length);
+				}, 3000);
+			}
+			doInterval();
+
+			const doAnimation = (lastSlide, currentIndex) => {
+				console.log(lastSlide, currentSlide)
+				slides.eq(lastSlide).removeClass("active");
+				thumbs.eq(lastSlide).removeClass("active");
+
+				currentSlide = currentIndex;
 				// Add active class to new slide and thumbnail
 				slides.eq(currentSlide).addClass("active");
 				thumbs.eq(currentSlide).addClass("active");
+			}
+			// Change slide on thumbnail click
+			thumbs.click(function () {
+				clearInterval(interval);
+				slides.eq(currentSlide).removeClass("active");
+				thumbs.eq(currentSlide).removeClass("active");
+
+				doInterval();
+				// Remove active class from current slide and thumbnail
+				doAnimation(currentSlide, jQuery(this).index())
 			});
+
+
 		}
 	}, [images]);
 
@@ -55,7 +73,6 @@ const ModalFrontend = ({ attributes, project = {}, currentIndex, updateProject, 
 
 	const renderClientRating = (rating) => {
 		return [...Array(5)].map((item, index) => {
-			console.log(typeof rating, rating)
 			if (index < parseInt(rating)) {
 				return <span class="dashicons dashicons-star-filled star"></span>
 			} else if (index < rating && rating % 1 > 0) {
@@ -186,7 +203,7 @@ const ModalFrontend = ({ attributes, project = {}, currentIndex, updateProject, 
 									<div class="star-rating">
 										&nbsp;{clientRating}&nbsp;
 										<span class="screen-reader-text">{clientRating}rating</span>
-									{renderClientRating(clientRating)}
+										{renderClientRating(clientRating)}
 									</div>
 								</div>
 							</div>

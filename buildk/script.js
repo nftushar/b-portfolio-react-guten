@@ -219,6 +219,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const ModalFrontend = _ref => {
   let {
     attributes,
@@ -246,11 +247,12 @@ const ModalFrontend = _ref => {
     modalLabelColor,
     modalTitleTypo,
     modalTitleColor,
-    clientRatingColor,
     modalHeadingTypo,
     modalHeadingColor
   } = attributes;
-  console.log(clientRatingColor);
+
+  // console.log(modalTitleColor);
+
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (modalRef.current) {
       var slides = jQuery(modalRef.current).find(".slider").children();
@@ -259,36 +261,24 @@ const ModalFrontend = _ref => {
       // Show the first slide and thumbnail
       slides.eq(currentSlide).addClass("active");
       thumbs.eq(currentSlide).addClass("active");
-      let interval;
-      const doInterval = () => {
-        interval = setInterval(function () {
-          // currentSlide = (currentSlide + 1) % slides.length;
-          doAnimation(currentSlide, (currentSlide + 1) % slides.length);
-        }, 3000);
-      };
-      doInterval();
-      const doAnimation = (lastSlide, currentIndex) => {
-        console.log(lastSlide, currentSlide);
-        slides.eq(lastSlide).removeClass("active");
-        thumbs.eq(lastSlide).removeClass("active");
-        currentSlide = currentIndex;
+      // Change slide on thumbnail click
+      thumbs.click(function () {
+        // Remove active class from current slide and thumbnail
+        slides.eq(currentSlide).removeClass("active");
+        thumbs.eq(currentSlide).removeClass("active");
+
+        // Set current slide to clicked thumbnail index
+        currentSlide = jQuery(this).index();
+
         // Add active class to new slide and thumbnail
         slides.eq(currentSlide).addClass("active");
         thumbs.eq(currentSlide).addClass("active");
-      };
-      // Change slide on thumbnail click
-      thumbs.click(function () {
-        clearInterval(interval);
-        slides.eq(currentSlide).removeClass("active");
-        thumbs.eq(currentSlide).removeClass("active");
-        doInterval();
-        // Remove active class from current slide and thumbnail
-        doAnimation(currentSlide, jQuery(this).index());
       });
     }
   }, [images]);
   const renderClientRating = rating => {
     return [...Array(5)].map((item, index) => {
+      console.log(typeof rating, rating);
       if (index < parseInt(rating)) {
         return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
           class: "dashicons dashicons-star-filled star"
@@ -333,9 +323,6 @@ const ModalFrontend = _ref => {
 						${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_3__.getTypoCSS)(modalLableTypo)?.styles};
 						color: ${modalLabelColor}
 				}
-				.modal-${clientId}  .star{
-					color: ${clientRatingColor}
-				}
 
            `), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ref: modalRef,
@@ -350,9 +337,11 @@ const ModalFrontend = _ref => {
     onClick: () => setModalOpen(false)
   }, "\xD7")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-body"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
-    className: "heading modalTitleTypo"
-  }, title, " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h1",
+    className: "heading modalTitleTypo",
+    value: title
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-content"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "row"
@@ -372,7 +361,7 @@ const ModalFrontend = _ref => {
       alt: "",
       className: `thumb ${index == 0 ? "active" : " "}`
     });
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+  }), "helloo", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
     onSelect: val => {
       const newImages = [...images];
       newImages.push(val.url);
@@ -390,11 +379,13 @@ const ModalFrontend = _ref => {
     }
   })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "modal-text"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    className: "red modalHeadingTypo"
+  }, "Project Details"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Name:"), title && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "Project Name:"), title && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     class: "title",
     className: "heading modalContentTypo",
     id: "myTextarea",
@@ -405,7 +396,7 @@ const ModalFrontend = _ref => {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Category:"), catrgory && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "Project Category:"), catrgory && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     class: "catrgory",
     className: "modalContentTypo",
     id: "myTextarea",
@@ -427,7 +418,7 @@ const ModalFrontend = _ref => {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "URL:"), projectURL && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "Project URL:"), projectURL && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     class: "projectURL",
     className: "heading modalContentTypo",
     id: "myTextarea",
@@ -438,7 +429,7 @@ const ModalFrontend = _ref => {
     className: "side-bar"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
-  }, "Client Review:"), clientReview && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "Client Reviewz:"), clientReview && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     class: "clientReview",
     className: "modalContentTypo",
     id: "myTextarea",
@@ -453,7 +444,7 @@ const ModalFrontend = _ref => {
     class: "star-rating"
   }, "\xA0", clientRating, "\xA0", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     class: "screen-reader-text"
-  }, clientRating, "rating"), renderClientRating(clientRating))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, clientRating, "rating")), renderClientRating(clientRating)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "footer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "modalLableTypo"
@@ -555,15 +546,10 @@ const ProjectRenderer = _ref => {
                 ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_4__.getTypoCSS)(descTypo)?.googleFontLink}
                 ${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_4__.getTypoCSS)(btnTypo)?.googleFontLink}
 
-
-
-                .bppb-portfolio-item{
-                    border-radius: ${cardRadius};
-                }
-
 				.bppb-portfolio-items{
 					padding: ${(0,_utils_function__WEBPACK_IMPORTED_MODULE_5__.getBoxValue)(contentPadding)};
 					${(0,_Components_Helper_getCSS__WEBPACK_IMPORTED_MODULE_4__.getBackgroundCSS)(gridBackground)};
+					border-radius: ${cardRadius};
 					column-gap: ${columnGap};
 					row-gap:${rowGap};
 				}

@@ -7,6 +7,16 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+@keyframes portfolioItem {
+  from {
+    top: 90%;
+    opacity: 0;
+  }
+  to {
+    top: 0%;
+    opacity: 1;
+  }
+}
 .columns-1 {
   grid-template-columns: repeat(1, 1fr);
 }
@@ -309,6 +319,7 @@
 }
 
 .bppb-portfolio-item {
+  background-image: url("https://images.unsplash.com/photo-1499018658500-b21c72d7172b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
   height: 350px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -332,28 +343,28 @@
   display: flex;
   flex-direction: column;
   row-gap: 15px;
-  top: 100%;
+  top: 30%;
   justify-content: center;
   align-items: center;
   height: 100%;
   position: relative;
   overflow: hidden;
-  transition: top 1s ease-in-out, opacity 1s ease-in-out;
 }
 
 .bppb-portfolio-item:hover .content {
-  top: 0%;
   opacity: 1;
+  top: 0%;
+  animation-name: portfolioItem;
+  animation-duration: 1.2s;
 }
 
 .bppb-portfolio-item .content .portfolio-view-details-btn {
-  transition: all 0.5s;
   border: 0;
   cursor: pointer;
 }
 
-.bppb-portfolio-item .content .portfolio-view-details-btn:hover {
-  transition: all 0.5s;
+.star {
+  color: #0BF;
 }
 
 .modal-text .star-rating {
@@ -362,6 +373,7 @@
 }
 
 .star-rating .star {
+  color: #0074A2;
   display: inline-block;
   font-family: dashicons;
   font-size: 18px;
@@ -398,7 +410,7 @@
 }
 /*--------------------------------------- popup modal ------------------------ */
 button.components-button.button.button-primary.modal-img-upload.has-icon {
-  height: 70px;
+  height: 100px;
 }
 
 .desc {
@@ -503,15 +515,12 @@ span {
   margin-top: 10px;
 }
 
-.list-images .thumb {
+.thumb {
   width: 92px;
   border: 2px solid white;
   opacity: 0.5;
   transition: opacity 0.8s ease-in-out;
   cursor: pointer;
-  -o-object-fit: cover;
-     object-fit: cover;
-  height: 70px;
 }
 
 .thumb.active {
@@ -592,7 +601,7 @@ span {
 
 #portfolio-modal .close:hover,
 #portfolio-modal .close:focus {
-  color: #be2222;
+  color: #000;
   text-decoration: none;
   cursor: pointer;
 }

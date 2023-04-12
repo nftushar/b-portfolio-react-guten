@@ -5,30 +5,6 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-@keyframes slideUp {
-	from {
-		top: 90%;
-		opacity: 0
-	}
-
-	to {
-		top: 0%;
-		opacity: 1;
-	}
-}
-
-@keyframes slideDown {
-	from {
-		top: 0%;
-		opacity: 1
-	}
-
-	to {
-		top: 100%;
-		opacity: 0;
-	}
-}
-
 
 @for $i from 1 through 12 {
 	.columns-#{$i} {
@@ -279,6 +255,14 @@ h1.heading {
 span {
 	color: black;
 }
+
+// .row {
+// 	display: flex;
+// 	justify-content: center;
+// 	/* display: grid; */
+// 	/* grid-template-columns: repeat(2, 2fr); */
+// 	margin: 15px;
+// }
 
 
 .row {
