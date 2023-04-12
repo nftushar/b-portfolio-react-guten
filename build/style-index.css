@@ -287,14 +287,14 @@
          columns: 12;
   }
 }
-.wp-block-create-block-b-portfolio-block {
-  color: #fff;
-  padding: 2px;
-}
-
 * {
   margin: 0;
   padding: 0;
+}
+
+.wp-block-create-block-b-portfolio-block {
+  color: #fff;
+  padding: 2px;
 }
 
 .bppb-portfolio-items {
@@ -313,6 +313,10 @@
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
+}
+
+.modalTitleTypo {
+  text-transform: capitalize;
 }
 
 .bppb-portfolio-item .content h2 {

@@ -40,7 +40,10 @@
 	}
 }
 
-
+* {
+	margin: 0;
+	padding: 0;
+}
 
 .wp-block-create-block-b-portfolio-block {
 	// background-color: #21759b;
@@ -49,10 +52,7 @@
 }
 
 
-* {
-	margin: 0;
-	padding: 0;
-}
+
 
 .bppb-portfolio-items {
 	display: grid;
@@ -72,6 +72,10 @@
 	background-repeat: no-repeat;
 	overflow: hidden;
 }
+
+ .modalTitleTypo{
+	text-transform: capitalize;
+ }
 
 .bppb-portfolio-item .content h2 {
 	// color: #fff;
