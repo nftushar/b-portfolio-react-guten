@@ -46,7 +46,6 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 			doInterval();
 
 			const doAnimation = (lastSlide, currentIndex) => {
-				console.log(lastSlide, currentSlide)
 				slides.eq(lastSlide).removeClass("active");
 				thumbs.eq(lastSlide).removeClass("active");
 
@@ -55,6 +54,7 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 				slides.eq(currentSlide).addClass("active");
 				thumbs.eq(currentSlide).addClass("active");
 			}
+
 			// Change slide on thumbnail click
 			thumbs.click(function () {
 				clearInterval(interval);
@@ -70,32 +70,6 @@ const Modal = ({ attributes, project = {}, currentIndex, updateProject, setModal
 
 	///////////////////////////// Modal Slider onClick End ////////////////////////////
 
-	///////////////////////////// Modal AUto Slider Start ////////////////////////////
-
-	useEffect(() => {
-		if (modalRef.current) {
-			var slides = jQuery(modalRef.current).find(".slider").children();
-			var thumbs = jQuery(modalRef.current).find(".thumbs").children(':not(.modal-img-upload)');
-			var currentSlide = 0;
-			// Show the first slide and thumbnail
-			slides.eq(currentSlide).addClass("active");
-			thumbs.eq(currentSlide).addClass("active");
-			// Change slide on thumbnail click
-			thumbs.click(function () {
-				// Remove active class from current slide and thumbnail
-				slides.eq(currentSlide).removeClass("active");
-				thumbs.eq(currentSlide).removeClass("active");
-
-				// Set current slide to clicked thumbnail index
-				currentSlide = jQuery(this).index();
-
-				// Add active class to new slide and thumbnail
-				slides.eq(currentSlide).addClass("active");
-				thumbs.eq(currentSlide).addClass("active");
-			});
-		}
-	}, [images]);
-	///////////////////////////// Modal AUto Slider End ////////////////////////////
 
 
 	const renderClientRating = (rating) => {

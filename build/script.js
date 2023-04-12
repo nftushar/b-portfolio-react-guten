@@ -250,6 +250,8 @@ const ModalFrontend = _ref => {
     modalHeadingTypo,
     modalHeadingColor
   } = attributes;
+
+  ///////////////////////////// Modal Slider onClick Start ////////////////////////////
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (modalRef.current) {
       var slides = jQuery(modalRef.current).find(".slider").children();
@@ -258,21 +260,41 @@ const ModalFrontend = _ref => {
       // Show the first slide and thumbnail
       slides.eq(currentSlide).addClass("active");
       thumbs.eq(currentSlide).addClass("active");
-      // Change slide on thumbnail click
-      thumbs.click(function () {
-        // Remove active class from current slide and thumbnail
-        slides.eq(currentSlide).removeClass("active");
-        thumbs.eq(currentSlide).removeClass("active");
-
-        // Set current slide to clicked thumbnail index
-        currentSlide = jQuery(this).index();
-
+      let interval;
+      const doInterval = () => {
+        interval = setInterval(function () {
+          // currentSlide = (currentSlide + 1) % slides.length;
+          doAnimation(currentSlide, (currentSlide + 1) % slides.length);
+        }, 3000);
+      };
+      doInterval();
+      const doAnimation = (lastSlide, currentIndex) => {
+        console.log(lastSlide, currentSlide);
+        slides.eq(lastSlide).removeClass("active");
+        thumbs.eq(lastSlide).removeClass("active");
+        currentSlide = currentIndex;
         // Add active class to new slide and thumbnail
         slides.eq(currentSlide).addClass("active");
         thumbs.eq(currentSlide).addClass("active");
+      };
+      // Change slide on thumbnail click
+      thumbs.click(function () {
+        clearInterval(interval);
+        slides.eq(currentSlide).removeClass("active");
+        thumbs.eq(currentSlide).removeClass("active");
+        doInterval();
+        // Remove active class from current slide and thumbnail
+        doAnimation(currentSlide, jQuery(this).index());
       });
     }
   }, [images]);
+
+  ///////////////////////////// Modal Slider onClick End ////////////////////////////
+
+  ///////////////////////////// Modal AUto Slider Start ////////////////////////////
+
+  ///////////////////////////// Modal AUto Slider End ////////////////////////////
+
   const renderClientRating = rating => {
     return [...Array(5)].map((item, index) => {
       if (index < parseInt(rating)) {
